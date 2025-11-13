@@ -46,7 +46,7 @@ const About = () => {
                 <div className="team-name">Alberth Mendoza</div>
               </div>
 
-              <div className="team-member">
+              <div className="team-member"  >
                 <div className="team-avatar">
                   <img src="/esau.png" alt="Esau" />
                 </div>
