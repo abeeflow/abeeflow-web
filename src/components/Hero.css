@@ -1,22 +1,6 @@
 .hero {
-    min-height: 100vh;
-    padding: 6rem 0;
-    padding-top: calc(6rem + 80px);
+    padding: 6rem 0 8rem;
     position: relative;
-    overflow: hidden;
-}
-
-.hero .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    align-items: center;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    position: relative;
-    z-index: 1;
-    width: 100%;
 }
 
 .hero-badge {
@@ -183,46 +167,7 @@
     z-index: -1;
 }
 
-.hero-content {
-    grid-column: 1;
-    z-index: 1;
-    max-width: 100%;
-}
-
 @media (max-width: 768px) {
-    .hero {
-        height: 100vh;
-        min-height: 100vh;
-        max-height: 100vh;
-        padding: 0;
-        padding-top: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    
-    .hero .container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-top: 80px;
-        padding-bottom: 2rem;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .hero-content {
-        grid-column: 1;
-    }
-    
-    .hero-decoration {
-        width: 20rem;
-        height: 20rem;
-        top: 3rem;
-        right: -5rem;
-    }
-    
     .hero h1 {
         font-size: 2.5rem;
     }

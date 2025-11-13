@@ -78,9 +78,6 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    width: 100%;
-    max-width: 12rem;
-    min-height: 12rem;
 }
 
 .team-name {
@@ -90,11 +87,6 @@
     text-align: center;
     font-family: 'Space Grotesk', sans-serif;
     line-height: 1.4;
-    width: 100%;
-    min-height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .team-avatar {
@@ -151,14 +143,7 @@
     .team-grid {
         flex-direction: row;
         justify-content: center;
-        align-items: flex-start;
         gap: 2rem;
-    }
-    
-    .team-member {
-        width: auto;
-        max-width: none;
-        min-height: auto;
     }
 }
 
@@ -182,36 +167,6 @@
 
     .team-grid {
         gap: 1.5rem;
-        flex-direction: row;
-        justify-content: center;
-        align-items: flex-start;
-        flex-wrap: nowrap;
-    }
-    
-    .team-member {
-        width: auto;
-        max-width: none;
-        min-height: auto;
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .team-member:first-child {
-        order: 2;
-    }
-    
-    .team-member:nth-child(2) {
-        order: 1;
-    }
-    
-    .team-member:nth-child(3) {
-        order: 3;
-    }
-    
-    .team-name {
-        min-height: 2rem;
     }
 
     .about-description p {
