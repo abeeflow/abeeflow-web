@@ -4,11 +4,10 @@ const About = () => {
   return (
     <section id="nosotros" className="about">
       <div className="container">
-        <div className="about-content">
+        <div className="about-content mt-20" >
           <div className="about-text">
             <div className="section-header">
               <h2>Sobre nosotros</h2>
-              <p>Conoce más sobre abeeFlow y nuestro equipo</p>
             </div>
             
             <div className="about-description">

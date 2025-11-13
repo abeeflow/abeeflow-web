@@ -12,9 +12,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="container">
-        <Hero />
-      </div>
+      <Hero />
       <Benefits />
       <About />
       <Cases />
