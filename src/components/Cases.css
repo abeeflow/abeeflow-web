@@ -1,0 +1,286 @@
+.cases {
+    padding: 6rem 0 4rem;
+    background: linear-gradient(to bottom, #ffffff 0%, rgba(248, 250, 252, 0.5) 50%, #ffffff 100%);
+    overflow: hidden;
+}
+
+.section-header {
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: #475569;
+    max-width: 48rem;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.cases-carousel-wrapper {
+    position: relative;
+    margin-top: 2rem;
+    padding: 0 5.5rem;
+}
+
+.cases-carousel {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 2rem;
+    scroll-snap-type: x mandatory;
+}
+
+.cases-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.case-card {
+    min-width: calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+    width: calc(50% - 1rem);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+.case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.1);
+}
+
+.case-testimonial {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 0.875rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.case-company {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.case-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #ffffff;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: #1e293b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.case-company-name {
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #1e293b;
+}
+
+.case-testimonial p {
+    font-size: 0.8rem;
+    color: #334155;
+    line-height: 1.5;
+    font-style: italic;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.case-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.case-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.case-tag svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.case-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.case-card > p {
+    font-size: 0.85rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.case-features {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.case-features li {
+    display: flex;
+    align-items: start;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #334155;
+}
+
+.case-features li svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #10b981;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 0.5rem;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.carousel-btn {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #fbbf24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: auto;
+}
+
+.carousel-btn:hover:not(:disabled) {
+    background: #fbbf24;
+    border-color: #f59e0b;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #e2e8f0;
+}
+
+.carousel-btn svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: #fbbf24;
+    transition: color 0.3s;
+}
+
+.carousel-btn:hover:not(:disabled) svg {
+    color: #ffffff;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.carousel-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: #e2e8f0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.carousel-dot.active {
+    width: 2rem;
+    border-radius: 0.25rem;
+    background: #fbbf24;
+}
+
+@media (max-width: 1024px) {
+    .case-card {
+        min-width: calc(100% - 1rem);
+        max-width: calc(100% - 1rem);
+        width: calc(100% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .case-card {
+        min-width: 320px;
+        max-width: 320px;
+        width: 320px;
+    }
+
+    .cases-carousel-wrapper {
+        padding: 0 3rem;
+    }
+
+    .carousel-btn {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .carousel-btn svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
