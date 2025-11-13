@@ -1,5 +1,5 @@
 .benefits {
-    padding: 8rem 0;
+    padding: 2rem 0;
     background: linear-gradient(to bottom, #ffffff 0%, rgba(254, 243, 199, 0.15) 50%, #ffffff 100%);
 }
 
@@ -78,5 +78,202 @@
     color: #f59e0b;
     font-weight: bold;
     font-size: 1.2rem;
+}
+
+/* Ocultar indicadores en desktop */
+.carousel-indicators {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .benefits {
+        min-height: 100vh;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .benefits .container {
+        display: flex;
+        flex-direction: column;
+        padding-top: 80px;
+        padding-bottom: 2rem;
+        width: 100%;
+    }
+    
+    .section-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        flex-shrink: 0;
+    }
+    
+    .section-header h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        font-family: 'Space Grotesk', sans-serif;
+        color: #0f172a;
+        margin-bottom: 0.5rem;
+    }
+    
+    .benefits-grid-wrapper {
+        position: relative;
+        margin: 0;
+    }
+    
+    .benefits-grid {
+        display: flex;
+        gap: 1.5rem;
+        padding: 0 1rem;
+        margin: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+    }
+    
+    .benefits-grid::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+    
+    .scroll-hint {
+        display: flex;
+        align-items: center;
+        margin-left: 0.75rem;
+        color: #f59e0b;
+        animation: slide-right 1.5s ease-in-out infinite;
+    }
+    
+    .scroll-hint svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    @keyframes slide-right {
+        0%, 100% {
+            transform: translateX(0);
+            opacity: 0.6;
+        }
+        50% {
+            transform: translateX(4px);
+            opacity: 1;
+        }
+    }
+    
+    .benefit-card {
+        min-width: 85vw;
+        max-width: 85vw;
+        width: 85vw;
+        height: auto;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+    }
+    
+    .benefit-card svg {
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .benefit-card h3 {
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+        flex-shrink: 0;
+    }
+    
+    .benefit-card > p {
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .benefit-features {
+        flex-shrink: 0;
+    }
+    
+    .benefit-features li {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+    }
+    
+    .benefit-card:hover {
+        transform: none;
+    }
+    
+    .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        padding: 0 1rem;
+        position: relative;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .carousel-indicators.transitioning {
+        transform: translateY(-2px);
+    }
+    
+    .indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(251, 191, 36, 0.3);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        position: relative;
+        transform: scale(1);
+    }
+    
+    .indicator.active {
+        width: 24px;
+        height: 8px;
+        border-radius: 4px;
+        background-color: #FBBF24;
+        box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+        animation: indicatorPulse 0.6s ease-out;
+        transform: scale(1.1);
+    }
+    
+    @keyframes indicatorPulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+        }
+        50% {
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.6);
+        }
+        100% {
+            transform: scale(1.1);
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+        }
+    }
+    
+    .indicator:not(.active) {
+        transition: all 0.3s ease;
+    }
+    
+    .indicator:not(.active):hover {
+        background-color: rgba(251, 191, 36, 0.5);
+        transform: scale(1.1);
+    }
+    
+    /* Indicador de "hay más contenido" */
+    .benefits-grid::after {
+        content: '';
+        min-width: 1rem;
+        height: 100%;
+        flex-shrink: 0;
+    }
 }
 

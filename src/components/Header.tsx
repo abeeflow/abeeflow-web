@@ -1,22 +1,59 @@
+import { useState, useEffect } from 'react';
 import './Header.css';
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      const header = document.querySelector('header');
+      const headerHeight = header ? header.offsetHeight : 80;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = targetPosition - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
+      
+      setIsMobileMenuOpen(false);
     }
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <header>
+    <header className={isScrolled ? 'scrolled' : ''}>
       <div className="container">
         <nav>
-          <div className="logo">
+          <div className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
             <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 15 L7 18 L10 21" stroke="#FBBF24" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M26 15 L29 18 L26 21" stroke="#FBBF24" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
@@ -37,7 +74,29 @@ const Header = () => {
             <li><a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>PROCESO</a></li>
             <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>CONTACTO</a></li>
           </ul>
+          
+          <button 
+            className="mobile-menu-button"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            <span className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
         </nav>
+        
+        <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+          <ul className="mobile-nav-links">
+            <li><a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>SERVICIOS</a></li>
+            <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>NOSOTROS</a></li>
+            <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>CASOS DE USO</a></li>
+            <li><a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>PROCESO</a></li>
+            <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>CONTACTO</a></li>
+          </ul>
+        </div>
       </div>
     </header>
   );
