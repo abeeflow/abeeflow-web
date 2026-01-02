@@ -1,16 +1,280 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 <head>
+    <!-- Charset y Viewport -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>abeeflow - Automatización y Optimización de Procesos</title>
-    <link rel="icon" type="image/svg+xml" href="/app-icon.svg" />
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2">
-    <link rel="apple-touch-icon" href="/favicon.ico?v=2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags Principales -->
+    <title>Abeeflow | Automatización de Procesos Empresariales con IA - Optimiza tu Negocio</title>
+    <meta name="description" content="Abeeflow transforma tu empresa con automatización inteligente e IA. Optimiza procesos, reduce costos hasta 60% y aumenta la productividad. Consulta gratuita disponible.">
+    <meta name="keywords" content="automatización de procesos, automatización empresarial, inteligencia artificial, IA para empresas, optimización de procesos, transformación digital, automatización con IA, software de automatización, eficiencia empresarial, BPM, RPA, workflow automation, procesos de negocio, productividad empresarial, reducción de costos, digitalización empresarial">
+    <meta name="author" content="Abeeflow">
+    <meta name="publisher" content="Abeeflow">
+    <meta name="copyright" content="Abeeflow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="geo.region" content="ES">
+    <meta name="geo.placename" content="España">
+    <meta name="rating" content="general">
+    <meta name="distribution" content="global">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- URL Canónica -->
+    <link rel="canonical" href="https://abeeflow.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abeeflow.com/">
+    <meta property="og:title" content="Abeeflow | Automatización de Procesos Empresariales con IA">
+    <meta property="og:description" content="Transforma tu empresa con automatización inteligente. Optimiza procesos, reduce costos hasta 60% y aumenta la productividad. Consulta gratuita disponible.">
+    <meta property="og:image" content="https://abeeflow.com/abeeflow.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Abeeflow - Automatización de Procesos con Inteligencia Artificial">
+    <meta property="og:site_name" content="Abeeflow">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://abeeflow.com/">
+    <meta name="twitter:title" content="Abeeflow | Automatización de Procesos Empresariales con IA">
+    <meta name="twitter:description" content="Transforma tu empresa con automatización inteligente. Optimiza procesos, reduce costos hasta 60% y aumenta la productividad.">
+    <meta name="twitter:image" content="https://abeeflow.com/abeeflow.png">
+    <meta name="twitter:image:alt" content="Abeeflow - Automatización de Procesos con Inteligencia Artificial">
+    <meta name="twitter:creator" content="@abeeflow">
+    <meta name="twitter:site" content="@abeeflow">
+
+    <!-- LinkedIn -->
+    <meta property="linkedin:card" content="summary_large_image">
+
+    <!-- Tema y Colores -->
+    <meta name="theme-color" content="#FBBF24">
+    <meta name="msapplication-TileColor" content="#FBBF24">
+    <meta name="msapplication-navbutton-color" content="#FBBF24">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Abeeflow">
+    <meta name="application-name" content="Abeeflow">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Favicon y App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/app-icon.svg">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Preconnect y DNS Prefetch para Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+    <!-- Preload de recursos críticos -->
+    <link rel="preload" href="/abeeflow.png" as="image" type="image/png">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" as="style">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Hreflang para idiomas (SEO internacional) -->
+    <link rel="alternate" hreflang="es" href="https://abeeflow.com/">
+    <link rel="alternate" hreflang="x-default" href="https://abeeflow.com/">
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://abeeflow.com/#organization",
+                "name": "Abeeflow",
+                "url": "https://abeeflow.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://abeeflow.com/abeeflow.png",
+                    "width": 512,
+                    "height": 512
+                },
+                "description": "Empresa líder en automatización de procesos empresariales con inteligencia artificial. Transformamos negocios optimizando flujos de trabajo y aumentando la productividad.",
+                "foundingDate": "2024",
+                "sameAs": [
+                    "https://twitter.com/abeeflow",
+                    "https://linkedin.com/company/abeeflow",
+                    "https://instagram.com/abeeflow"
+                ],
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "customer service",
+                    "availableLanguage": ["Spanish", "English"]
+                }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://abeeflow.com/#website",
+                "url": "https://abeeflow.com",
+                "name": "Abeeflow - Automatización de Procesos con IA",
+                "description": "Plataforma de automatización de procesos empresariales con inteligencia artificial",
+                "publisher": {
+                    "@id": "https://abeeflow.com/#organization"
+                },
+                "inLanguage": "es",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://abeeflow.com/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://abeeflow.com/#webpage",
+                "url": "https://abeeflow.com",
+                "name": "Abeeflow | Automatización de Procesos Empresariales con IA",
+                "description": "Transforma tu empresa con automatización inteligente. Optimiza procesos, reduce costos hasta 60% y aumenta la productividad.",
+                "isPartOf": {
+                    "@id": "https://abeeflow.com/#website"
+                },
+                "about": {
+                    "@id": "https://abeeflow.com/#organization"
+                },
+                "inLanguage": "es",
+                "primaryImageOfPage": {
+                    "@type": "ImageObject",
+                    "url": "https://abeeflow.com/abeeflow.png"
+                }
+            },
+            {
+                "@type": "SoftwareApplication",
+                "@id": "https://abeeflow.com/#software",
+                "name": "Abeeflow",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "Web",
+                "description": "Plataforma de automatización de procesos empresariales con IA que optimiza flujos de trabajo y aumenta la productividad",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "EUR",
+                    "description": "Consulta gratuita disponible"
+                },
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.9",
+                    "ratingCount": "150",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                },
+                "featureList": [
+                    "Automatización de procesos",
+                    "Integración con IA",
+                    "Optimización de flujos de trabajo",
+                    "Reducción de costos operativos",
+                    "Análisis y reportes inteligentes"
+                ]
+            },
+            {
+                "@type": "Service",
+                "@id": "https://abeeflow.com/#service",
+                "serviceType": "Automatización de Procesos Empresariales",
+                "provider": {
+                    "@id": "https://abeeflow.com/#organization"
+                },
+                "name": "Automatización de Procesos con IA",
+                "description": "Servicio de consultoría e implementación de automatización de procesos empresariales utilizando inteligencia artificial",
+                "areaServed": {
+                    "@type": "Place",
+                    "name": "Global"
+                },
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Servicios de Automatización",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Consultoría de Automatización"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Implementación de IA"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Optimización de Procesos"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://abeeflow.com/#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué es la automatización de procesos empresariales?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "La automatización de procesos empresariales es el uso de tecnología para ejecutar tareas repetitivas de forma automática, reduciendo errores humanos y aumentando la eficiencia operativa."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo puede la IA mejorar mis procesos de negocio?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "La IA analiza patrones, predice resultados y toma decisiones inteligentes en tiempo real, optimizando flujos de trabajo y reduciendo costos hasta un 60%."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cuánto tiempo toma implementar la automatización?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "El tiempo de implementación varía según la complejidad del proyecto, pero típicamente se pueden ver resultados iniciales en pocas semanas."
+                        }
+                    }
+                ]
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": "https://abeeflow.com/#breadcrumb",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Inicio",
+                        "item": "https://abeeflow.com"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
+    <!-- Noscript fallback para SEO -->
+    <noscript>
+        <div style="padding: 20px; text-align: center; background: #FBBF24; color: #1e293b;">
+            Para una mejor experiencia, habilita JavaScript en tu navegador.
+            <a href="https://abeeflow.com" style="color: #1e293b; text-decoration: underline;">Abeeflow - Automatización de Procesos</a>
+        </div>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 </body>

@@ -6,7 +6,15 @@ const Footer = () => {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-image-section">
-            <img src="/abeeflow.png" alt="abeeflow" className="footer-logo-image" />
+            <img
+              src="/abeeflow.png"
+              alt="Abeeflow - Empresa líder en automatización de procesos empresariales con inteligencia artificial"
+              className="footer-logo-image"
+              loading="lazy"
+              width="200"
+              height="200"
+              itemProp="logo"
+            />
           </div>
 
           <div className="footer-section">

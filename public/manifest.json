@@ -1,0 +1,63 @@
+{
+    "name": "Abeeflow - Automatización de Procesos Empresariales con IA",
+    "short_name": "Abeeflow",
+    "description": "Transforma tu empresa con automatización inteligente e IA. Optimiza procesos, reduce costos hasta 60% y aumenta la productividad.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#1e293b",
+    "theme_color": "#FBBF24",
+    "lang": "es",
+    "dir": "ltr",
+    "categories": ["business", "productivity", "utilities"],
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "48x48",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "/app-icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "/abeeflow.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/abeeflow.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "label": "Abeeflow - Pantalla principal"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Servicios",
+            "short_name": "Servicios",
+            "description": "Ver nuestros servicios de automatización",
+            "url": "/#servicios",
+            "icons": [{"src": "/app-icon.svg", "sizes": "96x96"}]
+        },
+        {
+            "name": "Contacto",
+            "short_name": "Contacto",
+            "description": "Contactar con Abeeflow",
+            "url": "/#contacto",
+            "icons": [{"src": "/app-icon.svg", "sizes": "96x96"}]
+        }
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "iarc_rating_id": "",
+    "edge_side_panel": {
+        "preferred_width": 400
+    }
+}

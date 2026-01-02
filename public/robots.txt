@@ -1,0 +1,130 @@
+# Robots.txt para Abeeflow
+# https://abeeflow.com
+
+# Permitir acceso a todos los bots de búsqueda
+User-agent: *
+Allow: /
+
+# Bloquear carpetas del sistema y archivos sensibles
+Disallow: /api/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.config.js$
+Disallow: /*.config.ts$
+
+# Permitir archivos estáticos importantes
+Allow: /manifest.json
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.ico
+
+# Google Bot específico
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Google Images Bot
+User-agent: Googlebot-Image
+Allow: /
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Bing Images Bot
+User-agent: msnbot-media
+Allow: /
+
+# Yahoo Bot
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo Bot
+User-agent: DuckDuckBot
+Allow: /
+
+# Baidu Bot (China)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Yandex Bot (Rusia)
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+# Apple Bot
+User-agent: Applebot
+Allow: /
+
+# Facebook Bot
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter Bot
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn Bot
+User-agent: LinkedInBot
+Allow: /
+
+# Pinterest Bot
+User-agent: Pinterest
+Allow: /
+
+# WhatsApp Bot
+User-agent: WhatsApp
+Allow: /
+
+# Telegram Bot
+User-agent: TelegramBot
+Allow: /
+
+# Slack Bot
+User-agent: Slackbot
+Allow: /
+
+# Discord Bot
+User-agent: Discordbot
+Allow: /
+
+# Bloquear bots maliciosos conocidos
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: SearchmetricsBot
+Disallow: /
+
+# Ubicación del Sitemap
+Sitemap: https://abeeflow.com/sitemap.xml
+
+# Información del host
+Host: https://abeeflow.com

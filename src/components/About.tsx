@@ -32,25 +32,46 @@ const About = () => {
           <div className="team-section">
             <h3>Nuestro equipo</h3>
             <div className="team-grid">
-              <div className="team-member">
+              <div className="team-member" itemScope itemType="https://schema.org/Person">
                 <div className="team-avatar">
-                  <img src="/maria.jpg" alt="Maria" />
+                  <img
+                    src="/maria.jpg"
+                    alt="Maria Flores - Especialista en automatización de procesos empresariales en Abeeflow"
+                    loading="lazy"
+                    width="120"
+                    height="120"
+                    itemProp="image"
+                  />
                 </div>
-                <div className="team-name">Maria Flores</div>
+                <div className="team-name" itemProp="name">Maria Flores</div>
               </div>
 
-              <div className="team-member">
+              <div className="team-member" itemScope itemType="https://schema.org/Person">
                 <div className="team-avatar">
-                  <img src="/chris.png" alt="Chris" />
+                  <img
+                    src="/chris.png"
+                    alt="Alberth Mendoza - Fundador y experto en inteligencia artificial en Abeeflow"
+                    loading="lazy"
+                    width="120"
+                    height="120"
+                    itemProp="image"
+                  />
                 </div>
-                <div className="team-name">Alberth Mendoza</div>
+                <div className="team-name" itemProp="name">Alberth Mendoza</div>
               </div>
 
-              <div className="team-member"  >
+              <div className="team-member" itemScope itemType="https://schema.org/Person">
                 <div className="team-avatar">
-                  <img src="/esau.png" alt="Esau" />
+                  <img
+                    src="/esau.png"
+                    alt="Esau Pretell - Desarrollador senior de soluciones de automatización en Abeeflow"
+                    loading="lazy"
+                    width="120"
+                    height="120"
+                    itemProp="image"
+                  />
                 </div>
-                <div className="team-name">Esau Pretell</div>
+                <div className="team-name" itemProp="name">Esau Pretell</div>
               </div>
             </div>
           </div>

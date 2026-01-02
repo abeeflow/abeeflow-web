@@ -53,8 +53,9 @@ const Header = () => {
     <header className={isScrolled ? 'scrolled' : ''}>
       <div className="container">
         <nav>
-          <div className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div className="logo" onClick={handleLogoClick} style={{ cursor: 'pointer' }} role="button" aria-label="Ir al inicio de Abeeflow" tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && handleLogoClick(e as unknown as React.MouseEvent<HTMLDivElement>)}>
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+              <title>Logo de Abeeflow</title>
               <path d="M10 15 L7 18 L10 21" stroke="#FBBF24" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M26 15 L29 18 L26 21" stroke="#FBBF24" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M18 13 L21 15 L21.5 22 L18 26 L14.5 22 L15 15 Z" fill="#FBBF24"/>
@@ -75,10 +76,12 @@ const Header = () => {
             <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>CONTACTO</a></li>
           </ul>
           
-          <button 
+          <button
             className="mobile-menu-button"
             onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
+            aria-label={isMobileMenuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             <span className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}>
               <span></span>
@@ -88,15 +91,15 @@ const Header = () => {
           </button>
         </nav>
         
-        <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-          <ul className="mobile-nav-links">
+        <nav id="mobile-navigation" className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`} aria-label="Navegación móvil">
+          <ul className="mobile-nav-links" role="menu">
             <li><a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>SERVICIOS</a></li>
             <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>NOSOTROS</a></li>
             <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>CASOS DE USO</a></li>
             <li><a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>PROCESO</a></li>
-            <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>CONTACTO</a></li>
+            <li role="menuitem"><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>CONTACTO</a></li>
           </ul>
-        </div>
+        </nav>
       </div>
     </header>
   );
