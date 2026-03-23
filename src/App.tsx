@@ -1,3 +1,4 @@
+import { LanguageProvider } from './i18n/LanguageContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Benefits from './components/Benefits';
@@ -12,7 +13,7 @@ import './App.css';
 
 function App() {
   return (
-    <>
+    <LanguageProvider>
       <Header />
       <Hero />
       <Benefits />
@@ -23,7 +24,7 @@ function App() {
       <Contact />
       <Footer />
       <WhatsAppWidget />
-    </>
+    </LanguageProvider>
   );
 }
 

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
 import './Header.css';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +33,8 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const toggleLang = () => setLanguage(language === 'es' ? 'en' : 'es');
+
   return (
     <header className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-inner">
@@ -51,15 +55,22 @@ const Header = () => {
         </a>
 
         <ul className="nav-links">
-          <li><a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>Servicios</a></li>
-          <li><a href="#soluciones" onClick={(e) => handleSmoothScroll(e, '#soluciones')}>Soluciones</a></li>
-          <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>Nosotros</a></li>
-          <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>Casos de uso</a></li>
-          <li><a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>Proceso</a></li>
-          <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>Contacto</a></li>
+          <li><a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>{t.nav.servicios}</a></li>
+          <li><a href="#soluciones" onClick={(e) => handleSmoothScroll(e, '#soluciones')}>{t.nav.soluciones}</a></li>
+          <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>{t.nav.nosotros}</a></li>
+          <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>{t.nav.casos}</a></li>
+          <li><a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>{t.nav.proceso}</a></li>
+          <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.nav.contacto}</a></li>
         </ul>
 
-        <a href="#contacto" className="nav-cta" onClick={(e) => handleSmoothScroll(e, '#contacto')}>Contactanos</a>
+        <div className="nav-actions">
+          <button className="lang-toggle" onClick={toggleLang} aria-label="Cambiar idioma">
+            <span className={language === 'es' ? 'lang-active' : ''}>ES</span>
+            <span className="lang-sep">|</span>
+            <span className={language === 'en' ? 'lang-active' : ''}>EN</span>
+          </button>
+          <a href="#contacto" className="nav-cta" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.nav.cta}</a>
+        </div>
 
         <button
           className="mobile-toggle"
@@ -77,12 +88,19 @@ const Header = () => {
 
       <nav className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`} aria-label="Navegacion movil">
         <ul className="mobile-nav-links">
-          <li><a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>Servicios</a></li>
-          <li><a href="#soluciones" onClick={(e) => handleSmoothScroll(e, '#soluciones')}>Soluciones</a></li>
-          <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>Nosotros</a></li>
-          <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>Casos de uso</a></li>
-          <li><a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>Proceso</a></li>
-          <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>Contacto</a></li>
+          <li><a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>{t.nav.servicios}</a></li>
+          <li><a href="#soluciones" onClick={(e) => handleSmoothScroll(e, '#soluciones')}>{t.nav.soluciones}</a></li>
+          <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>{t.nav.nosotros}</a></li>
+          <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>{t.nav.casos}</a></li>
+          <li><a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>{t.nav.proceso}</a></li>
+          <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.nav.contacto}</a></li>
+          <li>
+            <button className="lang-toggle-mobile" onClick={toggleLang}>
+              <span className={language === 'es' ? 'lang-active' : ''}>ES</span>
+              <span className="lang-sep">|</span>
+              <span className={language === 'en' ? 'lang-active' : ''}>EN</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </header>
