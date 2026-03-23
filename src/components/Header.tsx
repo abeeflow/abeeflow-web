@@ -63,14 +63,11 @@ const Header = () => {
           <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.nav.contacto}</a></li>
         </ul>
 
-        <div className="nav-actions">
-          <button className="lang-toggle" onClick={toggleLang} aria-label="Cambiar idioma">
-            <span className={language === 'es' ? 'lang-active' : ''}>ES</span>
-            <span className="lang-sep">|</span>
-            <span className={language === 'en' ? 'lang-active' : ''}>EN</span>
-          </button>
-          <a href="#contacto" className="nav-cta" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.nav.cta}</a>
-        </div>
+        <button className="lang-toggle" onClick={toggleLang} aria-label="Cambiar idioma">
+          <span className={language === 'es' ? 'lang-active' : ''}>ES</span>
+          <span className="lang-sep">|</span>
+          <span className={language === 'en' ? 'lang-active' : ''}>EN</span>
+        </button>
 
         <button
           className="mobile-toggle"
