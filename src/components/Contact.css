@@ -1,155 +1,84 @@
-.contact {
-    padding: 2rem 0;
-    background: linear-gradient(to bottom, #ffffff 0%, rgba(254, 243, 199, 0.15) 50%, #ffffff 100%);
-    position: relative;
+.contact-section {
+    padding: 80px 0;
+    background: var(--bg-alt);
 }
 
-.contact::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: radial-gradient(ellipse at center, rgba(251, 191, 36, 0.08) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.contact-container {
-    max-width: 70rem;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
-
-.contact-header {
+.contact-box {
     text-align: center;
-    margin-bottom: 1rem;
+    background: var(--bg-warm);
+    border: 1px solid rgba(245,183,49,0.2);
+    border-radius: var(--radius-lg);
+    padding: 56px 40px;
+    max-width: 640px;
+    margin: 0 auto;
 }
 
-.contact-header h2 {
-    font-size: 1.75rem;
+.contact-title {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.contact-subtitle {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+.contact-features {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.contact-feature {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.contact-feature svg {
+    color: var(--yellow-hover);
+}
+
+.contact-book-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--yellow);
+    color: var(--text);
+    padding: 16px 48px;
+    border-radius: 12px;
     font-weight: 700;
-    font-family: 'Space Grotesk', sans-serif;
-    color: #0f172a;
-    margin-bottom: 0.25rem;
-    letter-spacing: -0.02em;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.25s;
 }
 
-.contact-header p {
-    font-size: 0.95rem;
-    color: #475569;
-}
-
-.calendar-wrapper {
-    background: #ffffff;
-    padding: 0.75rem 0.5rem;
-    border-radius: 0.75rem;
-    border: 1px solid #f1f5f9;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    width: calc(100% + 100px);
-    margin-left: -50px;
-    margin-right: -50px;
-}
-
-.calendar-wrapper iframe {
-    width: calc(100% + 20px);
-    margin-left: -20px;
-    margin-right: -20px;
-    height: calc(100vh - 150px);
-    min-height: 750px;
-    max-height: 850px;
-    border: none;
-    border-radius: 0.5rem;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 600;
-    font-family: 'Space Grotesk', sans-serif;
-    color: #0f172a;
-    margin-bottom: 0.75rem;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.2s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: transparent;
-    box-shadow: 0 0 0 2px #fbbf24;
-}
-
-.form-group textarea {
-    resize: none;
-}
-
-.submit-btn {
-    width: 100%;
-    padding: 1rem;
-    background: #1e293b;
-    color: #ffffff;
-    font-weight: 600;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
-    font-size: 1rem;
-}
-
-.submit-btn:hover:not(:disabled) {
-    background: #0f172a;
-}
-
-.submit-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+.contact-book-btn:hover {
+    background: var(--yellow-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(245,183,49,0.3);
 }
 
 @media (max-width: 768px) {
-    .contact {
-        padding: 2rem 0;
-        min-height: auto;
+    .contact-section {
+        padding: 60px 0;
     }
 
-    .contact-header h2 {
-        font-size: 1.75rem;
+    .contact-box {
+        padding: 36px 24px;
     }
 
-    .contact-header p {
-        font-size: 0.95rem;
-    }
-
-    .calendar-wrapper {
-        padding: 0.75rem;
-    }
-
-    .calendar-wrapper iframe {
-        height: calc(100vh - 200px);
-        min-height: 500px;
-        max-height: 600px;
+    .contact-features {
+        flex-wrap: wrap;
+        gap: 16px;
     }
 }
-

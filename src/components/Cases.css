@@ -1,28 +1,7 @@
 .cases {
-    padding: 2rem 0 4rem;
-    background: linear-gradient(to bottom, #ffffff 0%, rgba(248, 250, 252, 0.5) 50%, #ffffff 100%);
+    padding: 100px 0;
+    background: var(--bg-alt);
     overflow: hidden;
-}
-
-.section-header {
-    margin-bottom: 1.5rem;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    font-family: 'Space Grotesk', sans-serif;
-    color: #0f172a;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.02em;
-}
-
-.section-header p {
-    font-size: 1.125rem;
-    color: #475569;
-    max-width: 48rem;
-    text-align: justify;
-    text-justify: inter-word;
 }
 
 .cases-carousel-wrapper {
@@ -50,10 +29,9 @@
     min-width: calc(50% - 1rem);
     max-width: calc(50% - 1rem);
     width: calc(50% - 1rem);
-    padding: 1.5rem;
-    border-radius: 1rem;
+    padding: 36px;
+    border-radius: var(--radius-lg);
     transition: all 0.3s;
-    border: none;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -62,121 +40,105 @@
     scroll-snap-align: start;
 }
 
-.case-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.1);
+.case-card-warm {
+    background: var(--yellow-light);
+    border: 1px solid rgba(245,183,49,0.2);
 }
 
-.case-testimonial {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(10px);
-    padding: 0.875rem;
-    border-radius: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+.case-card-blue {
+    background: #F0F7FF;
+    border: 1px solid rgba(59,130,246,0.15);
+}
+
+.case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
 }
 
 .case-company {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
+    gap: 10px;
+    margin-bottom: 16px;
 }
 
-.case-logo {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: #ffffff;
-    border-radius: 0.5rem;
+.case-company-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 0.75rem;
-    color: #1e293b;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text-secondary);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
 }
 
 .case-company-name {
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: 'Space Grotesk', sans-serif;
-    color: #1e293b;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text);
 }
 
-.case-testimonial p {
-    font-size: 0.8rem;
-    color: #334155;
-    line-height: 1.5;
-    font-style: italic;
-    text-align: justify;
-    text-justify: inter-word;
-}
-
-.case-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.case-tag {
+.case-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 9999px;
-    font-size: 0.75rem;
+    gap: 6px;
+    background: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
     font-weight: 600;
-    color: #1e293b;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    width: fit-content;
 }
 
-.case-tag svg {
-    width: 1rem;
-    height: 1rem;
+.case-badge svg {
+    width: 14px;
+    height: 14px;
 }
 
-.case-card h3 {
-    font-size: 1.1rem;
+.case-title {
+    font-size: 18px;
     font-weight: 700;
-    font-family: 'Space Grotesk', sans-serif;
-    color: #0f172a;
-    margin-bottom: 0.75rem;
+    margin-bottom: 12px;
+    color: var(--text);
     line-height: 1.3;
 }
 
-.case-card > p {
-    font-size: 0.85rem;
-    color: #475569;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    text-align: justify;
-    text-justify: inter-word;
+.case-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
 }
 
-.case-features {
+.case-results {
     list-style: none;
-    margin-top: 1rem;
+    margin-top: auto;
 }
 
-.case-features li {
+.case-results li {
+    font-size: 13px;
+    color: var(--text);
+    padding: 5px 0;
     display: flex;
-    align-items: start;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.8rem;
-    color: #334155;
+    align-items: flex-start;
+    gap: 8px;
 }
 
-.case-features li svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: #10b981;
+.case-check {
+    color: #22C55E;
     flex-shrink: 0;
-    margin-top: 0.125rem;
+    margin-top: 1px;
 }
 
+/* Carousel Controls */
 .carousel-controls {
     position: absolute;
     top: 50%;
@@ -190,42 +152,42 @@
 }
 
 .carousel-btn {
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
     background: #ffffff;
-    border: 2px solid #fbbf24;
+    border: 2px solid var(--yellow);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     pointer-events: auto;
 }
 
 .carousel-btn:hover:not(:disabled) {
-    background: #fbbf24;
-    border-color: #f59e0b;
+    background: var(--yellow);
+    border-color: var(--yellow-hover);
     transform: scale(1.1);
-    box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+    box-shadow: 0 6px 16px rgba(245, 183, 49, 0.4);
 }
 
 .carousel-btn:disabled {
-    opacity: 0.4;
+    opacity: 0.3;
     cursor: not-allowed;
-    border-color: #e2e8f0;
+    border-color: var(--border);
 }
 
 .carousel-btn svg {
-    width: 1.75rem;
-    height: 1.75rem;
-    color: #fbbf24;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--yellow);
     transition: color 0.3s;
 }
 
 .carousel-btn:hover:not(:disabled) svg {
-    color: #ffffff;
+    color: var(--text);
 }
 
 .carousel-dots {
@@ -236,18 +198,18 @@
 }
 
 .carousel-dot {
-    width: 0.5rem;
-    height: 0.5rem;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: #e2e8f0;
+    background: var(--border);
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .carousel-dot.active {
-    width: 2rem;
-    border-radius: 0.25rem;
-    background: #fbbf24;
+    width: 28px;
+    border-radius: 4px;
+    background: var(--yellow);
 }
 
 @media (max-width: 1024px) {
@@ -259,23 +221,19 @@
 }
 
 @media (max-width: 768px) {
-    .section-header h2 {
-        font-size: 1.75rem;
-    }
-    
-    .section-header p {
-        font-size: 1rem;
+    .cases {
+        padding: 60px 0;
     }
 
     .cases-carousel-wrapper {
         padding: 0;
-        margin-left: -1.5rem;
-        margin-right: -1.5rem;
+        margin-left: -24px;
+        margin-right: -24px;
     }
-    
+
     .cases-carousel {
-        padding-left: calc(7.5vw + 1.5rem);
-        padding-right: calc(7.5vw + 1.5rem);
+        padding-left: calc(7.5vw + 24px);
+        padding-right: calc(7.5vw + 24px);
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
     }
@@ -284,63 +242,12 @@
         min-width: 85vw;
         max-width: 85vw;
         width: 85vw;
-        padding: 1.25rem;
+        padding: 24px;
         scroll-snap-align: center;
-        scroll-snap-stop: always;
     }
-    
+
     .case-card:hover {
         transform: none;
-    }
-    
-    .case-testimonial {
-        padding: 0.75rem;
-        margin-bottom: 0.875rem;
-    }
-    
-    .case-logo {
-        width: 2rem;
-        height: 2rem;
-        font-size: 0.7rem;
-    }
-    
-    .case-company-name {
-        font-size: 0.9rem;
-    }
-    
-    .case-testimonial p {
-        font-size: 0.75rem;
-    }
-    
-    .case-tag {
-        padding: 0.4rem 0.875rem;
-        font-size: 0.7rem;
-    }
-    
-    .case-tag svg {
-        width: 0.875rem;
-        height: 0.875rem;
-    }
-    
-    .case-card h3 {
-        font-size: 1rem;
-        margin-bottom: 0.625rem;
-    }
-    
-    .case-card > p {
-        font-size: 0.8rem;
-        margin-bottom: 0.875rem;
-    }
-    
-    .case-features li {
-        font-size: 0.75rem;
-        gap: 0.625rem;
-        margin-bottom: 0.4rem;
-    }
-    
-    .case-features li svg {
-        width: 1rem;
-        height: 1rem;
     }
 
     .carousel-controls {
@@ -349,19 +256,5 @@
 
     .carousel-dots {
         margin-top: 1.5rem;
-        gap: 0.5rem;
-    }
-    
-    .carousel-dot {
-        width: 8px;
-        height: 8px;
-    }
-    
-    .carousel-dot.active {
-        width: 24px;
-        height: 8px;
-        border-radius: 4px;
-        background: #FBBF24;
     }
 }
-
