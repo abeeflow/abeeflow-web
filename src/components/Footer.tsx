@@ -63,9 +63,9 @@ const Footer = () => {
 
           <div className="footer-col">
             <div className="footer-col-title">{t.footer.contacto}</div>
-            <a href="mailto:abeeflow.info@gmail.com">abeeflow.info@gmail.com</a>
+            <a href="mailto:contacto@abeeflow.com">contacto@abeeflow.com</a>
             <a href="https://wa.me/51938197341" target="_blank" rel="noopener noreferrer">+51 938 197 341</a>
-            <a href="https://wa.me/33686251232" target="_blank" rel="noopener noreferrer">+33 6 86 25 12 32</a>
+            <a href="https://wa.me/51999950133" target="_blank" rel="noopener noreferrer">+51 999 950 133</a>
           </div>
         </div>
 

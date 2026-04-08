@@ -3,7 +3,7 @@ import './WhatsAppWidget.css';
 const WhatsAppWidget = () => {
   return (
     <a
-      href="https://wa.me/33686251232"
+      href="https://wa.me/51999950133"
       className="whatsapp-widget"
       target="_blank"
       rel="noopener noreferrer"
