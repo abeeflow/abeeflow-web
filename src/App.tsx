@@ -1,4 +1,5 @@
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
+import { useLenis } from './hooks/useLenis';
 import Header from './components/Header';
 import HoneycombBackground from './components/HoneycombBackground';
 import Hero from './components/Hero';
@@ -23,6 +24,8 @@ const SkipLink = () => {
 };
 
 function App() {
+  useLenis();
+
   return (
     <LanguageProvider>
       <HoneycombBackground />

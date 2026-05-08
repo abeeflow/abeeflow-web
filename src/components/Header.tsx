@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { getLenis } from '../lib/lenis';
 import './Header.css';
 
 const Header = () => {
@@ -18,18 +19,27 @@ const Header = () => {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
-    if (target) {
-      const header = document.querySelector('header');
-      const headerHeight = header ? header.offsetHeight : 72;
+    if (!target) return;
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 72;
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(target as HTMLElement, { offset: -headerHeight });
+    } else {
       const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({ top: targetPosition - headerHeight, behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
     }
+    setIsMobileMenuOpen(false);
   };
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     setIsMobileMenuOpen(false);
   };
 

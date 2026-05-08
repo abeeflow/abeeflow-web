@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
+import { getLenis } from '../lib/lenis';
 import './Hero.css';
 
 const flowIcons: ReactNode[] = [
@@ -188,9 +189,13 @@ const Hero = () => {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const target = document.querySelector(href);
-    if (target) {
-      const header = document.querySelector('header');
-      const headerHeight = header ? header.offsetHeight : 72;
+    if (!target) return;
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 72;
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(target as HTMLElement, { offset: -headerHeight });
+    } else {
       const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({ top: targetPosition - headerHeight, behavior: 'smooth' });
     }
