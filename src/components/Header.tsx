@@ -41,15 +41,15 @@ const Header = () => {
         <a href="#" className="logo" onClick={handleLogoClick}>
           <svg className="logo-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <title>Logo de Abeeflow</title>
-            <path d="M10 15 L7 18 L10 21" stroke="#FBBF24" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M26 15 L29 18 L26 21" stroke="#FBBF24" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M18 13 L21 15 L21.5 22 L18 26 L14.5 22 L15 15 Z" fill="#FBBF24"/>
+            <path d="M10 15 L7 18 L10 21" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M26 15 L29 18 L26 21" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M18 13 L21 15 L21.5 22 L18 26 L14.5 22 L15 15 Z" fill="currentColor"/>
             <line x1="15.5" y1="16.5" x2="20.5" y2="16.5" stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
             <line x1="15" y1="19.5" x2="21" y2="19.5" stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
             <line x1="15.5" y1="23" x2="20.5" y2="23" stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
-            <circle cx="18" cy="11" r="3" fill="#FBBF24"/>
-            <path d="M16.5 8.5 Q15 7 15 5.5" stroke="#FBBF24" strokeWidth="0.7" fill="none" strokeLinecap="round"/>
-            <path d="M19.5 8.5 Q21 7 21 5.5" stroke="#FBBF24" strokeWidth="0.7" fill="none" strokeLinecap="round"/>
+            <circle cx="18" cy="11" r="3" fill="currentColor"/>
+            <path d="M16.5 8.5 Q15 7 15 5.5" stroke="currentColor" strokeWidth="0.7" fill="none" strokeLinecap="round"/>
+            <path d="M19.5 8.5 Q21 7 21 5.5" stroke="currentColor" strokeWidth="0.7" fill="none" strokeLinecap="round"/>
           </svg>
           <span className="logo-text">abeeFlow</span>
         </a>
@@ -72,7 +72,7 @@ const Header = () => {
         <button
           className="mobile-toggle"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? "Cerrar menu" : "Abrir menu"}
+          aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={isMobileMenuOpen}
         >
           <span className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`}>
@@ -83,7 +83,7 @@ const Header = () => {
         </button>
       </div>
 
-      <nav className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`} aria-label="Navegacion movil">
+      <nav className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`} aria-label="Navegación móvil">
         <ul className="mobile-nav-links">
           <li><a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>{t.nav.servicios}</a></li>
           <li><a href="#soluciones" onClick={(e) => handleSmoothScroll(e, '#soluciones')}>{t.nav.soluciones}</a></li>

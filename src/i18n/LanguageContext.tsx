@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { translations, type Language, type Translations } from './translations';
 
 interface LanguageContextType {
@@ -19,6 +19,10 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     setLanguageState(lang);
     localStorage.setItem('abeeflow-lang', lang);
   };
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   const t = translations[language];
 

@@ -1,4 +1,4 @@
-import { LanguageProvider } from './i18n/LanguageContext';
+import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Benefits from './components/Benefits';
@@ -11,17 +11,29 @@ import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
 import './App.css';
 
+const SkipLink = () => {
+  const { language } = useLanguage();
+  return (
+    <a href="#main" className="skip-link">
+      {language === 'en' ? 'Skip to content' : 'Saltar al contenido'}
+    </a>
+  );
+};
+
 function App() {
   return (
     <LanguageProvider>
+      <SkipLink />
       <Header />
-      <Hero />
-      <Benefits />
-      <SaasSolutions />
-      <About />
-      <Cases />
-      <Process />
-      <Contact />
+      <main id="main" tabIndex={-1}>
+        <Hero />
+        <Benefits />
+        <SaasSolutions />
+        <About />
+        <Cases />
+        <Process />
+        <Contact />
+      </main>
       <Footer />
       <WhatsAppWidget />
     </LanguageProvider>

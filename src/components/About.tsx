@@ -1,7 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext';
 import './About.css';
 
-const teamImages = ['/maria.jpg', '/chris.png', '/esau.png'];
+const teamImages = ['/maria.jpg', '/chris.jpg', '/esau.jpg'];
 
 const About = () => {
   const { t } = useLanguage();

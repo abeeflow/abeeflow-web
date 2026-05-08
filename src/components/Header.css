@@ -136,25 +136,6 @@
     color: var(--yellow-hover);
 }
 
-.nav-cta {
-    background: var(--yellow);
-    color: var(--text);
-    padding: 10px 24px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: none;
-    flex-shrink: 0;
-}
-
-.nav-cta:hover {
-    background: var(--yellow-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(245,183,49,0.3);
-}
-
 .mobile-toggle {
     display: none;
     background: none;

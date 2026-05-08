@@ -119,9 +119,17 @@ const Cases = () => {
             </button>
           </div>
 
-          <div className="carousel-dots">
+          <div className="carousel-dots" role="tablist" aria-label="Navegación de casos">
             {cases.map((_, index) => (
-              <div key={index} className={`carousel-dot ${index === currentIndex ? 'active' : ''}`} onClick={() => scrollToCard(index)} />
+              <button
+                key={index}
+                type="button"
+                role="tab"
+                className={`carousel-dot ${index === currentIndex ? 'active' : ''}`}
+                onClick={() => scrollToCard(index)}
+                aria-label={`Ir al caso ${index + 1}`}
+                aria-selected={index === currentIndex}
+              />
             ))}
           </div>
         </div>

@@ -14,7 +14,13 @@ const ServiceCard = ({ icon, title, shortDesc, features, viewDetail, back }: { i
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div className={`flip-card ${flipped ? 'flipped' : ''}`} onClick={() => setFlipped(!flipped)}>
+    <button
+      type="button"
+      className={`flip-card ${flipped ? 'flipped' : ''}`}
+      onClick={() => setFlipped(!flipped)}
+      aria-pressed={flipped}
+      aria-label={`${title}. ${flipped ? back : viewDetail}`}
+    >
       <div className="flip-card-inner">
         <div className="flip-card-front">
           <div className="service-icon">
@@ -51,7 +57,7 @@ const ServiceCard = ({ icon, title, shortDesc, features, viewDetail, back }: { i
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

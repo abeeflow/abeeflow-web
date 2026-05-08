@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import './Hero.css';
 
@@ -14,70 +14,10 @@ const Hero = () => {
   const { t } = useLanguage();
   const words = t.hero.words;
   const services = t.hero.services;
-
-  const [currentWord, setCurrentWord] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [letterIndex, setLetterIndex] = useState(0);
-  const stateRef = useRef({ wordIndex: 0, letterIndex: 0, isDeleting: false });
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const wordsRef = useRef(words);
+  const headlineWord = words[0];
 
   const [activeService, setActiveService] = useState(0);
 
-  // Update words ref when language changes
-  useEffect(() => {
-    wordsRef.current = words;
-  }, [words]);
-
-  // Typing animation
-  useEffect(() => {
-    const type = () => {
-      const { wordIndex, letterIndex, isDeleting } = stateRef.current;
-      const currentWords = wordsRef.current;
-      const fullWord = currentWords[wordIndex % currentWords.length];
-
-      if (!isDeleting) {
-        const newWord = fullWord.substring(0, letterIndex + 1);
-        setCurrentWord(newWord);
-        stateRef.current.letterIndex = letterIndex + 1;
-        setLetterIndex(letterIndex + 1);
-
-        if (letterIndex === fullWord.length - 1) {
-          timeoutRef.current = setTimeout(() => {
-            stateRef.current.isDeleting = true;
-            setIsDeleting(true);
-            type();
-          }, 2000);
-          return;
-        }
-      } else {
-        const newWord = fullWord.substring(0, letterIndex - 1);
-        setCurrentWord(newWord);
-        stateRef.current.letterIndex = letterIndex - 1;
-        setLetterIndex(letterIndex - 1);
-
-        if (letterIndex === 0) {
-          stateRef.current.isDeleting = false;
-          setIsDeleting(false);
-          stateRef.current.wordIndex = (wordIndex + 1) % currentWords.length;
-          stateRef.current.letterIndex = 0;
-          setLetterIndex(0);
-          timeoutRef.current = setTimeout(type, 500);
-          return;
-        }
-      }
-
-      const speed = isDeleting ? 50 : 100;
-      timeoutRef.current = setTimeout(type, speed);
-    };
-
-    timeoutRef.current = setTimeout(type, 500);
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    };
-  }, []);
-
-  // Service icon rotation
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveService(prev => (prev + 1) % services.length);
@@ -107,15 +47,16 @@ const Hero = () => {
             </div>
 
             <h1>
-              <span className="rotating-text-container">
-                <span className="rotating-text">
-                  <span className={`word ${!isDeleting && letterIndex > 0 ? 'active' : ''}`}>
-                    {currentWord}
+              <span className="sr-only">{headlineWord}. {t.hero.subtitle}</span>
+              <span aria-hidden="true">
+                <span className="rotating-text-container">
+                  <span className="rotating-text">
+                    <span className="word" key={headlineWord}>{headlineWord}</span>
                   </span>
                 </span>
+                <br />
+                <span className="rest-text">{t.hero.subtitle}</span>
               </span>
-              <br />
-              <span className="rest-text">{t.hero.subtitle}</span>
             </h1>
 
             <p>{t.hero.description}</p>
@@ -182,9 +123,17 @@ const Hero = () => {
               </div>
             </div>
 
-            <div className="hero-service-dots">
-              {services.map((_, i) => (
-                <div key={i} className={`hero-service-dot ${i === activeService ? 'active' : ''}`} onClick={() => setActiveService(i)} />
+            <div className="hero-service-dots" role="tablist" aria-label="Servicios destacados">
+              {services.map((s, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  role="tab"
+                  className={`hero-service-dot ${i === activeService ? 'active' : ''}`}
+                  onClick={() => setActiveService(i)}
+                  aria-label={`Ver ${s.label}`}
+                  aria-selected={i === activeService}
+                />
               ))}
             </div>
           </div>
