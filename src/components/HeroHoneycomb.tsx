@@ -84,7 +84,7 @@ const HeroHoneycomb = () => {
         {/* Center cell — brand mark, NOT interactive */}
         <g className="hex-cell center" transform="translate(210 201)">
           <polygon className="hex-shape center" points={HEX_POINTS} />
-          <g transform="translate(29 33) scale(1.7)">
+          <g transform="translate(29 28) scale(1.7)">
             <path d="M16.5 8.5 Q15 7 15 5.5" stroke="var(--yellow)" strokeWidth="0.7" fill="none" strokeLinecap="round" />
             <path d="M19.5 8.5 Q21 7 21 5.5" stroke="var(--yellow)" strokeWidth="0.7" fill="none" strokeLinecap="round" />
             <circle cx="18" cy="11" r="3" fill="var(--yellow)" />
@@ -95,7 +95,7 @@ const HeroHoneycomb = () => {
             <path d="M10 15 L7 18 L10 21" stroke="var(--yellow)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M26 15 L29 18 L26 21" stroke="var(--yellow)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
           </g>
-          <text className="hex-label center" x="60" y="123">{cells.center}</text>
+          <text className="hex-label center" x="60" y="118">{cells.center}</text>
         </g>
 
         {/* 6 outer interactive cells */}

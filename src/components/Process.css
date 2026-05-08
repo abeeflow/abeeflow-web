@@ -61,8 +61,8 @@
 .process-step-title {
     font-family: var(--font-sans);
     font-weight: 800;
-    font-size: clamp(56px, 9vw, 132px);
-    line-height: 1.02;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.05;
     letter-spacing: -0.04em;
     color: var(--ink);
     margin: 0 0 var(--space-5);
@@ -101,7 +101,6 @@
     }
 
     .process-step-title {
-        font-size: clamp(40px, 11vw, 72px);
         margin-bottom: var(--space-4);
     }
 

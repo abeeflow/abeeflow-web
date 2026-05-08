@@ -1,6 +1,6 @@
 .hero-honeycomb-stage {
     width: 100%;
-    max-width: 540px;
+    max-width: clamp(280px, 38vw, 600px);
     aspect-ratio: 1;
     margin: 0 auto;
     perspective: 1400px;
@@ -100,14 +100,14 @@
 
 /* Labels */
 .hex-label {
-    font-family: var(--font-pixel);
-    font-size: 8px;
+    font-family: var(--font-mono);
+    font-size: 9px;
     fill: var(--text-muted);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-anchor: middle;
-    font-weight: 400;
-    transition: fill 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                font-weight 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: fill 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Bee orbit */
@@ -138,6 +138,5 @@
 }
 
 @media (max-width: 768px) {
-    .hero-honeycomb-stage { max-width: 360px; }
-    .hex-label { font-size: 7px; }
+    .hex-label { font-size: 10px; }
 }
