@@ -33,18 +33,35 @@
 }
 
 .project-card-warm {
+    background: linear-gradient(135deg, rgba(224, 172, 54, 0.08), rgba(224, 172, 54, 0.02));
+    border: 1px solid rgba(224, 172, 54, 0.2);
+}
+
+.project-card-cream {
     background: var(--bg-warm);
-    border: 1px solid rgba(224,172,54,0.15);
+    border: 1px solid var(--border);
 }
 
-.project-card-blue {
-    background: #F0F7FF;
-    border: 1px solid rgba(59,130,246,0.12);
+.project-card-deep {
+    background: #1F1B16;
+    border: 1px solid #2A2419;
 }
 
-.project-card-purple {
-    background: #F5F3FF;
-    border: 1px solid rgba(139,92,246,0.12);
+.project-card-deep .project-card-name {
+    color: #F5EBD7;
+}
+
+.project-card-deep .project-card-desc {
+    color: rgba(245, 235, 215, 0.75);
+}
+
+.project-card-deep .project-card-icon {
+    color: var(--yellow);
+}
+
+.project-card-muted {
+    background: #F2EBDC;
+    border: 1px solid var(--border);
 }
 
 .project-card-icon {
