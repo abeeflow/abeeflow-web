@@ -119,6 +119,7 @@ export const translations = {
       empresa: 'Empresa',
       contacto: 'Contacto',
       copyright: '2026 AbeeFlow. Todos los derechos reservados.',
+      tagline: 'Hecho con miel y código en Lima, Perú',
       links: {
         automatizacion: 'Automatización',
         migracion: 'Migración de datos',
@@ -251,6 +252,7 @@ export const translations = {
       empresa: 'Company',
       contacto: 'Contact',
       copyright: '2026 AbeeFlow. All rights reserved.',
+      tagline: 'Made with honey and code in Lima, Peru',
       links: {
         automatizacion: 'Automation',
         migracion: 'Data Migration',
