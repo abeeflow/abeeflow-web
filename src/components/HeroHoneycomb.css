@@ -1,0 +1,143 @@
+.hero-honeycomb-stage {
+    width: 100%;
+    max-width: 540px;
+    aspect-ratio: 1;
+    margin: 0 auto;
+    perspective: 1400px;
+}
+
+.hero-honeycomb-svg {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: hc-float 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes hc-float {
+    0%, 100% { transform: rotateX(8deg) rotateY(-5deg) translateY(0); }
+    50%      { transform: rotateX(11deg) rotateY(0deg) translateY(-6px); }
+}
+
+/* Hex shapes */
+.hex-shape {
+    fill: white;
+    stroke: var(--border);
+    stroke-width: 1.2;
+    transition: fill 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                stroke 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                stroke-width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hex-shape.center {
+    fill: white;
+    stroke: var(--yellow);
+    stroke-width: 2;
+}
+
+/* Interactive cells (6 outer) */
+.hex-cell.interactive {
+    cursor: pointer;
+}
+
+.hex-cell.interactive:hover .hex-shape {
+    fill: var(--yellow);
+    stroke: var(--yellow-hover);
+    stroke-width: 1.5;
+}
+
+.hex-cell.interactive:hover .hex-icon {
+    stroke: var(--ink);
+}
+
+.hex-cell.interactive:hover .hex-label {
+    fill: var(--ink);
+    font-weight: 700;
+}
+
+/* Center cell — NOT interactive */
+.hex-cell.center {
+    cursor: default;
+}
+
+.hex-label.center {
+    fill: var(--yellow-hover);
+    font-weight: 700;
+}
+
+/* Pulse overlay for ambient animation */
+.hex-pulse-overlay {
+    fill: var(--yellow);
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes pulse-fade {
+    0%, 70%, 100% { opacity: 0; }
+    35%           { opacity: 0.18; }
+}
+
+.hex-pulse-overlay.cell-nw { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 0s; }
+.hex-pulse-overlay.cell-ne { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 0.5s; }
+.hex-pulse-overlay.cell-e  { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 1.0s; }
+.hex-pulse-overlay.cell-se { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 1.5s; }
+.hex-pulse-overlay.cell-sw { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 2.0s; }
+.hex-pulse-overlay.cell-w  { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 2.5s; }
+
+.hex-cell.interactive:hover .hex-pulse-overlay {
+    opacity: 0;
+    animation: none;
+}
+
+/* Icons */
+.hex-icon {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Labels */
+.hex-label {
+    font-family: var(--font-pixel);
+    font-size: 8px;
+    fill: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-anchor: middle;
+    font-weight: 400;
+    transition: fill 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                font-weight 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Bee orbit */
+.bee-fly {
+    transform-origin: center;
+    animation: bee-orbit 16s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    filter: drop-shadow(0 0 6px rgba(224, 172, 54, 0.4));
+}
+
+@keyframes bee-orbit {
+    0%   { transform: translate(0px, 0px) rotate(0deg); }
+    14%  { transform: translate(-118px, -68px) rotate(-30deg); }
+    28%  { transform: translate(0px, -136px) rotate(0deg); }
+    42%  { transform: translate(118px, -68px) rotate(30deg); }
+    57%  { transform: translate(118px, 68px) rotate(150deg); }
+    71%  { transform: translate(0px, 136px) rotate(180deg); }
+    86%  { transform: translate(-118px, 68px) rotate(-150deg); }
+    100% { transform: translate(0px, 0px) rotate(-360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-honeycomb-svg,
+    .bee-fly,
+    .hex-pulse-overlay {
+        animation: none !important;
+    }
+    .hex-pulse-overlay { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .hero-honeycomb-stage { max-width: 360px; }
+    .hex-label { font-size: 7px; }
+}

@@ -16,12 +16,15 @@ export const translations = {
       description: 'Software a medida, automatización de procesos, migración de datos y desarrollo web. Construimos la solución que tu empresa necesita para crecer.',
       cta: 'Solicitar cotización',
       secondary: 'Ver casos de uso',
-      flowNodes: [
-        { label: 'Email recibido' },
-        { label: 'IA clasifica' },
-        { label: 'CRM crea lead' },
-        { label: 'Slack notifica' }
-      ]
+      cells: {
+        nw: 'DATOS',
+        ne: 'MENSAJES',
+        w: 'VENTAS',
+        e: 'AGENDA',
+        sw: 'ACCIÓN',
+        se: 'EQUIPO',
+        center: 'ABEEFLOW'
+      }
     },
     metrics: {
       items: [
@@ -144,12 +147,15 @@ export const translations = {
       description: 'Custom software, process automation, data migration, and web development. We build the solution your company needs to grow.',
       cta: 'Request a quote',
       secondary: 'See use cases',
-      flowNodes: [
-        { label: 'Email received' },
-        { label: 'AI classifies' },
-        { label: 'CRM creates lead' },
-        { label: 'Slack notifies' }
-      ]
+      cells: {
+        nw: 'DATA',
+        ne: 'MESSAGES',
+        w: 'SALES',
+        e: 'CALENDAR',
+        sw: 'ACTION',
+        se: 'TEAM',
+        center: 'ABEEFLOW'
+      }
     },
     metrics: {
       items: [

@@ -112,7 +112,7 @@
 .btn-primary:hover {
     background: var(--yellow-hover);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(224,172,54,0.3);
+    box-shadow: 0 8px 24px rgba(224, 172, 54, 0.3);
 }
 
 /* Secondary CTA: text link with arrow */
@@ -166,212 +166,11 @@
     border-radius: 4px;
 }
 
-/* Hero Visual: automation flow diagram */
 .hero-visual {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.hero-flow {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-    aspect-ratio: 5 / 4;
-}
-
-.hero-flow-lines {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-    pointer-events: none;
-}
-
-.hero-flow-lines path {
-    fill: none;
-    stroke: rgba(224, 172, 54, 0.35);
-    stroke-width: 2;
-    stroke-linecap: round;
-}
-
-.flow-particle {
-    fill: var(--yellow);
-    filter: url(#particle-glow);
-}
-
-@keyframes pulse-status {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.45; }
-}
-
-@keyframes progress-fill {
-    0% { transform: scaleX(0); transform-origin: left; }
-    50% { transform: scaleX(1); transform-origin: left; }
-    50.01% { transform-origin: right; }
-    100% { transform: scaleX(0); transform-origin: right; }
-}
-
-.hero-flow-node {
-    position: absolute;
-    z-index: 2;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: var(--space-4) var(--space-4) calc(var(--space-4) + 4px);
-    box-shadow: var(--shadow-lg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-2);
-    width: 32%;
-    transition: box-shadow 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
-    transform-style: preserve-3d;
-    cursor: default;
-}
-
-.hero-flow-node:hover {
-    box-shadow: var(--shadow-xl);
-    border-color: var(--yellow);
-    z-index: 3;
-}
-
-.hero-flow:hover .hero-flow-node:not(:hover) {
-    opacity: 0.6;
-}
-
-/* Node positions: 2x2 with Z-flow */
-.hero-flow-node-1 { top: 0; left: 0; }
-.hero-flow-node-2 { top: 0; right: 0; }
-.hero-flow-node-3 { bottom: 0; right: 0; }
-.hero-flow-node-4 { bottom: 0; left: 0; }
-
-.hero-flow-node-icon {
-    width: 28px;
-    height: 28px;
-    color: var(--yellow-hover);
-}
-
-.hero-flow-node-icon svg {
-    width: 100%;
-    height: 100%;
-}
-
-.hero-flow-node-label {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-    text-align: center;
-    line-height: 1.3;
-}
-
-/* Status badge */
-.hero-flow-node-status {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-family: var(--font-mono);
-    font-size: 9px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    line-height: 1;
-}
-
-.status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    animation: pulse-status 2s ease-in-out infinite;
-}
-
-.status-dot-green { background: #22C55E; box-shadow: 0 0 6px rgba(34, 197, 94, 0.5); }
-.status-dot-yellow { background: var(--yellow); box-shadow: 0 0 6px rgba(224, 172, 54, 0.5); }
-.status-dot-blue { background: #3B82F6; box-shadow: 0 0 6px rgba(59, 130, 246, 0.5); }
-
-/* Progress bar */
-.hero-flow-node-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: rgba(224, 172, 54, 0.1);
-    border-bottom-left-radius: var(--radius);
-    border-bottom-right-radius: var(--radius);
-    overflow: hidden;
-}
-
-.hero-flow-node-progress::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--yellow);
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: progress-fill 3s ease-in-out infinite;
-    animation-delay: inherit;
-}
-
-/* Tooltip with pseudo-code */
-.hero-flow-node-tooltip {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 10px;
-    box-shadow: var(--shadow-lg);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 10;
-    white-space: nowrap;
-}
-
-.hero-flow-node-tooltip code {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 500;
-    color: var(--ink);
-    letter-spacing: 0.01em;
-}
-
-.hero-flow-node-tooltip-below {
-    top: calc(100% + 10px);
-}
-
-.hero-flow-node-tooltip-above {
-    bottom: calc(100% + 10px);
-}
-
-.hero-flow-node:hover .hero-flow-node-tooltip {
-    opacity: 1;
-}
-
-.hero-flow-node-tooltip-below {
-    transform: translateX(-50%) translateY(-4px);
-}
-
-.hero-flow-node:hover .hero-flow-node-tooltip-below {
-    transform: translateX(-50%) translateY(0);
-}
-
-.hero-flow-node-tooltip-above {
-    transform: translateX(-50%) translateY(4px);
-}
-
-.hero-flow-node:hover .hero-flow-node-tooltip-above {
-    transform: translateX(-50%) translateY(0);
 }
 
 @media (max-width: 900px) {
@@ -391,10 +190,6 @@
 
     .hero-buttons {
         justify-content: center;
-    }
-
-    .hero-flow {
-        max-width: 380px;
     }
 }
 
@@ -419,67 +214,5 @@
         width: 100%;
         justify-content: center;
         padding: var(--space-3) var(--space-5);
-    }
-
-    /* Mobile: stack flow nodes vertically */
-    .hero-flow {
-        max-width: 280px;
-        aspect-ratio: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 28px;
-        align-items: center;
-    }
-
-    .hero-flow-lines {
-        display: none;
-    }
-
-    .hero-flow-node {
-        position: relative;
-        width: 100%;
-        padding: var(--space-3) var(--space-4) calc(var(--space-3) + 4px);
-    }
-
-    .hero-flow:hover .hero-flow-node:not(:hover) {
-        opacity: 1;
-    }
-
-    /* Hide tooltips on mobile (no hover on touch) */
-    .hero-flow-node-tooltip {
-        display: none;
-    }
-
-    /* Vertical connectors between nodes (CSS-only) */
-    .hero-flow-node:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        bottom: -16px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 16px;
-        background-image: linear-gradient(to bottom, var(--yellow) 50%, transparent 50%);
-        background-size: 2px 8px;
-        animation: flow-vertical 1.2s linear infinite;
-    }
-
-    @keyframes flow-vertical {
-        to { background-position-y: 16px; }
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .flow-particle {
-        display: none;
-    }
-
-    .hero-flow-node-progress::after {
-        animation: none;
-        transform: scaleX(0.4);
-    }
-
-    .status-dot {
-        animation: none;
     }
 }
