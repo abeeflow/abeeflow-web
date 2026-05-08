@@ -70,7 +70,7 @@
 .contact-book-btn:hover {
     background: var(--yellow-hover);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(251,191,36,0.3);
+    box-shadow: 0 8px 24px rgba(224,172,54,0.3);
 }
 
 @media (max-width: 768px) {

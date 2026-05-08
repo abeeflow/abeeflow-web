@@ -34,7 +34,7 @@
 
 .project-card-warm {
     background: var(--bg-warm);
-    border: 1px solid rgba(251,191,36,0.15);
+    border: 1px solid rgba(224,172,54,0.15);
 }
 
 .project-card-blue {

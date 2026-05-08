@@ -36,7 +36,7 @@
 .hex-cell:hover {
     fill: var(--yellow-light);
     stroke: var(--yellow);
-    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.45));
+    filter: drop-shadow(0 0 12px rgba(224, 172, 54, 0.45));
 }
 
 @media (max-width: 768px) {
