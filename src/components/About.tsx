@@ -14,13 +14,9 @@ const About = () => {
         <div className="about-grid">
           <div className="about-content">
             <h2>{t.about.title}</h2>
-            {t.about.paragraphs.map((p, i) =>
-              i === 0 ? (
-                <SpotlightText key={i} text={p} className="about-text about-text-spotlight" />
-              ) : (
-                <p key={i} className="about-text" dangerouslySetInnerHTML={{ __html: p }} />
-              )
-            )}
+            {t.about.paragraphs.map((p, i) => (
+              <SpotlightText key={i} text={p} className="about-text about-text-spotlight" />
+            ))}
           </div>
 
           <div>
