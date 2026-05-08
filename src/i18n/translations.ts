@@ -135,6 +135,19 @@ export const translations = {
         proceso: 'Proceso',
         contacto: 'Contacto'
       }
+    },
+    chatWidget: {
+      aria: 'Conversación con Abeeflow',
+      ariaButton: 'Abrir chat de WhatsApp',
+      dismiss: 'Cerrar conversación',
+      status: 'En línea',
+      cta: 'Escríbenos por WhatsApp',
+      flows: [
+        { msg1: '👋 ¡Hola!', msg2: '¿Tienes algún proceso que te quita tiempo?' },
+        { msg1: 'Hola 👋 estamos en línea', msg2: '30 minutos contigo bastan para identificar qué automatizar primero' },
+        { msg1: '👋 ¿En qué automatización estás pensando?', msg2: 'Te respondemos en menos de 24h' },
+        { msg1: '👋 ¿Cuántas horas a la semana te quita lo repetitivo?', msg2: 'Podemos calcularlo juntos en una llamada gratis' }
+      ]
     }
   },
   en: {
@@ -273,6 +286,19 @@ export const translations = {
         proceso: 'Process',
         contacto: 'Contact'
       }
+    },
+    chatWidget: {
+      aria: 'Conversation with Abeeflow',
+      ariaButton: 'Open WhatsApp chat',
+      dismiss: 'Close conversation',
+      status: 'Online',
+      cta: 'Message us on WhatsApp',
+      flows: [
+        { msg1: '👋 Hi there!', msg2: 'Got a process eating up your time?' },
+        { msg1: 'Hi 👋 we\'re online', msg2: '30 minutes with you is enough to identify what to automate first' },
+        { msg1: '👋 What kind of automation are you thinking about?', msg2: 'We reply in under 24h' },
+        { msg1: '👋 How many hours a week does repetitive work cost you?', msg2: 'We can calculate it together on a free call' }
+      ]
     }
   }
 };
