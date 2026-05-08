@@ -67,9 +67,9 @@ const Header = () => {
         <ul className="nav-links">
           <li><a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>{t.nav.servicios}</a></li>
           <li><a href="#soluciones" onClick={(e) => handleSmoothScroll(e, '#soluciones')}>{t.nav.soluciones}</a></li>
-          <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>{t.nav.nosotros}</a></li>
-          <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>{t.nav.casos}</a></li>
           <li><a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>{t.nav.proceso}</a></li>
+          <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>{t.nav.casos}</a></li>
+          <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>{t.nav.nosotros}</a></li>
           <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.nav.contacto}</a></li>
         </ul>
 
@@ -97,9 +97,9 @@ const Header = () => {
         <ul className="mobile-nav-links">
           <li><a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>{t.nav.servicios}</a></li>
           <li><a href="#soluciones" onClick={(e) => handleSmoothScroll(e, '#soluciones')}>{t.nav.soluciones}</a></li>
-          <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>{t.nav.nosotros}</a></li>
-          <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>{t.nav.casos}</a></li>
           <li><a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>{t.nav.proceso}</a></li>
+          <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>{t.nav.casos}</a></li>
+          <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>{t.nav.nosotros}</a></li>
           <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.nav.contacto}</a></li>
           <li>
             <button className="lang-toggle-mobile" onClick={toggleLang}>

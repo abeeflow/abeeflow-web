@@ -34,11 +34,11 @@ function App() {
       <main id="main" tabIndex={-1}>
         <Hero />
         <Metrics />
-        <About />
         <Benefits />
         <SaasSolutions />
         <Process />
         <Cases />
+        <About />
         <Contact />
       </main>
       <Footer />
