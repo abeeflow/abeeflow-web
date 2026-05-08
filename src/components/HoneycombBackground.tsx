@@ -2,12 +2,13 @@ import { useEffect, useMemo, useRef } from 'react';
 import './HoneycombBackground.css';
 
 const HEX_RADIUS = 70;
-const COLS = 12;
-const ROWS = 9;
-const PARALLAX_RANGE = 10;
+const COLS = 20;
+const ROWS = 15;
+const PARALLAX_RANGE = 30; // ±15px (range/2)
+const LERP_FACTOR = 0.06;
 
 const HoneycombBackground = () => {
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const gRef = useRef<SVGGElement>(null);
 
   const { hexagons, viewBoxWidth, viewBoxHeight } = useMemo(() => {
     const sqrt3div2 = Math.sqrt(3) / 2;
@@ -43,48 +44,53 @@ const HoneycombBackground = () => {
   }, []);
 
   useEffect(() => {
-    const wrapper = wrapperRef.current;
-    if (!wrapper) return;
+    const g = gRef.current;
+    if (!g) return;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.innerWidth < 768) return;
 
-    let rafId: number | null = null;
-    let pendingX = 0;
-    let pendingY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let rafId = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const cx = e.clientX / window.innerWidth - 0.5;
-      const cy = e.clientY / window.innerHeight - 0.5;
-      pendingX = cx * PARALLAX_RANGE * 2;
-      pendingY = cy * PARALLAX_RANGE * 2;
+      targetX = (e.clientX / window.innerWidth - 0.5) * PARALLAX_RANGE;
+      targetY = (e.clientY / window.innerHeight - 0.5) * PARALLAX_RANGE;
+    };
 
-      if (rafId !== null) return;
-      rafId = requestAnimationFrame(() => {
-        wrapper.style.transform = `translate3d(${pendingX.toFixed(2)}px, ${pendingY.toFixed(2)}px, 0)`;
-        rafId = null;
-      });
+    const animate = () => {
+      currentX += (targetX - currentX) * LERP_FACTOR;
+      currentY += (targetY - currentY) * LERP_FACTOR;
+      g.setAttribute('transform', `translate(${currentX.toFixed(2)} ${currentY.toFixed(2)})`);
+      rafId = requestAnimationFrame(animate);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
+    rafId = requestAnimationFrame(animate);
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      if (rafId !== null) cancelAnimationFrame(rafId);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
     <div className="honeycomb-bg" aria-hidden="true">
-      <div ref={wrapperRef} className="honeycomb-wrapper">
+      <div className="honeycomb-wrapper">
         <svg
           viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
           preserveAspectRatio="xMidYMid slice"
           width="100%"
           height="100%"
         >
-          {hexagons.map((h) => (
-            <polygon key={h.key} className="hex-cell" points={h.points} />
-          ))}
+          <g ref={gRef}>
+            {hexagons.map((h) => (
+              <polygon key={h.key} className="hex-cell" points={h.points} />
+            ))}
+          </g>
         </svg>
       </div>
     </div>
