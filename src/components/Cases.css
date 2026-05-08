@@ -55,6 +55,28 @@
     box-shadow: var(--shadow-xl);
 }
 
+/* Dark mode: case cards y chips internos */
+[data-theme="dark"] .case-card-warm {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .case-card-blue {
+    background: var(--surface-2);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .case-company-logo,
+[data-theme="dark"] .case-badge {
+    background: var(--surface-3);
+    border-color: var(--border);
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .carousel-btn {
+    background: var(--surface);
+}
+
 .case-company {
     display: flex;
     align-items: center;

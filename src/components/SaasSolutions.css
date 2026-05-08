@@ -52,6 +52,17 @@
     border: 1px solid var(--border);
 }
 
+/* Dark mode overrides para cards con bg hardcoded */
+[data-theme="dark"] .project-card-deep {
+    background: #2A2B30;
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .project-card-muted {
+    background: #2A2724;
+    border-color: var(--border);
+}
+
 .project-card-icon {
     margin-bottom: var(--space-4);
     color: var(--text-secondary);

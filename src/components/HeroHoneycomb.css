@@ -20,7 +20,7 @@
 
 /* Hex shapes */
 .hex-shape {
-    fill: white;
+    fill: var(--surface);
     stroke: var(--border);
     stroke-width: 1.2;
     transition: fill 0.5s cubic-bezier(0.22, 1, 0.36, 1),
@@ -29,9 +29,13 @@
 }
 
 .hex-shape.center {
-    fill: white;
+    fill: var(--surface);
     stroke: var(--yellow);
     stroke-width: 2;
+}
+
+[data-theme="dark"] .hex-shape {
+    stroke: var(--border-strong);
 }
 
 /* Interactive cells (6 outer) */

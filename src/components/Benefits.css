@@ -200,6 +200,20 @@
     color: var(--yellow);
 }
 
+/* Dark mode: flip-card-back necesita más contraste vs el bg general */
+[data-theme="dark"] .flip-card-front {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .flip-card-back {
+    background: #2D2520;
+}
+
+[data-theme="dark"] .service-title-back {
+    color: var(--yellow);
+}
+
 @media (max-width: 1024px) {
     .services-grid {
         grid-template-columns: repeat(3, 1fr);

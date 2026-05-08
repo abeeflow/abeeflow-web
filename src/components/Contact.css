@@ -73,6 +73,11 @@
     box-shadow: 0 8px 24px rgba(224,172,54,0.3);
 }
 
+[data-theme="dark"] .contact-box {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
 @media (max-width: 768px) {
     .contact-section {
         padding: var(--space-8) 0;

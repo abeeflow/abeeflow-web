@@ -6,6 +6,20 @@
     border-top: 1px solid var(--border);
 }
 
+[data-theme="dark"] .footer {
+    background: rgba(23, 24, 28, 0.7);
+}
+
+[data-theme="dark"] .social-icon {
+    background: var(--surface-2);
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .social-icon:hover {
+    background: var(--yellow);
+    color: var(--ink);
+}
+
 .footer-grid {
     display: grid;
     grid-template-columns: 1.5fr repeat(3, 1fr);
