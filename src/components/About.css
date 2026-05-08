@@ -1,6 +1,6 @@
 .about {
-    padding: var(--space-12) 0;
-    background: var(--bg-alt);
+    padding: var(--space-10) 0;
+    background: transparent;
 }
 
 .about-grid {
@@ -94,7 +94,7 @@
 
 @media (max-width: 768px) {
     .about {
-        padding: var(--space-10) 0;
+        padding: var(--space-8) 0;
     }
 
     .about-grid {

@@ -1,6 +1,6 @@
 .services-section {
-    padding: var(--space-12) 0;
-    background: var(--bg-alt);
+    padding: var(--space-10) 0;
+    background: transparent;
 }
 
 .section-header {
@@ -207,7 +207,7 @@
 
 @media (max-width: 768px) {
     .services-section {
-        padding: var(--space-10) 0;
+        padding: var(--space-8) 0;
     }
 
     .services-grid {

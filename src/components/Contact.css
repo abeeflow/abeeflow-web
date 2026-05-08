@@ -1,16 +1,17 @@
 .contact-section {
-    padding: var(--space-12) 0;
-    background: var(--bg-alt);
+    padding: var(--space-10) 0;
+    background: transparent;
 }
 
 .contact-box {
     text-align: center;
-    background: var(--bg-warm);
-    border: 1px solid rgba(251,191,36,0.2);
+    background: white;
+    border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: var(--space-8) var(--space-6);
     max-width: 640px;
     margin: 0 auto;
+    box-shadow: var(--shadow-lg);
 }
 
 .contact-title {
@@ -74,7 +75,7 @@
 
 @media (max-width: 768px) {
     .contact-section {
-        padding: var(--space-10) 0;
+        padding: var(--space-8) 0;
     }
 
     .contact-box {

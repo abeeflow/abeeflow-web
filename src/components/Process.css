@@ -1,5 +1,5 @@
 .process {
-    padding: var(--space-12) 0;
+    padding: var(--space-10) 0;
 }
 
 .process-grid {
@@ -9,12 +9,13 @@
 }
 
 .process-card {
-    background: var(--bg-warm);
+    background: white;
     border-radius: var(--radius-lg);
     padding: var(--space-6);
     position: relative;
     transition: all 0.3s;
-    border: 1px solid rgba(251,191,36,0.1);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
 }
 
 .process-card:hover {
@@ -57,7 +58,7 @@
 
 @media (max-width: 768px) {
     .process {
-        padding: var(--space-10) 0;
+        padding: var(--space-8) 0;
     }
 
     .process-grid {
