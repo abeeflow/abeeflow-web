@@ -1,4 +1,5 @@
 import { useLanguage } from '../i18n/LanguageContext';
+import RevealOnScroll from './RevealOnScroll';
 import './Process.css';
 
 const Process = () => {
@@ -13,11 +14,13 @@ const Process = () => {
         </div>
         <div className="process-grid">
           {t.process.steps.map((step, index) => (
-            <div key={index} className="process-card">
-              <div className="process-num">{step.number}</div>
-              <h3 className="process-title">{step.title}</h3>
-              <p className="process-desc">{step.description}</p>
-            </div>
+            <RevealOnScroll key={step.number} delay={0.10 * index}>
+              <div className="process-card">
+                <div className="process-num">{step.number}</div>
+                <h3 className="process-title">{step.title}</h3>
+                <p className="process-desc">{step.description}</p>
+              </div>
+            </RevealOnScroll>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { useLanguage } from '../i18n/LanguageContext';
+import RevealOnScroll from './RevealOnScroll';
 import './SaasSolutions.css';
 
 const projectMeta = [
@@ -22,24 +23,26 @@ const SaasSolutions = () => {
           {t.projects.items.map((project, index) => {
             const meta = projectMeta[index];
             return (
-              <div key={index} className={`project-card ${meta.bgClass}`}>
-                <div className="project-card-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={meta.icon}/>
-                  </svg>
-                </div>
-                <div className="project-card-category" style={{ color: meta.categoryColor }}>{project.category}</div>
-                <div className="project-card-name">{project.name}</div>
-                <div className="project-card-desc">{project.description}</div>
-                {meta.link && (
-                  <a href={meta.link} target="_blank" rel="noopener noreferrer" className="project-card-link">
-                    {t.projects.visitSite}
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+              <RevealOnScroll key={project.name} delay={0.05 * index} className="projects-grid-item">
+                <div className={`project-card ${meta.bgClass}`}>
+                  <div className="project-card-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={meta.icon}/>
                     </svg>
-                  </a>
-                )}
-              </div>
+                  </div>
+                  <div className="project-card-category" style={{ color: meta.categoryColor }}>{project.category}</div>
+                  <div className="project-card-name">{project.name}</div>
+                  <div className="project-card-desc">{project.description}</div>
+                  {meta.link && (
+                    <a href={meta.link} target="_blank" rel="noopener noreferrer" className="project-card-link">
+                      {t.projects.visitSite}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                      </svg>
+                    </a>
+                  )}
+                </div>
+              </RevealOnScroll>
             );
           })}
         </div>

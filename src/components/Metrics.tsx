@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useCountUp } from '../hooks/useCountUp';
+import RevealOnScroll from './RevealOnScroll';
 import './Metrics.css';
 
 const parseValue = (raw: string): { prefix: string; number: number; suffix: string } => {
@@ -62,7 +63,9 @@ const Metrics = () => {
       <div className="container">
         <div className="metrics-grid">
           {t.metrics.items.map((m, i) => (
-            <MetricItem key={i} raw={m.value} label={m.label} shouldAnimate={shouldAnimate} />
+            <RevealOnScroll key={i} delay={0.08 * i}>
+              <MetricItem raw={m.value} label={m.label} shouldAnimate={shouldAnimate} />
+            </RevealOnScroll>
           ))}
         </div>
       </div>

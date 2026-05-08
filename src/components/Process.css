@@ -6,6 +6,16 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
+    align-items: stretch;
+}
+
+.process-grid > * {
+    height: 100%;
+    display: flex;
+}
+
+.process-grid > * > .process-card {
+    flex: 1;
 }
 
 .process-card {

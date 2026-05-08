@@ -9,14 +9,17 @@
     gap: 0;
 }
 
-.metric-item {
-    text-align: center;
-    padding: 0 var(--space-5);
+.metrics-grid > * {
     border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.metric-item:last-child {
+.metrics-grid > *:last-child {
     border-right: none;
+}
+
+.metric-item {
+    text-align: center;
+    padding: 0 var(--space-5);
 }
 
 .metric-value {
@@ -53,11 +56,11 @@
         padding: 0 var(--space-4);
     }
 
-    .metric-item:nth-child(2n) {
+    .metrics-grid > *:nth-child(2n) {
         border-right: none;
     }
 
-    .metric-item:nth-child(-n+2) {
+    .metrics-grid > *:nth-child(-n+2) {
         border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         padding-bottom: var(--space-6);
     }

@@ -9,6 +9,15 @@
     align-items: stretch;
 }
 
+.projects-grid-item {
+    height: 100%;
+    display: flex;
+}
+
+.projects-grid-item > .project-card {
+    flex: 1;
+}
+
 .project-card {
     border-radius: var(--radius-lg);
     padding: var(--space-6) var(--space-5);

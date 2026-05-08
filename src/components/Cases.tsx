@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import type { ReactElement } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import RevealOnScroll from './RevealOnScroll';
 import './Cases.css';
 
 const caseIcons: ReactElement[] = [
@@ -86,7 +87,7 @@ const Cases = () => {
           <p className="section-subtitle">{t.cases.subtitle}</p>
         </div>
 
-        <div className="cases-carousel-wrapper">
+        <RevealOnScroll className="cases-carousel-wrapper">
           <div className="cases-carousel" ref={carouselRef}>
             {cases.map((caseItem, index) => (
               <div key={index} className={`case-card ${index % 2 === 0 ? 'case-card-warm' : 'case-card-blue'}`}>
@@ -138,7 +139,7 @@ const Cases = () => {
               />
             ))}
           </div>
-        </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

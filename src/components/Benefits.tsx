@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import RevealOnScroll from './RevealOnScroll';
 import './Benefits.css';
 
 const serviceIcons = [
@@ -73,7 +74,9 @@ const Benefits = () => {
         </div>
         <div className="services-grid">
           {t.services.items.map((service, index) => (
-            <ServiceCard key={service.title} icon={serviceIcons[index]} title={service.title} shortDesc={service.shortDesc} features={[...service.features]} viewDetail={t.services.viewDetail} back={t.services.back} />
+            <RevealOnScroll key={service.title} delay={0.05 * index}>
+              <ServiceCard icon={serviceIcons[index]} title={service.title} shortDesc={service.shortDesc} features={[...service.features]} viewDetail={t.services.viewDetail} back={t.services.back} />
+            </RevealOnScroll>
           ))}
         </div>
       </div>

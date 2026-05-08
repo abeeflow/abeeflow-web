@@ -1,4 +1,5 @@
 import { useLanguage } from '../i18n/LanguageContext';
+import RevealOnScroll from './RevealOnScroll';
 import './About.css';
 
 const teamImages = ['/maria.jpg', '/chris.jpg', '/esau.jpg'];
@@ -21,15 +22,17 @@ const About = () => {
             <h3 className="team-title">{t.about.teamTitle}</h3>
             <div className="team-grid">
               {t.about.team.map((member, index) => (
-                <div key={index} className="team-member" itemScope itemType="https://schema.org/Person">
-                  <div className="team-avatar">
-                    <img src={teamImages[index]} alt={`${member.name} - ${member.role}`} loading="lazy" width="120" height="120" itemProp="image" />
+                <RevealOnScroll key={member.name} delay={0.08 * index}>
+                  <div className="team-member" itemScope itemType="https://schema.org/Person">
+                    <div className="team-avatar">
+                      <img src={teamImages[index]} alt={`${member.name} - ${member.role}`} loading="lazy" width="120" height="120" itemProp="image" />
+                    </div>
+                    <div>
+                      <div className="team-name" itemProp="name">{member.name}</div>
+                      <div className="team-role">{member.role}</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="team-name" itemProp="name">{member.name}</div>
-                    <div className="team-role">{member.role}</div>
-                  </div>
-                </div>
+                </RevealOnScroll>
               ))}
             </div>
           </div>
