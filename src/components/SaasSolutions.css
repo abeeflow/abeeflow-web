@@ -43,20 +43,8 @@
 }
 
 .project-card-deep {
-    background: #1F1B16;
-    border: 1px solid #2A2419;
-}
-
-.project-card-deep .project-card-name {
-    color: #F5EBD7;
-}
-
-.project-card-deep .project-card-desc {
-    color: rgba(245, 235, 215, 0.75);
-}
-
-.project-card-deep .project-card-icon {
-    color: var(--yellow);
+    background: var(--yellow-light);
+    border: 1px solid rgba(224, 172, 54, 0.18);
 }
 
 .project-card-muted {
@@ -102,13 +90,14 @@
     font-family: var(--font-sans);
     font-size: var(--text-sm);
     font-weight: 600;
-    color: #8B5CF6;
+    color: var(--yellow-hover);
     text-decoration: none;
-    transition: gap 0.2s;
+    transition: gap 0.2s, color 0.2s;
 }
 
 .project-card-link:hover {
     gap: 10px;
+    color: var(--ink);
 }
 
 @media (max-width: 900px) {
