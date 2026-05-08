@@ -87,6 +87,25 @@
     flex-shrink: 0;
 }
 
+.header-toggles {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.mobile-toggles {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.mobile-toggles .lang-toggle-mobile {
+    flex: 1;
+    margin-top: 0;
+}
+
 .lang-toggle {
     display: flex;
     align-items: center;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { getLenis } from '../lib/lenis';
+import ThemeToggle from './ThemeToggle';
 import './Header.css';
 
 const Header = () => {
@@ -73,11 +74,14 @@ const Header = () => {
           <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.nav.contacto}</a></li>
         </ul>
 
-        <button className="lang-toggle" onClick={toggleLang} aria-label="Cambiar idioma">
-          <span className={language === 'es' ? 'lang-active' : ''}>ES</span>
-          <span className="lang-sep">|</span>
-          <span className={language === 'en' ? 'lang-active' : ''}>EN</span>
-        </button>
+        <div className="header-toggles">
+          <ThemeToggle />
+          <button className="lang-toggle" onClick={toggleLang} aria-label="Cambiar idioma">
+            <span className={language === 'es' ? 'lang-active' : ''}>ES</span>
+            <span className="lang-sep">|</span>
+            <span className={language === 'en' ? 'lang-active' : ''}>EN</span>
+          </button>
+        </div>
 
         <button
           className="mobile-toggle"
@@ -101,7 +105,8 @@ const Header = () => {
           <li><a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>{t.nav.casos}</a></li>
           <li><a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>{t.nav.nosotros}</a></li>
           <li><a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.nav.contacto}</a></li>
-          <li>
+          <li className="mobile-toggles">
+            <ThemeToggle />
             <button className="lang-toggle-mobile" onClick={toggleLang}>
               <span className={language === 'es' ? 'lang-active' : ''}>ES</span>
               <span className="lang-sep">|</span>

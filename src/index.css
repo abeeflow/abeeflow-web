@@ -74,6 +74,43 @@
     --radius-card: 16px;
     --radius-input: 10px;
     --radius-tag: 4px;
+
+    /* Surface (light mode) */
+    --surface: #FFFFFF;
+    --surface-2: #FAFAFA;
+    --surface-3: #F2F2F2;
+}
+
+[data-theme="dark"] {
+    --bg: #17181C;
+    --bg-alt: #1A1B1F;
+    --bg-warm: #1A1B1F;
+
+    --surface: #1F2024;
+    --surface-2: #26272D;
+    --surface-3: #2D2F35;
+
+    --ink: #F4F4F5;
+    --ink-soft: #C7C7CC;
+    --ink-muted: #87878D;
+    --text: #A8A9AE;
+    --text-secondary: #B8B9BE;
+    --text-muted: #87878D;
+
+    --border-subtle: #2A2B30;
+    --border: #34353C;
+    --border-strong: #43454D;
+    --border-hover: #43454D;
+
+    /* Honey ligeramente más brillante para mantener vibrance en dark */
+    --yellow: #E8B441;
+    --yellow-hover: #F4C857;
+    --yellow-light: rgba(232, 180, 65, 0.14);
+
+    /* Sombras: más sutiles en dark, no negras puras */
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.5);
 }
 
 html {

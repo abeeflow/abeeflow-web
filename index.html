@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <!-- Theme bootstrap (anti-flash) — default dark, no system pref -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('abeeflow-theme');
+          var theme = saved === 'light' || saved === 'dark' ? saved : 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+
     <!-- SEO Meta Tags Principales -->
     <title>Abeeflow | Automatización de Procesos Empresariales con IA - Optimiza tu Negocio</title>
     <meta name="description" content="Abeeflow transforma tu empresa con automatización inteligente e IA. Optimiza procesos, reduce costos hasta 60% y aumenta la productividad. Consulta gratuita disponible.">
