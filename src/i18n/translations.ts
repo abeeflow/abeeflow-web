@@ -138,16 +138,15 @@ export const translations = {
     },
     chatWidget: {
       aria: 'Conversación con Abeeflow',
-      ariaButton: 'Abrir chat de WhatsApp',
-      dismiss: 'Cerrar conversación',
+      ariaButton: 'Abrir chat de Abeeflow',
+      dismiss: 'Cerrar chat',
       status: 'En línea',
-      cta: 'Escríbenos por WhatsApp',
-      flows: [
-        { msg1: '👋 ¡Hola!', msg2: '¿Tienes algún proceso que te quita tiempo?' },
-        { msg1: 'Hola 👋 estamos en línea', msg2: '30 minutos contigo bastan para identificar qué automatizar primero' },
-        { msg1: '👋 ¿En qué automatización estás pensando?', msg2: 'Te respondemos en menos de 24h' },
-        { msg1: '👋 ¿Cuántas horas a la semana te quita lo repetitivo?', msg2: 'Podemos calcularlo juntos en una llamada gratis' }
-      ]
+      welcome: '¡Hola! Soy el asistente de Abeeflow. ¿Te ayudo a explorar qué automatizar en tu negocio?',
+      placeholder: 'Escribe tu mensaje...',
+      send: 'Enviar mensaje',
+      cta: 'Continúa por WhatsApp',
+      toWhatsapp: 'Hablar con un humano por WhatsApp',
+      errorGeneric: 'No pude responder. Escríbenos por WhatsApp y te contestamos.'
     }
   },
   en: {
@@ -289,16 +288,15 @@ export const translations = {
     },
     chatWidget: {
       aria: 'Conversation with Abeeflow',
-      ariaButton: 'Open WhatsApp chat',
-      dismiss: 'Close conversation',
+      ariaButton: 'Open Abeeflow chat',
+      dismiss: 'Close chat',
       status: 'Online',
-      cta: 'Message us on WhatsApp',
-      flows: [
-        { msg1: '👋 Hi there!', msg2: 'Got a process eating up your time?' },
-        { msg1: 'Hi 👋 we\'re online', msg2: '30 minutes with you is enough to identify what to automate first' },
-        { msg1: '👋 What kind of automation are you thinking about?', msg2: 'We reply in under 24h' },
-        { msg1: '👋 How many hours a week does repetitive work cost you?', msg2: 'We can calculate it together on a free call' }
-      ]
+      welcome: 'Hi! I\'m the Abeeflow assistant. Can I help you explore what to automate in your business?',
+      placeholder: 'Type your message...',
+      send: 'Send message',
+      cta: 'Continue on WhatsApp',
+      toWhatsapp: 'Talk to a human on WhatsApp',
+      errorGeneric: 'I couldn\'t reply. Message us on WhatsApp and we\'ll get back to you.'
     }
   }
 };
