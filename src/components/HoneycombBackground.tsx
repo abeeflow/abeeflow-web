@@ -4,11 +4,9 @@ import './HoneycombBackground.css';
 const HEX_RADIUS = 70;
 const COLS = 20;
 const ROWS = 15;
-const PARALLAX_RANGE = 30; // ±15px (range/2)
-const LERP_FACTOR = 0.06;
 
 const HoneycombBackground = () => {
-  const gRef = useRef<SVGGElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const { hexagons, viewBoxWidth, viewBoxHeight } = useMemo(() => {
     const sqrt3div2 = Math.sqrt(3) / 2;
@@ -44,55 +42,60 @@ const HoneycombBackground = () => {
   }, []);
 
   useEffect(() => {
-    const g = gRef.current;
-    if (!g) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.innerWidth < 768) return;
 
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
     let rafId = 0;
+    let pendingX = 0;
+    let pendingY = 0;
+    let scheduled = false;
 
     const handleMouseMove = (e: MouseEvent) => {
-      targetX = (e.clientX / window.innerWidth - 0.5) * PARALLAX_RANGE;
-      targetY = (e.clientY / window.innerHeight - 0.5) * PARALLAX_RANGE;
+      pendingX = e.clientX;
+      pendingY = e.clientY;
+      if (scheduled) return;
+      scheduled = true;
+      rafId = requestAnimationFrame(() => {
+        container.style.setProperty('--mouse-x', `${pendingX}px`);
+        container.style.setProperty('--mouse-y', `${pendingY}px`);
+        scheduled = false;
+      });
     };
 
-    const animate = () => {
-      currentX += (targetX - currentX) * LERP_FACTOR;
-      currentY += (targetY - currentY) * LERP_FACTOR;
-      g.setAttribute('transform', `translate(${currentX.toFixed(2)} ${currentY.toFixed(2)})`);
-      rafId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    rafId = requestAnimationFrame(animate);
-
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(rafId);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
-    <div className="honeycomb-bg" aria-hidden="true">
-      <div className="honeycomb-wrapper">
-        <svg
-          viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
-          preserveAspectRatio="xMidYMid slice"
-          width="100%"
-          height="100%"
-        >
-          <g ref={gRef}>
-            {hexagons.map((h) => (
-              <polygon key={h.key} className="hex-cell" points={h.points} />
-            ))}
-          </g>
-        </svg>
-      </div>
+    <div ref={containerRef} className="hex-bg" aria-hidden="true">
+      <svg
+        className="hex-bg-svg base"
+        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <g>
+          {hexagons.map((h) => (
+            <polygon key={h.key} points={h.points} />
+          ))}
+        </g>
+      </svg>
+      <svg
+        className="hex-bg-svg highlight"
+        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <g>
+          {hexagons.map((h) => (
+            <polygon key={h.key} points={h.points} />
+          ))}
+        </g>
+      </svg>
     </div>
   );
 };

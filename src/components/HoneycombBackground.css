@@ -1,62 +1,66 @@
-.honeycomb-bg {
+.hex-bg {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
     position: fixed;
-    inset: 0;
+    inset: -80px;
     z-index: -1;
+    pointer-events: none;
     overflow: hidden;
-    pointer-events: none;
 }
 
-.honeycomb-wrapper {
+.hex-bg-svg {
     position: absolute;
-    inset: -32px;
-    width: calc(100% + 64px);
-    height: calc(100% + 64px);
-    pointer-events: none;
-}
-
-.honeycomb-wrapper svg {
-    display: block;
+    inset: 0;
     width: 100%;
     height: 100%;
     overflow: visible;
-    pointer-events: auto;
 }
 
-.hex-cell {
-    fill: transparent;
-    stroke: rgba(224, 172, 54, 0.06);
+/* Capa base: tenue, siempre visible */
+.hex-bg-svg.base polygon {
+    stroke: rgba(232, 180, 65, 0.06);
     stroke-width: 1;
-    transition: fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
-    pointer-events: all;
+    fill: none;
 }
 
-.hex-cell:hover {
-    fill: var(--yellow-light);
-    stroke: var(--yellow);
-    filter: drop-shadow(0 0 12px rgba(224, 172, 54, 0.45));
+/* Capa highlight: más brillante, máscara radial al mouse */
+.hex-bg-svg.highlight polygon {
+    stroke: rgba(232, 180, 65, 0.35);
+    stroke-width: 1.2;
+    fill: none;
 }
 
-[data-theme="dark"] .hex-cell {
-    stroke: rgba(232, 180, 65, 0.07);
+.hex-bg-svg.highlight {
+    -webkit-mask-image: radial-gradient(
+        circle 280px at var(--mouse-x) var(--mouse-y),
+        black 0%,
+        black 30%,
+        transparent 75%
+    );
+    mask-image: radial-gradient(
+        circle 280px at var(--mouse-x) var(--mouse-y),
+        black 0%,
+        black 30%,
+        transparent 75%
+    );
+}
+
+[data-theme="dark"] .hex-bg-svg.base polygon {
+    stroke: rgba(232, 180, 65, 0.05);
+}
+
+[data-theme="dark"] .hex-bg-svg.highlight polygon {
+    stroke: rgba(232, 180, 65, 0.4);
 }
 
 @media (max-width: 768px) {
-    .honeycomb-wrapper svg,
-    .hex-cell {
-        pointer-events: none;
-    }
-
-    .hex-cell:hover {
-        fill: transparent;
-        stroke: rgba(224, 172, 54, 0.06);
-        filter: none;
+    .hex-bg-svg.highlight {
+        display: none;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hex-cell:hover {
-        fill: transparent;
-        stroke: rgba(224, 172, 54, 0.06);
-        filter: none;
+    .hex-bg-svg.highlight {
+        display: none;
     }
 }
