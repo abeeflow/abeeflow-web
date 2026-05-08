@@ -1,5 +1,6 @@
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import Header from './components/Header';
+import HoneycombBackground from './components/HoneycombBackground';
 import Hero from './components/Hero';
 import Metrics from './components/Metrics';
 import Benefits from './components/Benefits';
@@ -24,6 +25,7 @@ const SkipLink = () => {
 function App() {
   return (
     <LanguageProvider>
+      <HoneycombBackground />
       <SkipLink />
       <Header />
       <main id="main" tabIndex={-1}>

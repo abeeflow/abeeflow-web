@@ -7,7 +7,6 @@ const ROWS = 9;
 const PARALLAX_RANGE = 10;
 
 const HoneycombBackground = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const { hexagons, viewBoxWidth, viewBoxHeight } = useMemo(() => {
@@ -44,24 +43,19 @@ const HoneycombBackground = () => {
   }, []);
 
   useEffect(() => {
-    const container = containerRef.current;
     const wrapper = wrapperRef.current;
-    if (!container || !wrapper) return;
+    if (!wrapper) return;
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.innerWidth < 768) return;
-
-    const heroSection = container.closest<HTMLElement>('.hero');
-    if (!heroSection) return;
 
     let rafId: number | null = null;
     let pendingX = 0;
     let pendingY = 0;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = heroSection.getBoundingClientRect();
-      const cx = (e.clientX - rect.left) / rect.width - 0.5;
-      const cy = (e.clientY - rect.top) / rect.height - 0.5;
+      const cx = e.clientX / window.innerWidth - 0.5;
+      const cy = e.clientY / window.innerHeight - 0.5;
       pendingX = cx * PARALLAX_RANGE * 2;
       pendingY = cy * PARALLAX_RANGE * 2;
 
@@ -72,15 +66,15 @@ const HoneycombBackground = () => {
       });
     };
 
-    heroSection.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove);
     return () => {
-      heroSection.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', handleMouseMove);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
-    <div ref={containerRef} className="honeycomb-bg" aria-hidden="true">
+    <div className="honeycomb-bg" aria-hidden="true">
       <div ref={wrapperRef} className="honeycomb-wrapper">
         <svg
           viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}

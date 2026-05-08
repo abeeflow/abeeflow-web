@@ -1,9 +1,9 @@
 .honeycomb-bg {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    z-index: 0;
+    z-index: -1;
     overflow: hidden;
-    opacity: 0.4;
+    opacity: 0.18;
     pointer-events: none;
 }
 
@@ -14,6 +14,7 @@
     height: calc(100% + 64px);
     transition: transform 0.5s cubic-bezier(0.1, 0.9, 0.2, 1);
     will-change: transform;
+    pointer-events: none;
 }
 
 .honeycomb-wrapper svg {
@@ -40,7 +41,7 @@
 
 @media (max-width: 768px) {
     .honeycomb-bg {
-        opacity: 0.2;
+        opacity: 0.1;
     }
 
     .honeycomb-wrapper {
@@ -48,18 +49,31 @@
         transition: none;
     }
 
-    .honeycomb-wrapper svg {
+    .honeycomb-wrapper svg,
+    .hex-cell {
         pointer-events: none;
     }
 
-    .hex-cell {
-        pointer-events: none;
+    .hex-cell:hover {
+        fill: transparent;
+        stroke: var(--border-subtle);
+        filter: none;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .honeycomb-bg {
+        opacity: 0.1;
+    }
+
     .honeycomb-wrapper {
         transform: none !important;
         transition: none;
+    }
+
+    .hex-cell:hover {
+        fill: transparent;
+        stroke: var(--border-subtle);
+        filter: none;
     }
 }

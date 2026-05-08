@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
-import HoneycombBackground from './HoneycombBackground';
 import './Hero.css';
 
 const flowIcons: ReactNode[] = [
@@ -199,7 +198,6 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      <HoneycombBackground />
       <div className="container">
         <div className="hero-inner">
           <div className="hero-content">
