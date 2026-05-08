@@ -34,6 +34,10 @@ export const translations = {
         { value: '100%', label: 'Clientes en LATAM' }
       ]
     },
+    logoStrip: {
+      aria: 'Empresas que confían en nosotros',
+      title: 'Empresas que confían en nosotros'
+    },
     services: {
       title: 'Servicios',
       subtitle: 'Desde desarrollo de software hasta automatización con IA. Construimos lo que tu negocio necesita.',
@@ -155,6 +159,10 @@ export const translations = {
         { value: '20+', label: 'Native integrations' },
         { value: '100%', label: 'Clients in LATAM' }
       ]
+    },
+    logoStrip: {
+      aria: 'Companies that trust us',
+      title: 'Companies that trust us'
     },
     services: {
       title: 'Services',

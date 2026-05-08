@@ -4,6 +4,7 @@ import Header from './components/Header';
 import HoneycombBackground from './components/HoneycombBackground';
 import Hero from './components/Hero';
 import Metrics from './components/Metrics';
+import LogoStrip from './components/LogoStrip';
 import Benefits from './components/Benefits';
 import SaasSolutions from './components/SaasSolutions';
 import About from './components/About';
@@ -34,6 +35,7 @@ function App() {
       <main id="main" tabIndex={-1}>
         <Hero />
         <Metrics />
+        <LogoStrip />
         <Benefits />
         <SaasSolutions />
         <Process />
