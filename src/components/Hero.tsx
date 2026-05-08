@@ -28,6 +28,13 @@ const flowIcons: ReactNode[] = [
   </svg>
 ];
 
+const flowMeta: { code: string; statusColor: 'green' | 'yellow' | 'blue' }[] = [
+  { code: "if email.subject.match(/quote/i):", statusColor: 'green' },
+  { code: "intent = ai.classify(email.body)", statusColor: 'yellow' },
+  { code: "hubspot.contacts.create({...})", statusColor: 'green' },
+  { code: "slack.send('#sales', summary)", statusColor: 'blue' },
+];
+
 const MAGNETIC_RADIUS = 150;
 const MAGNETIC_INTENSITY = 0.1; // ~max 8-15px depending on radius
 const TILT_RANGE = 12; // ±12 deg
@@ -36,9 +43,13 @@ interface FlowNodeProps {
   index: number;
   label: string;
   icon: ReactNode;
+  code: string;
+  status: string;
+  statusColor: 'green' | 'yellow' | 'blue';
+  tooltipPosition: 'above' | 'below';
 }
 
-const FlowNode = ({ index, label, icon }: FlowNodeProps) => {
+const FlowNode = ({ index, label, icon, code, status, statusColor, tooltipPosition }: FlowNodeProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const magX = useMotionValue(0);
@@ -105,8 +116,16 @@ const FlowNode = ({ index, label, icon }: FlowNodeProps) => {
       onMouseMove={handleLocalMove}
       onMouseLeave={handleLocalLeave}
     >
+      <div className="hero-flow-node-status">
+        <span className={`status-dot status-dot-${statusColor}`} />
+        {status}
+      </div>
       <div className="hero-flow-node-icon">{icon}</div>
       <div className="hero-flow-node-label">{label}</div>
+      <div className="hero-flow-node-progress" style={{ animationDelay: `${index * 0.75}s` }} />
+      <div className={`hero-flow-node-tooltip hero-flow-node-tooltip-${tooltipPosition}`}>
+        <code>{code}</code>
+      </div>
     </motion.div>
   );
 };
@@ -245,13 +264,46 @@ const Hero = () => {
           <div className="hero-visual">
             <div className="hero-flow" aria-hidden="true">
               <svg className="hero-flow-lines" viewBox="0 0 400 320" preserveAspectRatio="none">
-                <path d="M 130 60 L 270 60" />
-                <path d="M 340 100 L 340 220" />
-                <path d="M 270 260 L 130 260" />
+                <defs>
+                  <filter id="particle-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <path id="flow-path-1" d="M 130 60 L 270 60" />
+                <path id="flow-path-2" d="M 340 100 L 340 220" />
+                <path id="flow-path-3" d="M 270 260 L 130 260" />
+                <circle r="4" className="flow-particle">
+                  <animateMotion dur="2s" repeatCount="indefinite">
+                    <mpath href="#flow-path-1" />
+                  </animateMotion>
+                </circle>
+                <circle r="4" className="flow-particle">
+                  <animateMotion dur="2s" repeatCount="indefinite" begin="0.66s">
+                    <mpath href="#flow-path-2" />
+                  </animateMotion>
+                </circle>
+                <circle r="4" className="flow-particle">
+                  <animateMotion dur="2s" repeatCount="indefinite" begin="1.33s">
+                    <mpath href="#flow-path-3" />
+                  </animateMotion>
+                </circle>
               </svg>
 
               {flowNodes.map((node, index) => (
-                <FlowNode key={node.label} index={index} label={node.label} icon={flowIcons[index]} />
+                <FlowNode
+                  key={node.label}
+                  index={index}
+                  label={node.label}
+                  icon={flowIcons[index]}
+                  code={flowMeta[index].code}
+                  status={language === 'en' ? 'active' : 'activo'}
+                  statusColor={flowMeta[index].statusColor}
+                  tooltipPosition={index < 2 ? 'below' : 'above'}
+                />
               ))}
             </div>
           </div>
