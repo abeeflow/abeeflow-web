@@ -53,11 +53,11 @@
 }
 
 .project-card-category {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    font-weight: 600;
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.08em;
     margin-bottom: 6px;
 }
 

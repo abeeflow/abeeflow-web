@@ -148,8 +148,9 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-family: var(--font-sans);
-    font-size: var(--text-xs);
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    letter-spacing: 0.05em;
     color: var(--text-muted);
     margin-top: auto;
     padding-top: var(--space-3);
