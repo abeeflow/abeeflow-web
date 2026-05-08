@@ -10,7 +10,7 @@ export const translations = {
       cta: 'Contáctanos'
     },
     hero: {
-      badge: 'Soluciones a medida',
+      badge: '// soluciones a medida',
       words: ['Desarrollamos', 'Automatizamos', 'Optimizamos', 'Integramos', 'Transformamos'],
       subtitle: 'tu negocio',
       description: 'Software a medida, automatización de procesos, migración de datos y desarrollo web. Construimos la solución que tu empresa necesita para crecer.',
@@ -128,7 +128,7 @@ export const translations = {
       cta: 'Contact Us'
     },
     hero: {
-      badge: 'Custom solutions',
+      badge: '// custom solutions',
       words: ['We Build', 'We Automate', 'We Optimize', 'We Integrate', 'We Transform'],
       subtitle: 'your business',
       description: 'Custom software, process automation, data migration, and web development. We build the solution your company needs to grow.',

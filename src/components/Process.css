@@ -43,8 +43,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-sans);
-    font-weight: 800;
+    font-family: var(--font-mono);
+    font-weight: 600;
     font-size: var(--text-lg);
     color: var(--ink);
     margin-bottom: var(--space-5);

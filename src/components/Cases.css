@@ -92,9 +92,11 @@
     background: white;
     padding: 6px var(--space-3);
     border-radius: 20px;
-    font-family: var(--font-sans);
+    font-family: var(--font-mono);
     font-size: var(--text-xs);
-    font-weight: 600;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: var(--text-secondary);
     margin-bottom: var(--space-4);
     box-shadow: var(--shadow);

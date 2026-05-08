@@ -54,6 +54,7 @@
     /* Font families */
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+    --font-mono: 'Geist Mono', 'JetBrains Mono', 'Fira Code', 'SF Mono', Menlo, monospace;
 
     /* Legacy aliases (kept for backwards-compat with existing styles) */
     --text: var(--ink-soft);

@@ -76,6 +76,12 @@
     transition: color 0.2s;
 }
 
+.footer-col a[href^="mailto:"],
+.footer-col a[href^="https://wa.me/"] {
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+}
+
 .footer-col a:hover {
     color: var(--yellow-hover);
 }
