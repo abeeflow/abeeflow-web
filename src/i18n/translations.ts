@@ -44,6 +44,11 @@ export const translations = {
       action: 'Empieza con un diagnóstico gratuito',
       outcome: 'mira qué automatizar primero'
     },
+    preFooterCta: {
+      aria: 'Llamado final',
+      heading: '¿Listo para automatizar tu operación?',
+      button: 'Empieza con un diagnóstico gratuito'
+    },
     services: {
       title: 'Servicios',
       subtitle: 'Desde desarrollo de software hasta automatización con IA. Construimos lo que tu negocio necesita.',
@@ -176,6 +181,11 @@ export const translations = {
       aria: 'Call to action',
       action: 'Start with a free diagnosis',
       outcome: 'see what to automate first'
+    },
+    preFooterCta: {
+      aria: 'Final call',
+      heading: 'Ready to automate your operation?',
+      button: 'Start with a free diagnosis'
     },
     services: {
       title: 'Services',

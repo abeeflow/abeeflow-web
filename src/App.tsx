@@ -12,6 +12,7 @@ import Cases from './components/Cases';
 import Process from './components/Process';
 import InlineCTA from './components/InlineCTA';
 import Contact from './components/Contact';
+import PreFooterCTA from './components/PreFooterCTA';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
 import './App.css';
@@ -44,6 +45,7 @@ function App() {
         <InlineCTA />
         <About />
         <Contact />
+        <PreFooterCTA />
       </main>
       <Footer />
       <WhatsAppWidget />
