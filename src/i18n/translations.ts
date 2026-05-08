@@ -28,15 +28,21 @@ export const translations = {
     },
     metrics: {
       items: [
-        { value: '+50', label: 'Procesos automatizados' },
-        { value: '+10K', label: 'Horas ahorradas al año' },
-        { value: '20+', label: 'Integraciones nativas' },
-        { value: '100%', label: 'Clientes en LATAM' }
+        { value: '+15K', label: 'Horas ahorradas / año' },
+        { value: '+50', label: 'Procesos en producción' },
+        { value: '1ra sem', label: 'Primer ahorro visible' },
+        { value: '<24h', label: 'Respuesta de soporte' },
+        { value: '12', label: 'RPA migrados sin licencias' }
       ]
     },
     logoStrip: {
       aria: 'Empresas que confían en nosotros',
       title: 'Empresas que confían en nosotros'
+    },
+    inlineCta: {
+      aria: 'Llamado a la acción',
+      action: 'Empieza con un diagnóstico gratuito',
+      outcome: 'mira qué automatizar primero'
     },
     services: {
       title: 'Servicios',
@@ -154,15 +160,21 @@ export const translations = {
     },
     metrics: {
       items: [
-        { value: '+50', label: 'Processes automated' },
-        { value: '+10K', label: 'Hours saved per year' },
-        { value: '20+', label: 'Native integrations' },
-        { value: '100%', label: 'Clients in LATAM' }
+        { value: '+15K', label: 'Hours saved / year' },
+        { value: '+50', label: 'Processes in production' },
+        { value: '1st week', label: 'First visible saving' },
+        { value: '<24h', label: 'Support response' },
+        { value: '12', label: 'RPA migrated without licenses' }
       ]
     },
     logoStrip: {
       aria: 'Companies that trust us',
       title: 'Companies that trust us'
+    },
+    inlineCta: {
+      aria: 'Call to action',
+      action: 'Start with a free diagnosis',
+      outcome: 'see what to automate first'
     },
     services: {
       title: 'Services',

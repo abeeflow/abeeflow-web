@@ -4,10 +4,19 @@ import { useCountUp } from '../hooks/useCountUp';
 import RevealOnScroll from './RevealOnScroll';
 import './Metrics.css';
 
-const parseValue = (raw: string): { prefix: string; number: number; suffix: string } => {
-  const match = raw.match(/^([+-]?)(\d+)(.*)$/);
-  if (!match) return { prefix: '', number: 0, suffix: raw };
+// Solo anima valores con formato numérico limpio (+15K, +50, 12, 70%, 5x).
+// Valores como "1ra sem" o "<24h" se renderizan como texto estático.
+const ANIMATE_PATTERN = /^([+-]?)(\d+)([%KkMm+x]?)$/;
+
+type ParsedValue =
+  | { animate: true; prefix: string; number: number; suffix: string }
+  | { animate: false; raw: string };
+
+const parseValue = (raw: string): ParsedValue => {
+  const match = raw.match(ANIMATE_PATTERN);
+  if (!match) return { animate: false, raw };
   return {
+    animate: true,
     prefix: match[1] || '',
     number: parseInt(match[2], 10),
     suffix: match[3] || '',
@@ -21,12 +30,19 @@ interface MetricItemProps {
 }
 
 const MetricItem = ({ raw, label, shouldAnimate }: MetricItemProps) => {
-  const { prefix, number, suffix } = parseValue(raw);
-  const current = useCountUp(number, 1500, shouldAnimate);
+  const parsed = parseValue(raw);
+  const targetNumber = parsed.animate ? parsed.number : 0;
+  const current = useCountUp(targetNumber, 1500, shouldAnimate);
 
   return (
     <div className="metric-item">
-      <div className="metric-value">{prefix}{current}{suffix}</div>
+      <div className="metric-value">
+        {parsed.animate ? (
+          <>{parsed.prefix}{current}{parsed.suffix}</>
+        ) : (
+          parsed.raw
+        )}
+      </div>
       <div className="metric-label">{label}</div>
     </div>
   );

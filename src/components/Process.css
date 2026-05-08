@@ -24,7 +24,7 @@
 .process-badge {
     display: block;
     width: fit-content;
-    background: white;
+    background: var(--surface);
     color: var(--ink);
     border: 1px solid var(--border);
     border-radius: var(--radius-pill);

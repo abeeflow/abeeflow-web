@@ -10,6 +10,7 @@ import SaasSolutions from './components/SaasSolutions';
 import About from './components/About';
 import Cases from './components/Cases';
 import Process from './components/Process';
+import InlineCTA from './components/InlineCTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
@@ -40,6 +41,7 @@ function App() {
         <SaasSolutions />
         <Process />
         <Cases />
+        <InlineCTA />
         <About />
         <Contact />
       </main>

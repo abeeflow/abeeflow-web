@@ -13,6 +13,10 @@
     animation: hc-float 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
+.hero-honeycomb-svg:has(.hex-cell.interactive:hover) {
+    animation-play-state: paused;
+}
+
 @keyframes hc-float {
     0%, 100% { transform: rotateX(8deg) rotateY(-5deg) translateY(0); }
     50%      { transform: rotateX(11deg) rotateY(0deg) translateY(-6px); }
@@ -23,9 +27,10 @@
     fill: var(--surface);
     stroke: var(--border);
     stroke-width: 1.2;
-    transition: fill 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                stroke 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                stroke-width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: fill 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                stroke 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                stroke-width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hex-shape.center {
@@ -46,7 +51,8 @@
 .hex-cell.interactive:hover .hex-shape {
     fill: var(--yellow);
     stroke: var(--yellow-hover);
-    stroke-width: 1.5;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 14px rgba(232, 180, 65, 0.5));
 }
 
 .hex-cell.interactive:hover .hex-icon {
@@ -99,7 +105,7 @@
     stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
-    transition: stroke 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: stroke 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Labels */
@@ -111,7 +117,7 @@
     text-anchor: middle;
     font-weight: 700;
     text-transform: uppercase;
-    transition: fill 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: fill 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Bee orbit */

@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
+import { useTheme } from '../hooks/useTheme';
 
 interface WordProps {
   word: string;
@@ -8,10 +9,12 @@ interface WordProps {
 }
 
 const Word = ({ word, progress, range }: WordProps) => {
-  const color = useTransform(progress, range, [
-    'rgba(107, 107, 107, 0.3)',
-    'rgba(10, 10, 10, 1)',
-  ]);
+  const { theme } = useTheme();
+  const colors: [string, string] =
+    theme === 'dark'
+      ? ['rgba(199, 199, 204, 0.35)', 'rgba(244, 244, 245, 1)']
+      : ['rgba(107, 107, 107, 0.3)', 'rgba(10, 10, 10, 1)'];
+  const color = useTransform(progress, range, colors);
   return (
     <>
       <motion.span style={{ color }}>{word}</motion.span>{' '}
