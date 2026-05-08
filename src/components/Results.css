@@ -1,0 +1,120 @@
+.results {
+    position: relative;
+    padding: var(--space-10) 0 var(--space-12);
+    overflow: hidden;
+}
+
+.results-arc {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    pointer-events: none;
+}
+
+.results-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.results-badge {
+    display: inline-flex;
+    align-items: center;
+    background: white;
+    color: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin: 0 auto var(--space-8);
+    box-shadow: var(--shadow);
+}
+
+.results-container > .results-badge {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.result-slide {
+    position: relative;
+    height: 70vh;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 var(--space-5);
+}
+
+.result-counter {
+    position: absolute;
+    top: var(--space-6);
+    left: var(--space-6);
+    font-family: var(--font-pixel);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.result-number {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: clamp(120px, 18vw, 240px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin: 0 0 var(--space-5);
+}
+
+.result-suffix {
+    color: var(--yellow-hover);
+}
+
+.result-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    font-weight: 400;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 540px;
+}
+
+@media (max-width: 768px) {
+    .results {
+        padding: var(--space-8) 0 var(--space-10);
+    }
+
+    .results-arc {
+        top: 40px;
+        height: 120px;
+    }
+
+    .result-slide {
+        height: 60vh;
+        min-height: 360px;
+    }
+
+    .result-counter {
+        top: var(--space-5);
+        left: var(--space-5);
+        font-size: 12px;
+    }
+
+    .result-number {
+        font-size: clamp(80px, 22vw, 140px);
+        margin-bottom: var(--space-4);
+    }
+
+    .result-label {
+        font-size: var(--text-base);
+    }
+}

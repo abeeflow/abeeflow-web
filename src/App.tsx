@@ -9,6 +9,7 @@ import SaasSolutions from './components/SaasSolutions';
 import About from './components/About';
 import Cases from './components/Cases';
 import Process from './components/Process';
+import Results from './components/Results';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
@@ -39,6 +40,7 @@ function App() {
         <About />
         <Cases />
         <Process />
+        <Results />
         <Contact />
       </main>
       <Footer />

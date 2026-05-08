@@ -93,6 +93,16 @@ export const translations = {
         { number: '03', title: 'Desplegamos y escalamos', description: 'Ponemos tu solución en producción, te capacitamos y seguimos optimizando. Si tu negocio crece, tu software crece contigo.' }
       ]
     },
+    results: {
+      badge: '// resultados',
+      slides: [
+        { count: 400, suffix: '+', text: null, label: 'Procesos automatizados al año' },
+        { count: 70, suffix: '%', text: null, label: 'Menos tiempo en cotizaciones — SFA Inversiones' },
+        { count: 5, suffix: 'x', text: null, label: 'Leads cualificados — HRS Consulting' },
+        { count: null, suffix: '', text: '24/7', label: 'Operación sin parar' },
+        { count: null, suffix: '', text: '<2sem', label: 'Tiempo promedio de implementación' }
+      ]
+    },
     contact: {
       title: 'Agenda con nosotros',
       subtitle: 'Analizamos tus procesos para identificar oportunidades. 30 minutos, sin compromiso.',
@@ -209,6 +219,16 @@ export const translations = {
         { number: '01', title: 'We understand your business', description: 'We meet with you to understand your operations, processes, and pain points. We identify what can be automated, digitized, or built from scratch.' },
         { number: '02', title: 'We develop your solution', description: 'We design the architecture, build the software, and test it together. Whether it\'s a SaaS, automation, or migration, you work with us in every iteration.' },
         { number: '03', title: 'We deploy and scale', description: 'We put your solution into production, train you, and keep optimizing. If your business grows, your software grows with it.' }
+      ]
+    },
+    results: {
+      badge: '// results',
+      slides: [
+        { count: 400, suffix: '+', text: null, label: 'Processes automated per year' },
+        { count: 70, suffix: '%', text: null, label: 'Less time on quotes — SFA Inversiones' },
+        { count: 5, suffix: 'x', text: null, label: 'Qualified leads — HRS Consulting' },
+        { count: null, suffix: '', text: '24/7', label: 'Round-the-clock operation' },
+        { count: null, suffix: '', text: '<2wk', label: 'Average implementation time' }
       ]
     },
     contact: {
