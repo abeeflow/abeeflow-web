@@ -1,8 +1,10 @@
+import { useEffect, useRef, type ReactNode } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
 import HoneycombBackground from './HoneycombBackground';
 import './Hero.css';
 
-const flowIcons = [
+const flowIcons: ReactNode[] = [
   // Email
   <svg key="email" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -25,6 +27,89 @@ const flowIcons = [
     <path d="M13.73 21a2 2 0 01-3.46 0" />
   </svg>
 ];
+
+const MAGNETIC_RADIUS = 150;
+const MAGNETIC_INTENSITY = 0.1; // ~max 8-15px depending on radius
+const TILT_RANGE = 12; // ±12 deg
+
+interface FlowNodeProps {
+  index: number;
+  label: string;
+  icon: ReactNode;
+}
+
+const FlowNode = ({ index, label, icon }: FlowNodeProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const magX = useMotionValue(0);
+  const magY = useMotionValue(0);
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+
+  const x = useSpring(magX, { stiffness: 200, damping: 18, mass: 0.6 });
+  const y = useSpring(magY, { stiffness: 200, damping: 18, mass: 0.6 });
+  const rotateX = useSpring(tiltX, { stiffness: 200, damping: 18, mass: 0.5 });
+  const rotateY = useSpring(tiltY, { stiffness: 200, damping: 18, mass: 0.5 });
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.innerWidth < 768) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const node = ref.current;
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist < MAGNETIC_RADIUS) {
+        const factor = 1 - dist / MAGNETIC_RADIUS;
+        magX.set(dx * factor * MAGNETIC_INTENSITY);
+        magY.set(dy * factor * MAGNETIC_INTENSITY);
+      } else {
+        magX.set(0);
+        magY.set(0);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [magX, magY]);
+
+  const handleLocalMove = (e: React.MouseEvent) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const node = ref.current;
+    if (!node) return;
+    const rect = node.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    tiltY.set(px * TILT_RANGE * 2);
+    tiltX.set(-py * TILT_RANGE * 2);
+  };
+
+  const handleLocalLeave = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`hero-flow-node hero-flow-node-${index + 1}`}
+      style={{ x, y, rotateX, rotateY, transformPerspective: 1000 }}
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: 'spring', stiffness: 280, damping: 18 }}
+      onMouseMove={handleLocalMove}
+      onMouseLeave={handleLocalLeave}
+    >
+      <div className="hero-flow-node-icon">{icon}</div>
+      <div className="hero-flow-node-label">{label}</div>
+    </motion.div>
+  );
+};
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -88,21 +173,13 @@ const Hero = () => {
           <div className="hero-visual">
             <div className="hero-flow" aria-hidden="true">
               <svg className="hero-flow-lines" viewBox="0 0 400 320" preserveAspectRatio="none">
-                {/* 1 → 2 (top horizontal) */}
                 <path d="M 130 60 L 270 60" />
-                {/* 2 → 3 (right vertical) */}
                 <path d="M 340 100 L 340 220" />
-                {/* 3 → 4 (bottom horizontal, reverse) */}
                 <path d="M 270 260 L 130 260" />
               </svg>
 
               {flowNodes.map((node, index) => (
-                <div key={index} className={`hero-flow-node hero-flow-node-${index + 1}`}>
-                  <div className="hero-flow-node-icon">
-                    {flowIcons[index]}
-                  </div>
-                  <div className="hero-flow-node-label">{node.label}</div>
-                </div>
+                <FlowNode key={node.label} index={index} label={node.label} icon={flowIcons[index]} />
               ))}
             </div>
           </div>
