@@ -41,8 +41,8 @@
 }
 
 .case-card-warm {
-    background: var(--yellow-light);
-    border: 1px solid rgba(251,191,36,0.2);
+    background: var(--bg-warm);
+    border: 1px solid rgba(251,191,36,0.12);
 }
 
 .case-card-blue {
