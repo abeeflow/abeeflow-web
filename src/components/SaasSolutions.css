@@ -19,7 +19,7 @@
 }
 
 .project-card {
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card);
     padding: var(--space-6) var(--space-5);
     transition: all 0.3s;
     display: flex;

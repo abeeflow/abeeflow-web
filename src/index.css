@@ -68,6 +68,12 @@
     --shadow-xl: 0 20px 60px rgba(0,0,0,0.08);
     --radius: 12px;
     --radius-lg: 20px;
+
+    /* Radius system */
+    --radius-pill: 999px;
+    --radius-card: 16px;
+    --radius-input: 10px;
+    --radius-tag: 4px;
 }
 
 html {

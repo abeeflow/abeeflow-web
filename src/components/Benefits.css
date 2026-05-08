@@ -71,7 +71,7 @@
     height: 100%;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card);
     border: 1px solid var(--border);
     padding: var(--space-5) var(--space-5);
     display: flex;

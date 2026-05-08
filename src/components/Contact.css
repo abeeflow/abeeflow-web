@@ -7,7 +7,7 @@
     text-align: center;
     background: white;
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card);
     padding: var(--space-8) var(--space-6);
     max-width: 640px;
     margin: 0 auto;
@@ -59,7 +59,7 @@
     background: var(--yellow);
     color: var(--ink);
     padding: var(--space-4) var(--space-8);
-    border-radius: var(--radius);
+    border-radius: var(--radius-pill);
     font-family: var(--font-sans);
     font-weight: 700;
     font-size: var(--text-base);

@@ -30,7 +30,7 @@
     max-width: calc(50% - 1rem);
     width: calc(50% - 1rem);
     padding: var(--space-6);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-card);
     transition: all 0.3s;
     position: relative;
     overflow: hidden;
@@ -92,7 +92,7 @@
     gap: 6px;
     background: white;
     padding: 6px var(--space-3);
-    border-radius: 20px;
+    border-radius: var(--radius-pill);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     font-weight: 500;
