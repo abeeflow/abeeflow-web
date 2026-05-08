@@ -1,0 +1,65 @@
+.honeycomb-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.honeycomb-wrapper {
+    position: absolute;
+    inset: -32px;
+    width: calc(100% + 64px);
+    height: calc(100% + 64px);
+    transition: transform 0.5s cubic-bezier(0.1, 0.9, 0.2, 1);
+    will-change: transform;
+}
+
+.honeycomb-wrapper svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: auto;
+}
+
+.hex-cell {
+    fill: transparent;
+    stroke: var(--border-subtle);
+    stroke-width: 1;
+    transition: fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
+    pointer-events: all;
+}
+
+.hex-cell:hover {
+    fill: var(--yellow-light);
+    stroke: var(--yellow);
+    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.45));
+}
+
+@media (max-width: 768px) {
+    .honeycomb-bg {
+        opacity: 0.2;
+    }
+
+    .honeycomb-wrapper {
+        transform: none !important;
+        transition: none;
+    }
+
+    .honeycomb-wrapper svg {
+        pointer-events: none;
+    }
+
+    .hex-cell {
+        pointer-events: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .honeycomb-wrapper {
+        transform: none !important;
+        transition: none;
+    }
+}
