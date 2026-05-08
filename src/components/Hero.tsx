@@ -1,29 +1,35 @@
-import { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import './Hero.css';
 
-const serviceIcons = [
-  'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-  'M13 10V3L4 14h7v7l9-11h-7z',
-  'M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4',
-  'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
-  'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9'
+const flowIcons = [
+  // Email
+  <svg key="email" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="M3 7l9 6 9-6" />
+  </svg>,
+  // AI / Sparkles
+  <svg key="ai" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>,
+  // CRM / Users
+  <svg key="crm" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+  </svg>,
+  // Slack / Bell
+  <svg key="bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+    <path d="M13.73 21a2 2 0 01-3.46 0" />
+  </svg>
 ];
 
 const Hero = () => {
   const { t } = useLanguage();
   const words = t.hero.words;
-  const services = t.hero.services;
   const headlineWord = words[0];
-
-  const [activeService, setActiveService] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveService(prev => (prev + 1) % services.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [services.length]);
+  const flowNodes = t.hero.flowNodes;
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -68,72 +74,33 @@ const Hero = () => {
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </a>
-              <a href="#casos" className="btn-secondary" onClick={(e) => handleSmoothScroll(e, '#casos')}>
+              <a href="#casos" className="btn-link-arrow" onClick={(e) => handleSmoothScroll(e, '#casos')}>
                 {t.hero.secondary}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
               </a>
             </div>
           </div>
 
           <div className="hero-visual">
-            <div className="hero-blob">
-              <div className="hero-illustration">
-                <div className="hero-illustration-inner">
-                  {services.map((service, index) => (
-                    <div key={index} className={`hero-service-slide ${index === activeService ? 'active' : ''}`}>
-                      <svg className="hero-service-icon" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d={serviceIcons[index]}/>
-                      </svg>
-                      <div className="hero-service-label">{service.label}</div>
-                    </div>
-                  ))}
+            <div className="hero-flow" aria-hidden="true">
+              <svg className="hero-flow-lines" viewBox="0 0 400 320" preserveAspectRatio="none">
+                {/* 1 → 2 (top horizontal) */}
+                <path d="M 130 60 L 270 60" />
+                {/* 2 → 3 (right vertical) */}
+                <path d="M 340 100 L 340 220" />
+                {/* 3 → 4 (bottom horizontal, reverse) */}
+                <path d="M 270 260 L 130 260" />
+              </svg>
+
+              {flowNodes.map((node, index) => (
+                <div key={index} className={`hero-flow-node hero-flow-node-${index + 1}`}>
+                  <div className="hero-flow-node-icon">
+                    {flowIcons[index]}
+                  </div>
+                  <div className="hero-flow-node-label">{node.label}</div>
                 </div>
-              </div>
-            </div>
-
-            <div className="float-card float-card-1">
-              <div className="float-card-icon yellow">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                </svg>
-              </div>
-              <div className="float-card-stats">
-                {services.map((s, i) => (
-                  <div key={i} className={`float-stat ${i === activeService ? 'active' : ''}`}>
-                    <strong>{s.stat1.value}</strong>
-                    <span className="float-card-label">{s.stat1.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="float-card float-card-2">
-              <div className="float-card-icon green">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                  <path d="M22 4L12 14.01l-3-3"/>
-                </svg>
-              </div>
-              <div className="float-card-stats">
-                {services.map((s, i) => (
-                  <div key={i} className={`float-stat ${i === activeService ? 'active' : ''}`}>
-                    <strong>{s.stat2.value}</strong>
-                    <span className="float-card-label">{s.stat2.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="hero-service-dots" role="tablist" aria-label="Servicios destacados">
-              {services.map((s, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  role="tab"
-                  className={`hero-service-dot ${i === activeService ? 'active' : ''}`}
-                  onClick={() => setActiveService(i)}
-                  aria-label={`Ver ${s.label}`}
-                  aria-selected={i === activeService}
-                />
               ))}
             </div>
           </div>

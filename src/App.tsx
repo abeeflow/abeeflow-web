@@ -1,6 +1,7 @@
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Metrics from './components/Metrics';
 import Benefits from './components/Benefits';
 import SaasSolutions from './components/SaasSolutions';
 import About from './components/About';
@@ -27,6 +28,7 @@ function App() {
       <Header />
       <main id="main" tabIndex={-1}>
         <Hero />
+        <Metrics />
         <Benefits />
         <SaasSolutions />
         <About />

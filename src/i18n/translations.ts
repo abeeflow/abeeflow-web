@@ -16,12 +16,19 @@ export const translations = {
       description: 'Software a medida, automatización de procesos, migración de datos y desarrollo web. Construimos la solución que tu empresa necesita para crecer.',
       cta: 'Solicitar cotización',
       secondary: 'Ver casos de uso',
-      services: [
-        { label: 'Software a medida', stat1: { value: '100%', label: 'A tu medida' }, stat2: { value: '24/7', label: 'Disponible' } },
-        { label: 'Automatización', stat1: { value: '-60%', label: 'Costos operativos' }, stat2: { value: '99.7%', label: 'Precisión' } },
-        { label: 'Migración de datos', stat1: { value: '0', label: 'Data perdida' }, stat2: { value: '10x', label: 'Más rápido' } },
-        { label: 'Consultoría y KPIs', stat1: { value: '+45%', label: 'Eficiencia' }, stat2: { value: '3 meses', label: 'Primer resultado' } },
-        { label: 'Desarrollo web', stat1: { value: '<3s', label: 'Tiempo de carga' }, stat2: { value: 'SEO', label: 'Optimizado' } }
+      flowNodes: [
+        { label: 'Email recibido' },
+        { label: 'IA clasifica' },
+        { label: 'CRM crea lead' },
+        { label: 'Slack notifica' }
+      ]
+    },
+    metrics: {
+      items: [
+        { value: '+50', label: 'Procesos automatizados' },
+        { value: '+10K', label: 'Horas ahorradas al año' },
+        { value: '20+', label: 'Integraciones nativas' },
+        { value: '100%', label: 'Clientes en LATAM' }
       ]
     },
     services: {
@@ -127,12 +134,19 @@ export const translations = {
       description: 'Custom software, process automation, data migration, and web development. We build the solution your company needs to grow.',
       cta: 'Request a quote',
       secondary: 'See use cases',
-      services: [
-        { label: 'Custom Software', stat1: { value: '100%', label: 'Tailored' }, stat2: { value: '24/7', label: 'Available' } },
-        { label: 'Automation', stat1: { value: '-60%', label: 'Operating costs' }, stat2: { value: '99.7%', label: 'Accuracy' } },
-        { label: 'Data Migration', stat1: { value: '0', label: 'Data loss' }, stat2: { value: '10x', label: 'Faster' } },
-        { label: 'Consulting & KPIs', stat1: { value: '+45%', label: 'Efficiency' }, stat2: { value: '3 months', label: 'First results' } },
-        { label: 'Web Development', stat1: { value: '<3s', label: 'Load time' }, stat2: { value: 'SEO', label: 'Optimized' } }
+      flowNodes: [
+        { label: 'Email received' },
+        { label: 'AI classifies' },
+        { label: 'CRM creates lead' },
+        { label: 'Slack notifies' }
+      ]
+    },
+    metrics: {
+      items: [
+        { value: '+50', label: 'Processes automated' },
+        { value: '+10K', label: 'Hours saved per year' },
+        { value: '20+', label: 'Native integrations' },
+        { value: '100%', label: 'Clients in LATAM' }
       ]
     },
     services: {
