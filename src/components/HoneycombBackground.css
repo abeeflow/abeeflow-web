@@ -32,17 +32,18 @@
 
 .hex-bg-svg.highlight {
     -webkit-mask-image: radial-gradient(
-        circle 280px at var(--mouse-x) var(--mouse-y),
+        circle 220px at var(--mouse-x) var(--mouse-y),
         black 0%,
         black 30%,
         transparent 75%
     );
     mask-image: radial-gradient(
-        circle 280px at var(--mouse-x) var(--mouse-y),
+        circle 220px at var(--mouse-x) var(--mouse-y),
         black 0%,
         black 30%,
         transparent 75%
     );
+    will-change: mask-image;
 }
 
 [data-theme="dark"] .hex-bg-svg.base polygon {
@@ -54,6 +55,15 @@
 }
 
 @media (max-width: 768px) {
+    .hex-bg-svg.highlight {
+        display: none;
+    }
+}
+
+/* Touch devices (sin hover real): la capa highlight no tiene sentido
+   porque no hay cursor que la mueva. Esto cubre tablets >768px que
+   son touch-only */
+@media (hover: none) {
     .hex-bg-svg.highlight {
         display: none;
     }

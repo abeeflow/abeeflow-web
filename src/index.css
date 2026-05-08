@@ -102,15 +102,48 @@
     --border-strong: #43454D;
     --border-hover: #43454D;
 
-    /* Honey ligeramente más brillante para mantener vibrance en dark */
-    --yellow: #E8B441;
-    --yellow-hover: #F4C857;
-    --yellow-light: rgba(232, 180, 65, 0.14);
+    /* Honey refinado en dark — menos neon, más honey premium */
+    --yellow: #D9A436;
+    --yellow-hover: #E8B441;
+    --yellow-light: rgba(217, 164, 54, 0.14);
 
     /* Sombras: más sutiles en dark, no negras puras */
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4);
     --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+/* Botones honey: texto oscuro forzado en ambos temas (cream sobre
+   amarillo da pésimo contraste). En dark, --ink es cream, así que
+   sobreescribimos con un dark explícito */
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .contact-book-btn,
+[data-theme="dark"] .inline-cta-button,
+[data-theme="dark"] .pre-footer-cta-button {
+    color: #15110D;
+}
+
+/* Sombras honey de los botones primarios alineadas al nuevo yellow
+   dark (#D9A436 = 217,164,54) */
+[data-theme="dark"] .btn-primary:hover,
+[data-theme="dark"] .contact-book-btn:hover {
+    box-shadow: 0 8px 24px rgba(217, 164, 54, 0.3);
+}
+
+[data-theme="dark"] .inline-cta-button {
+    box-shadow: 0 8px 24px rgba(217, 164, 54, 0.25);
+}
+
+[data-theme="dark"] .inline-cta-button:hover {
+    box-shadow: 0 12px 32px rgba(217, 164, 54, 0.4);
+}
+
+[data-theme="dark"] .pre-footer-cta-button {
+    box-shadow: 0 8px 24px rgba(217, 164, 54, 0.3);
+}
+
+[data-theme="dark"] .pre-footer-cta-button:hover {
+    box-shadow: 0 14px 36px rgba(217, 164, 54, 0.45);
 }
 
 html {
