@@ -73,7 +73,7 @@ const Benefits = () => {
         </div>
         <div className="services-grid">
           {t.services.items.map((service, index) => (
-            <ServiceCard key={index} icon={serviceIcons[index]} title={service.title} shortDesc={service.shortDesc} features={[...service.features]} viewDetail={t.services.viewDetail} back={t.services.back} />
+            <ServiceCard key={service.title} icon={serviceIcons[index]} title={service.title} shortDesc={service.shortDesc} features={[...service.features]} viewDetail={t.services.viewDetail} back={t.services.back} />
           ))}
         </div>
       </div>

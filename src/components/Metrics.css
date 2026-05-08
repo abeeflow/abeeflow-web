@@ -12,7 +12,7 @@
 .metric-item {
     text-align: center;
     padding: 0 var(--space-5);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .metric-item:last-child {
@@ -58,7 +58,7 @@
     }
 
     .metric-item:nth-child(-n+2) {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         padding-bottom: var(--space-6);
     }
 

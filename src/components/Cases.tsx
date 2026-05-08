@@ -56,6 +56,12 @@ const Cases = () => {
   };
 
   useEffect(() => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollLeft = 0;
+    }
+  }, []);
+
+  useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
