@@ -57,19 +57,19 @@
 
 .rest-text {
     display: inline-block;
-    color: var(--ink-soft);
 }
 
 .word {
     display: inline-block;
-    background: linear-gradient(135deg, var(--yellow) 0%, var(--ink) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--ink);
     overflow: hidden;
     white-space: nowrap;
     border-right: 3px solid var(--ink);
     width: 0;
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+    text-decoration-thickness: 5px;
+    text-underline-offset: 8px;
     animation: typing 1.4s steps(20) 0.2s forwards,
                hide-cursor 0.01s 1.65s forwards;
 }

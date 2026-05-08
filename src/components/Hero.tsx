@@ -47,7 +47,7 @@ const Hero = () => {
             </div>
 
             <h1>
-              <span className="sr-only">{headlineWord}. {t.hero.subtitle}</span>
+              <span className="sr-only">{headlineWord} {t.hero.subtitle}</span>
               <span aria-hidden="true">
                 <span className="rotating-text-container">
                   <span className="rotating-text">
