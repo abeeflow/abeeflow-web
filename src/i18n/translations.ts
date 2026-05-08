@@ -88,22 +88,13 @@ export const translations = {
       ]
     },
     process: {
+      badge: '// proceso',
       title: 'Cómo trabajamos',
       subtitle: 'Un proceso transparente y estructurado para garantizar resultados óptimos.',
       steps: [
         { number: '01', title: 'Entendemos tu negocio', description: 'Nos reunimos contigo para entender tu operación, tus procesos y tus puntos de dolor. Identificamos qué se puede automatizar, digitalizar o construir desde cero.' },
         { number: '02', title: 'Desarrollamos tu solución', description: 'Diseñamos la arquitectura, construimos el software y lo probamos en conjunto. Ya sea un SaaS, una automatización o una migración, trabajas con nosotros en cada iteración.' },
         { number: '03', title: 'Desplegamos y escalamos', description: 'Ponemos tu solución en producción, te capacitamos y seguimos optimizando. Si tu negocio crece, tu software crece contigo.' }
-      ]
-    },
-    results: {
-      badge: '// resultados',
-      slides: [
-        { count: 400, suffix: '+', text: null, label: 'Procesos automatizados al año' },
-        { count: 70, suffix: '%', text: null, label: 'Menos tiempo en cotizaciones — SFA Inversiones' },
-        { count: 5, suffix: 'x', text: null, label: 'Leads cualificados — HRS Consulting' },
-        { count: null, suffix: '', text: '24/7', label: 'Operación sin parar' },
-        { count: null, suffix: '', text: '<2sem', label: 'Tiempo promedio de implementación' }
       ]
     },
     contact: {
@@ -219,22 +210,13 @@ export const translations = {
       ]
     },
     process: {
+      badge: '// process',
       title: 'How We Work',
       subtitle: 'A transparent and structured process to guarantee optimal results.',
       steps: [
         { number: '01', title: 'We understand your business', description: 'We meet with you to understand your operations, processes, and pain points. We identify what can be automated, digitized, or built from scratch.' },
         { number: '02', title: 'We develop your solution', description: 'We design the architecture, build the software, and test it together. Whether it\'s a SaaS, automation, or migration, you work with us in every iteration.' },
         { number: '03', title: 'We deploy and scale', description: 'We put your solution into production, train you, and keep optimizing. If your business grows, your software grows with it.' }
-      ]
-    },
-    results: {
-      badge: '// results',
-      slides: [
-        { count: 400, suffix: '+', text: null, label: 'Processes automated per year' },
-        { count: 70, suffix: '%', text: null, label: 'Less time on quotes — SFA Inversiones' },
-        { count: 5, suffix: 'x', text: null, label: 'Qualified leads — HRS Consulting' },
-        { count: null, suffix: '', text: '24/7', label: 'Round-the-clock operation' },
-        { count: null, suffix: '', text: '<2wk', label: 'Average implementation time' }
       ]
     },
     contact: {

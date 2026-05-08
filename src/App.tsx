@@ -9,7 +9,6 @@ import SaasSolutions from './components/SaasSolutions';
 import About from './components/About';
 import Cases from './components/Cases';
 import Process from './components/Process';
-import Results from './components/Results';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
@@ -35,12 +34,11 @@ function App() {
       <main id="main" tabIndex={-1}>
         <Hero />
         <Metrics />
+        <About />
         <Benefits />
         <SaasSolutions />
-        <About />
-        <Cases />
         <Process />
-        <Results />
+        <Cases />
         <Contact />
       </main>
       <Footer />
