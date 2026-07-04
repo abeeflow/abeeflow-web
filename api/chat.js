@@ -69,10 +69,14 @@ export default async function handler(req, res) {
       systemInstruction: SYSTEM_PROMPT,
     });
 
-    const history = messages.slice(0, -1).map((m) => ({
-      role: m.role === 'user' ? 'user' : 'model',
-      parts: [{ text: m.content }],
-    }));
+    const priorMessages = messages.slice(0, -1);
+    const firstUserIdx = priorMessages.findIndex((m) => m.role === 'user');
+    const history = firstUserIdx === -1
+      ? []
+      : priorMessages.slice(firstUserIdx).map((m) => ({
+          role: m.role === 'user' ? 'user' : 'model',
+          parts: [{ text: m.content }],
+        }));
 
     const chat = model.startChat({ history });
     const result = await chat.sendMessage(lastMessage.content);
