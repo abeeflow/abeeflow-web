@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-export const config = { runtime: 'edge' };
+export const config = { runtime: 'nodejs' };
 
 const SYSTEM_PROMPT = `
 Eres el asistente virtual de Abeeflow, una agencia de
@@ -85,7 +85,7 @@ export default async function handler(req: Request) {
   try {
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-2.5-flash',
       systemInstruction: SYSTEM_PROMPT,
     });
 
