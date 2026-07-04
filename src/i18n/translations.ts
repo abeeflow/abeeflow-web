@@ -146,7 +146,13 @@ export const translations = {
       send: 'Enviar mensaje',
       cta: 'Continúa por WhatsApp',
       toWhatsapp: 'Hablar con un humano por WhatsApp',
-      errorGeneric: 'No pude responder. Escríbenos por WhatsApp y te contestamos.'
+      errorGeneric: 'No pude responder. Escríbenos por WhatsApp y te contestamos.',
+      quickOptions: [
+        { label: 'Automatizar mi negocio', prompt: '¿Qué procesos suelen automatizar y por dónde empiezo?' },
+        { label: 'Ver soluciones', prompt: '¿Qué servicios ofrecen y para qué industrias?' },
+        { label: 'Casos reales', prompt: '¿Pueden contarme un caso de éxito reciente?' },
+        { label: 'Hablar con el equipo', prompt: 'Quiero agendar un diagnóstico gratuito.' }
+      ]
     }
   },
   en: {
@@ -296,7 +302,13 @@ export const translations = {
       send: 'Send message',
       cta: 'Continue on WhatsApp',
       toWhatsapp: 'Talk to a human on WhatsApp',
-      errorGeneric: 'I couldn\'t reply. Message us on WhatsApp and we\'ll get back to you.'
+      errorGeneric: 'I couldn\'t reply. Message us on WhatsApp and we\'ll get back to you.',
+      quickOptions: [
+        { label: 'Automate my business', prompt: 'What processes do you usually automate and where should I start?' },
+        { label: 'See solutions', prompt: 'What services do you offer and for which industries?' },
+        { label: 'Real cases', prompt: 'Can you share a recent success case?' },
+        { label: 'Talk to the team', prompt: 'I want to schedule a free diagnostic.' }
+      ]
     }
   }
 };

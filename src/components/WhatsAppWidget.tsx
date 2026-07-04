@@ -46,8 +46,8 @@ const WhatsAppWidget = () => {
     }
   }, []);
 
-  const handleSend = async () => {
-    const text = input.trim();
+  const handleSend = async (override?: string) => {
+    const text = (override ?? input).trim();
     if (!text || loading) return;
 
     const userTurns = messages.filter((m) => m.role === 'user').length;
@@ -58,7 +58,7 @@ const WhatsAppWidget = () => {
 
     const newMessages: Message[] = [...messages, { role: 'user', content: text }];
     setMessages(newMessages);
-    setInput('');
+    if (override === undefined) setInput('');
     setLoading(true);
     setError(null);
 
@@ -164,6 +164,20 @@ const WhatsAppWidget = () => {
                 <span></span>
                 <span></span>
                 <span></span>
+              </div>
+            )}
+            {!loading && messages.length === 1 && messages[0].role === 'model' && (
+              <div className="chat-quick-options">
+                {t.chatWidget.quickOptions.map((opt) => (
+                  <button
+                    key={opt.label}
+                    type="button"
+                    className="chat-quick-option"
+                    onClick={() => handleSend(opt.prompt)}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
               </div>
             )}
             {error && <div className="chat-error">{error}</div>}
