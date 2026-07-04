@@ -1,7 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-export const config = { runtime: 'nodejs' };
-
 const SYSTEM_PROMPT = `
 Eres el asistente virtual de Abeeflow, una agencia de
 automatización empresarial en Lima, Perú. Ayudas a visitantes
@@ -37,41 +35,23 @@ REGLAS:
 const MAX_MESSAGE_LENGTH = 500;
 const MAX_TURNS_PER_REQUEST = 16;
 
-interface IncomingMessage {
-  role: 'user' | 'model';
-  content: string;
-}
-
-const json = (status: number, body: unknown) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { 'Content-Type': 'application/json' },
-  });
-
-export default async function handler(req: Request) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return json(405, { error: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    return json(500, { error: 'API key not configured' });
+    return res.status(500).json({ error: 'API key not configured' });
   }
 
-  let body: { messages?: IncomingMessage[] };
-  try {
-    body = await req.json();
-  } catch {
-    return json(400, { error: 'Invalid JSON' });
-  }
-
-  const messages = body.messages;
+  const messages = req.body?.messages;
   if (!Array.isArray(messages) || messages.length === 0) {
-    return json(400, { error: 'No messages provided' });
+    return res.status(400).json({ error: 'No messages provided' });
   }
 
   if (messages.length > MAX_TURNS_PER_REQUEST) {
-    return json(429, {
+    return res.status(429).json({
       error: 'Too many turns. Continue this chat on WhatsApp.',
       suggestWhatsapp: true,
     });
@@ -79,7 +59,7 @@ export default async function handler(req: Request) {
 
   const lastMessage = messages[messages.length - 1];
   if (typeof lastMessage.content !== 'string' || lastMessage.content.length > MAX_MESSAGE_LENGTH) {
-    return json(400, { error: 'Message too long. Max 500 characters.' });
+    return res.status(400).json({ error: 'Message too long. Max 500 characters.' });
   }
 
   try {
@@ -100,10 +80,10 @@ export default async function handler(req: Request) {
 
     const suggestWhatsapp = messages.length >= 6;
 
-    return json(200, { reply, suggestWhatsapp });
+    return res.status(200).json({ reply, suggestWhatsapp });
   } catch (err) {
     console.error('Gemini error:', err);
-    return json(500, {
+    return res.status(500).json({
       error: 'AI temporalmente no disponible. Escríbenos por WhatsApp.',
       suggestWhatsapp: true,
     });
