@@ -44,6 +44,9 @@ export default async function handler(req, res) {
   if (!apiKey) {
     return res.status(500).json({ error: 'API key not configured' });
   }
+  const keyFingerprint = apiKey.length > 12
+    ? `${apiKey.slice(0, 6)}...${apiKey.slice(-4)} (len ${apiKey.length})`
+    : `too-short (len ${apiKey.length})`;
 
   const messages = req.body?.messages;
   if (!Array.isArray(messages) || messages.length === 0) {
@@ -90,6 +93,7 @@ export default async function handler(req, res) {
     return res.status(500).json({
       error: 'AI temporalmente no disponible. Escríbenos por WhatsApp.',
       debug: String(err?.message || err).slice(0, 500),
+      keyFingerprint,
       suggestWhatsapp: true,
     });
   }
