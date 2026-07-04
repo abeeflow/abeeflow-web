@@ -89,6 +89,7 @@ export default async function handler(req, res) {
     console.error('Gemini error:', err);
     return res.status(500).json({
       error: 'AI temporalmente no disponible. Escríbenos por WhatsApp.',
+      debug: String(err?.message || err).slice(0, 500),
       suggestWhatsapp: true,
     });
   }
