@@ -84,13 +84,6 @@
     width: 100%;
 }
 
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
-}
-
 .header-toggles {
     display: flex;
     align-items: center;

@@ -14,14 +14,13 @@ import InlineCTA from './components/InlineCTA';
 import Contact from './components/Contact';
 import PreFooterCTA from './components/PreFooterCTA';
 import Footer from './components/Footer';
-import WhatsAppWidget from './components/WhatsAppWidget';
-import './App.css';
+import ChatWidget from './components/ChatWidget';
 
 const SkipLink = () => {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
   return (
     <a href="#main" className="skip-link">
-      {language === 'en' ? 'Skip to content' : 'Saltar al contenido'}
+      {t.nav.skip}
     </a>
   );
 };
@@ -48,7 +47,7 @@ function App() {
         <PreFooterCTA />
       </main>
       <Footer />
-      <WhatsAppWidget />
+      <ChatWidget />
     </LanguageProvider>
   );
 }

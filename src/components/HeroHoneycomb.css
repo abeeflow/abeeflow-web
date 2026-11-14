@@ -64,7 +64,7 @@
     font-weight: 700;
 }
 
-/* Center cell — NOT interactive */
+/* Celda central: no es interactiva */
 .hex-cell.center {
     cursor: default;
 }

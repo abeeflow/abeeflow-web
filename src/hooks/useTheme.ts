@@ -1,27 +1,21 @@
 import { useState } from 'react';
+import { saveSetting } from '../lib/storage';
 
 export type Theme = 'light' | 'dark';
 
-const isTheme = (v: string | null): v is Theme => v === 'light' || v === 'dark';
+// index.html ya aplicó el tema guardado antes de que cargue React.
+const currentTheme = (): Theme =>
+  document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
 
 export const useTheme = () => {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof document === 'undefined') return 'dark';
-    const attr = document.documentElement.getAttribute('data-theme');
-    return isTheme(attr) ? attr : 'dark';
-  });
+  const [theme, setTheme] = useState<Theme>(currentTheme);
 
-  const setTheme = (next: Theme) => {
-    setThemeState(next);
+  const toggleTheme = () => {
+    const next: Theme = theme === 'light' ? 'dark' : 'light';
+    setTheme(next);
     document.documentElement.setAttribute('data-theme', next);
-    try {
-      localStorage.setItem('abeeflow-theme', next);
-    } catch (e) {
-      // localStorage unavailable (e.g. private mode) — silent fail
-    }
+    saveSetting('abeeflow-theme', next);
   };
 
-  const toggle = () => setTheme(theme === 'light' ? 'dark' : 'light');
-
-  return { theme, setTheme, toggle };
+  return { theme, toggleTheme };
 };

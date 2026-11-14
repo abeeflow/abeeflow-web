@@ -15,7 +15,7 @@ const About = () => {
           <div className="about-content">
             <h2>{t.about.title}</h2>
             {t.about.paragraphs.map((p, i) => (
-              <SpotlightText key={i} text={p} className="about-text about-text-spotlight" />
+              <SpotlightText key={i} text={p} className="about-text" />
             ))}
           </div>
 

@@ -26,10 +26,6 @@
     margin-bottom: var(--space-4);
 }
 
-.about-text strong {
-    color: var(--ink);
-}
-
 .team-title {
     font-family: var(--font-sans);
     font-size: var(--text-2xl);

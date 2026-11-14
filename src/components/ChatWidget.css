@@ -1,4 +1,4 @@
-.whatsapp-widget-container {
+.chat-widget {
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -152,6 +152,11 @@
     color: var(--ink);
     border-bottom-left-radius: 4px;
     align-self: flex-start;
+}
+
+.chat-msg a {
+    color: inherit;
+    text-decoration: underline;
 }
 
 .chat-msg.out {
@@ -319,7 +324,7 @@
 }
 
 /* Botón flotante (suavizado, sin pulse chillón) */
-.whatsapp-widget {
+.chat-toggle {
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -334,19 +339,19 @@
     transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
 }
 
-.whatsapp-widget:hover {
+.chat-toggle:hover {
     background: var(--yellow-hover);
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(217, 164, 54, 0.3);
 }
 
-.whatsapp-widget.active {
+.chat-toggle.active {
     transform: scale(0.95);
 }
 
 /* Mobile */
 @media (max-width: 480px) {
-    .whatsapp-widget-container {
+    .chat-widget {
         bottom: 16px;
         right: 16px;
     }

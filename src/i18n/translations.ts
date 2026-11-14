@@ -7,12 +7,13 @@ export const translations = {
       casos: 'Casos de uso',
       proceso: 'Proceso',
       contacto: 'Contacto',
-      cta: 'Contáctanos'
+      skip: 'Saltar al contenido'
     },
     hero: {
       badge: '// soluciones a medida',
       words: ['Desarrollamos', 'Automatizamos', 'Optimizamos', 'Integramos', 'Transformamos'],
       subtitle: 'tu negocio',
+      and: 'y',
       description: 'Software a medida, automatización de procesos, migración de datos y desarrollo web. Construimos la solución que tu empresa necesita para crecer.',
       cta: 'Solicitar cotización',
       secondary: 'Ver casos de uso',
@@ -76,7 +77,7 @@ export const translations = {
     about: {
       title: 'Sobre nosotros',
       paragraphs: [
-        'En <strong>abeeFlow</strong>, desarrollamos software a medida y automatizamos procesos empresariales. Construimos desde aplicaciones web hasta plataformas SaaS completas, adaptadas a las necesidades de cada industria.',
+        'En abeeFlow, desarrollamos software a medida y automatizamos procesos empresariales. Construimos desde aplicaciones web hasta plataformas SaaS completas, adaptadas a las necesidades de cada industria.',
         'Trabajamos con startups, PYMEs y empresas que necesitan digitalizar sus operaciones: desarrollo de sistemas de gestión, automatización con Python e IA, migración de datos y desarrollo web profesional.',
         'Nuestro compromiso es entregar soluciones escalables, seguras y documentadas, con código limpio y buenas prácticas que garantizan resultados a largo plazo.'
       ],
@@ -105,7 +106,6 @@ export const translations = {
     process: {
       badge: '// proceso',
       title: 'Cómo trabajamos',
-      subtitle: 'Un proceso transparente y estructurado para garantizar resultados óptimos.',
       steps: [
         { number: '01', title: 'Entendemos tu negocio', description: 'Nos reunimos contigo para entender tu operación, tus procesos y tus puntos de dolor. Identificamos qué se puede automatizar, digitalizar o construir desde cero.' },
         { number: '02', title: 'Desarrollamos tu solución', description: 'Diseñamos la arquitectura, construimos el software y lo probamos en conjunto. Ya sea un SaaS, una automatización o una migración, trabajas con nosotros en cada iteración.' },
@@ -163,12 +163,13 @@ export const translations = {
       casos: 'Use Cases',
       proceso: 'Process',
       contacto: 'Contact',
-      cta: 'Contact Us'
+      skip: 'Skip to content'
     },
     hero: {
       badge: '// custom solutions',
       words: ['We Build', 'We Automate', 'We Optimize', 'We Integrate', 'We Transform'],
       subtitle: 'your business',
+      and: 'and',
       description: 'Custom software, process automation, data migration, and web development. We build the solution your company needs to grow.',
       cta: 'Request a quote',
       secondary: 'See use cases',
@@ -232,7 +233,7 @@ export const translations = {
     about: {
       title: 'About Us',
       paragraphs: [
-        'At <strong>abeeFlow</strong>, we develop custom software and automate business processes. We build everything from web applications to complete SaaS platforms, tailored to the needs of each industry.',
+        'At abeeFlow, we develop custom software and automate business processes. We build everything from web applications to complete SaaS platforms, tailored to the needs of each industry.',
         'We work with startups, SMEs, and companies that need to digitize their operations: management system development, automation with Python and AI, data migration, and professional web development.',
         'Our commitment is to deliver scalable, secure, and documented solutions, with clean code and best practices that guarantee long-term results.'
       ],
@@ -261,7 +262,6 @@ export const translations = {
     process: {
       badge: '// process',
       title: 'How We Work',
-      subtitle: 'A transparent and structured process to guarantee optimal results.',
       steps: [
         { number: '01', title: 'We understand your business', description: 'We meet with you to understand your operations, processes, and pain points. We identify what can be automated, digitized, or built from scratch.' },
         { number: '02', title: 'We develop your solution', description: 'We design the architecture, build the software, and test it together. Whether it\'s a SaaS, automation, or migration, you work with us in every iteration.' },

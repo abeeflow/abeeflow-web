@@ -1,186 +1,62 @@
-# abeeFlow Web - Formulario de Contacto
+# Abeeflow web
 
-Web page para abeeFlow con formulario de contacto funcional que envía emails usando Gmail, desplegable en Vercel.
+Sitio de Abeeflow: una sola página en español e inglés, con tema claro y oscuro y un chat que responde consultas de visitantes.
 
-## Configuración de Gmail App Password
+Hecho con React, TypeScript y Vite. Se publica en Vercel.
 
-Para poder enviar emails con Gmail, necesitas generar una "App Password":
+## Requisitos
 
-1. Ve a tu cuenta de Google: https://myaccount.google.com/
-2. Busca "Seguridad" en el menú lateral
-3. Activa la "Verificación en 2 pasos" si aún no la tienes activa
-4. Una vez activada, busca "Contraseñas de aplicaciones"
-5. Genera una nueva contraseña para "Correo" y "Otro (personalizado)"
-6. Nombra la aplicación "abeeFlow Web"
-7. Copia la contraseña de 16 caracteres que te genera (ej: `xxxx xxxx xxxx xxxx`)
+- Node.js 22 o superior
+- Una API key de NVIDIA para el chat. Se crea gratis en https://build.nvidia.com
 
-## Despliegue en Vercel (Recomendado)
-
-### 1. Instalar Vercel CLI (opcional)
-
-```bash
-npm install -g vercel
-```
-
-### 2. Conectar tu proyecto a Vercel
-
-Hay dos opciones:
-
-**Opción A - Desde el Dashboard de Vercel (más fácil):**
-1. Ve a https://vercel.com/
-2. Haz clic en "Add New" → "Project"
-3. Importa tu repositorio de GitHub/GitLab/Bitbucket
-4. Vercel detectará automáticamente la configuración
-
-**Opción B - Desde la terminal:**
-```bash
-vercel
-```
-
-### 3. Configurar Variables de Entorno en Vercel
-
-En el dashboard de Vercel (o durante el despliegue):
-
-1. Ve a Settings → Environment Variables
-2. Agrega las siguientes variables:
-
-```
-GMAIL_USER=tu-email@gmail.com
-GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
-RECIPIENT_EMAIL=contacto@abeeflow.com
-```
-
-**Importante:** No incluyas `PORT` en Vercel (se configura automáticamente).
-
-### 4. Desplegar
-
-Si usas Git, simplemente haz push a tu repositorio y Vercel desplegará automáticamente:
-
-```bash
-git add .
-git commit -m "Deploy to Vercel"
-git push
-```
-
-O desde la terminal con Vercel CLI:
-
-```bash
-vercel --prod
-```
-
-Tu sitio estará disponible en: `https://tu-proyecto.vercel.app`
-
-## Desarrollo Local
-
-### 1. Instalar dependencias
+## Correr en local
 
 ```bash
 npm install
-```
-
-### 2. Crear archivo .env local
-
-```bash
 cp .env.example .env
+npm run dev
 ```
 
-Edita el archivo `.env` con tus datos:
+Antes de `npm run dev`, abre `.env` y pega tu key en `NVIDIA_API_KEY`. Sin la key la web funciona igual, pero el chat responde con un error.
 
-```env
-PORT=3000
-GMAIL_USER=tu-email@gmail.com
-GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
-RECIPIENT_EMAIL=contacto@abeeflow.com
-```
+La web queda en http://localhost:5173, con el chat incluido.
 
-### 3. Ejecutar el servidor local
+Para usar otro puerto: `PORT=3000 npm run dev`.
 
-```bash
-npm run server
-```
+## Otros comandos
 
-El servidor estará corriendo en http://localhost:3000
+| Comando | Qué hace |
+| --- | --- |
+| `npm run build` | Revisa los tipos y genera la versión de producción en `dist/` |
+| `npm run preview` | Sirve `dist/` para revisarla. El chat no funciona en este modo |
+| `npm run lint` | Busca errores con ESLint |
 
-### 4. Probar el formulario
+## Cómo está organizado
 
-1. Abre http://localhost:3000 en tu navegador
-2. Scroll hasta el formulario de contacto
-3. Completa los campos:
-   - Nombre completo (requerido)
-   - Empresa (opcional)
-   - Email corporativo (requerido)
-   - Mensaje (requerido)
-4. Haz clic en "Agendar sesión"
-5. Deberías recibir un email en el `RECIPIENT_EMAIL` configurado
+| Ruta | Contenido |
+| --- | --- |
+| `index.html` | Página base y etiquetas de SEO |
+| `src/App.tsx` | Orden de las secciones de la página |
+| `src/components/` | Una sección o pieza visual por archivo, cada una con su CSS |
+| `src/i18n/translations.ts` | Todos los textos, en español e inglés |
+| `src/hooks/` y `src/lib/` | Lógica compartida: tema, scroll suave, animaciones |
+| `api/chat.js` | Backend del chat. Vercel lo publica en `/api/chat` |
+| `dev-server.js` | Servidor local. Sirve la web y el chat juntos |
+| `vercel.json` | Cabeceras de seguridad y caché en producción |
 
-## Estructura del proyecto
+## El chat
 
-```
-abeeflow-web/
-├── api/
-│   └── contact.js          # Función serverless de Vercel
-├── index.html              # Página principal con formulario
-├── server.js               # Servidor local (solo para desarrollo)
-├── vercel.json             # Configuración de Vercel
-├── .env                    # Variables locales (no en git)
-├── .env.example            # Plantilla de configuración
-├── package.json            # Dependencias del proyecto
-└── README.md              # Este archivo
-```
+El botón flotante abre el chat (`src/components/ChatWidget.tsx`). Cada mensaje va a `/api/chat`, que consulta un modelo de NVIDIA y devuelve la respuesta.
 
-## Diferencias entre Local y Vercel
+En `api/chat.js` se cambia todo lo del asistente:
 
-- **Local:** Usa `server.js` (Express tradicional) → `npm run server`
-- **Vercel:** Usa `api/contact.js` (función serverless) → despliegue automático
+- `SYSTEM_PROMPT`: qué sabe, cómo habla y qué reglas sigue.
+- `MODELS`: los modelos, en orden de preferencia. Si el primero falla, responde el siguiente.
+- `MAX_MESSAGES`: largo máximo de una conversación. Al llegar al límite, el chat invita a seguir por WhatsApp.
 
-El formulario HTML funciona con ambos sin cambios.
+## Publicar en Vercel
 
-## Troubleshooting
+1. En el proyecto de Vercel, ve a Settings > Environment Variables y agrega `NVIDIA_API_KEY`.
+2. Haz push a `main`. Vercel construye y publica solo.
 
-### Error: "Invalid login: 535-5.7.8 Username and Password not accepted"
-- Verifica que el `GMAIL_USER` sea correcto
-- Asegúrate de haber generado una App Password correctamente
-- Verifica que la verificación en 2 pasos esté activa en tu cuenta de Google
-- En Vercel, verifica que las variables de entorno estén configuradas correctamente
-
-### El formulario no envía datos en Vercel
-- Verifica que las variables de entorno estén configuradas en Vercel Dashboard
-- Revisa los logs en Vercel Dashboard → Functions
-- Asegúrate de que el despliegue esté completo
-
-### No recibo el email
-- Revisa la carpeta de spam
-- Verifica que el `RECIPIENT_EMAIL` esté correcto
-- En Vercel, revisa los logs de la función en el Dashboard
-- Verifica que la App Password sea válida
-
-### Error en desarrollo local
-- Verifica que el archivo `.env` exista y tenga las variables correctas
-- Asegúrate de que el servidor esté corriendo (`npm run server`)
-- Revisa la consola del navegador (F12) para errores
-
-## Notas de seguridad
-
-- El archivo `.env` está excluido del repositorio git (.gitignore)
-- Nunca compartas tu App Password de Gmail
-- La App Password solo funciona si tienes la verificación en 2 pasos activa
-- En Vercel, las variables de entorno están encriptadas y seguras
-- No subas el archivo `.env` a Git (ya está en .gitignore)
-
-## Testing en Vercel
-
-Una vez desplegado, puedes probar el formulario en producción:
-
-1. Ve a tu URL de Vercel (ej: `https://tu-proyecto.vercel.app`)
-2. Scroll hasta el formulario
-3. Envía un mensaje de prueba
-4. Revisa los logs en Vercel Dashboard si hay algún problema
-
-## Variables de Entorno
-
-| Variable | Descripción | Local | Vercel |
-|----------|-------------|-------|--------|
-| `PORT` | Puerto del servidor | ✅ | ❌ (automático) |
-| `GMAIL_USER` | Email de Gmail | ✅ | ✅ |
-| `GMAIL_APP_PASSWORD` | App Password de Gmail | ✅ | ✅ |
-| `RECIPIENT_EMAIL` | Email receptor | ✅ | ✅ |
+El archivo `.env` no se sube al repositorio. La key de producción vive solo en Vercel.

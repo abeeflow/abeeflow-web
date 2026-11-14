@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, type MotionValue } from 'framer-motion';
-import { useTheme } from '../hooks/useTheme';
+import { prefersReducedMotion } from '../lib/motion';
 
 interface WordProps {
   word: string;
@@ -8,16 +8,12 @@ interface WordProps {
   range: [number, number];
 }
 
+// La palabra pasa de tenue a nítida mientras el scroll recorre su tramo.
 const Word = ({ word, progress, range }: WordProps) => {
-  const { theme } = useTheme();
-  const colors: [string, string] =
-    theme === 'dark'
-      ? ['rgba(199, 199, 204, 0.35)', 'rgba(244, 244, 245, 1)']
-      : ['rgba(107, 107, 107, 0.3)', 'rgba(10, 10, 10, 1)'];
-  const color = useTransform(progress, range, colors);
+  const opacity = useTransform(progress, range, [0.3, 1]);
   return (
     <>
-      <motion.span style={{ color }}>{word}</motion.span>{' '}
+      <motion.span style={{ opacity, color: 'var(--ink)' }}>{word}</motion.span>{' '}
     </>
   );
 };
@@ -27,6 +23,7 @@ interface SpotlightTextProps {
   className?: string;
 }
 
+// Párrafo que se va iluminando palabra por palabra al hacer scroll.
 const SpotlightText = ({ text, className }: SpotlightTextProps) => {
   const ref = useRef<HTMLParagraphElement>(null);
   const { scrollYProgress } = useScroll({
@@ -34,17 +31,11 @@ const SpotlightText = ({ text, className }: SpotlightTextProps) => {
     offset: ['start 0.85', 'start 0.2'],
   });
 
-  const reduced =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (reduced) {
-    return <p ref={ref} className={className} dangerouslySetInnerHTML={{ __html: text }} />;
+  if (prefersReducedMotion()) {
+    return <p ref={ref} className={className}>{text}</p>;
   }
 
-  const plainText = text.replace(/<[^>]+>/g, '');
-  const words = plainText.split(/\s+/).filter(Boolean);
-  const total = words.length;
+  const words = text.split(/\s+/).filter(Boolean);
 
   return (
     <p ref={ref} className={className}>
@@ -53,7 +44,7 @@ const SpotlightText = ({ text, className }: SpotlightTextProps) => {
           key={i}
           word={word}
           progress={scrollYProgress}
-          range={[i / total, (i + 1) / total]}
+          range={[i / words.length, (i + 1) / words.length]}
         />
       ))}
     </p>

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
+import { prefersReducedMotion } from '../lib/motion';
 import './HoneycombBackground.css';
 
 const HEX_RADIUS = 70;
@@ -45,7 +46,7 @@ const HoneycombBackground = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (prefersReducedMotion()) return;
     if (window.innerWidth < 768) return;
 
     let rafId = 0;

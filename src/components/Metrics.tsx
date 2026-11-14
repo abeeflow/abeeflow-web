@@ -5,7 +5,7 @@ import RevealOnScroll from './RevealOnScroll';
 import './Metrics.css';
 
 // Solo anima valores con formato numérico limpio (+15K, +50, 12, 70%, 5x).
-// Valores como "1ra sem" o "<24h" se renderizan como texto estático.
+// Valores como "1ra sem" o "<24h" se muestran tal cual, sin animar.
 const ANIMATE_PATTERN = /^([+-]?)(\d+)([%KkMm+x]?)$/;
 
 type ParsedValue =

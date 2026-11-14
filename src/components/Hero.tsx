@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { getLenis } from '../lib/lenis';
+import { prefersReducedMotion } from '../lib/motion';
+import SectionLink from './SectionLink';
 import HeroHoneycomb from './HeroHoneycomb';
 import './Hero.css';
 
@@ -19,14 +20,14 @@ const buildScreenReaderSentence = (
 };
 
 const Hero = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const words = t.hero.words;
 
   const [text, setText] = useState('');
   const [cursorVisible, setCursorVisible] = useState(true);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (prefersReducedMotion()) {
       setText(words[0]);
       setCursorVisible(false);
       return;
@@ -76,23 +77,7 @@ const Hero = () => {
     };
   }, [words]);
 
-  const conjunction = language === 'en' ? 'and' : 'y';
-  const sentence = buildScreenReaderSentence(words, t.hero.subtitle, conjunction);
-
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (!target) return;
-    const header = document.querySelector('header');
-    const headerHeight = header ? header.offsetHeight : 72;
-    const lenis = getLenis();
-    if (lenis) {
-      lenis.scrollTo(target as HTMLElement, { offset: -headerHeight });
-    } else {
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: targetPosition - headerHeight, behavior: 'smooth' });
-    }
-  };
+  const sentence = buildScreenReaderSentence(words, t.hero.subtitle, t.hero.and);
 
   return (
     <section className="hero">
@@ -120,18 +105,18 @@ const Hero = () => {
             <p>{t.hero.description}</p>
 
             <div className="hero-buttons">
-              <a href="#contacto" className="btn-primary" onClick={(e) => handleSmoothScroll(e, '#contacto')}>
+              <SectionLink href="#contacto" className="btn-primary">
                 {t.hero.cta}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
-              </a>
-              <a href="#casos" className="btn-link-arrow" onClick={(e) => handleSmoothScroll(e, '#casos')}>
+              </SectionLink>
+              <SectionLink href="#casos" className="btn-link-arrow">
                 {t.hero.secondary}
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
-              </a>
+              </SectionLink>
             </div>
           </div>
 

@@ -18,66 +18,36 @@ const caseIcons: ReactElement[] = [
 
 const caseLogos = ['RAI', 'FDA', 'SSA', 'DHI', 'SFA', 'HRS', 'CCA', 'DMS', 'OSS'];
 
+const CARD_GAP = 32;
+
+// Distancia entre el inicio de una tarjeta y el de la siguiente.
+const cardStep = (carousel: HTMLElement) =>
+  (carousel.querySelector('.case-card')?.clientWidth ?? 0) + CARD_GAP;
+
 const Cases = () => {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const cases = t.cases.items;
 
-  const scrollCarousel = (direction: number) => {
-    if (!carouselRef.current) return;
-    const container = carouselRef.current;
-    const cardWidth = container.querySelector('.case-card')?.clientWidth || 0;
-    const gap = 32;
-
-    const newIndex = currentIndex + (direction * 2);
-    if (newIndex < 0) {
-      setCurrentIndex(0);
-      container.scrollTo({ left: 0, behavior: 'smooth' });
-      return;
-    }
-    if (newIndex >= cases.length) {
-      setCurrentIndex(Math.max(0, cases.length - 2));
-      container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' });
-      return;
-    }
-
-    setCurrentIndex(newIndex);
-    container.scrollTo({ left: (cardWidth + gap) * newIndex, behavior: 'smooth' });
-  };
-
   const scrollToCard = (index: number) => {
-    if (!carouselRef.current) return;
-    const container = carouselRef.current;
-    const cardWidth = container.querySelector('.case-card')?.clientWidth || 0;
-    const gap = 32;
-
-    setCurrentIndex(index);
-    container.scrollTo({ left: (cardWidth + gap) * index, behavior: 'smooth' });
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+    const target = Math.min(Math.max(index, 0), cases.length - 1);
+    carousel.scrollTo({ left: cardStep(carousel) * target, behavior: 'smooth' });
   };
 
-  useEffect(() => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollLeft = 0;
-    }
-  }, []);
-
+  // El punto activo sigue al scroll: botones, puntos o arrastre con el dedo.
   useEffect(() => {
     const carousel = carouselRef.current;
     if (!carousel) return;
 
-    const handleScroll = () => {
-      const cardWidth = carousel.querySelector('.case-card')?.clientWidth || 0;
-      const gap = 32;
-      const newIndex = Math.round(carousel.scrollLeft / (cardWidth + gap));
-      if (newIndex !== currentIndex && newIndex >= 0 && newIndex < cases.length) {
-        setCurrentIndex(newIndex);
-      }
-    };
+    const handleScroll = () =>
+      setCurrentIndex(Math.round(carousel.scrollLeft / cardStep(carousel)));
 
     carousel.addEventListener('scroll', handleScroll);
     return () => carousel.removeEventListener('scroll', handleScroll);
-  }, [currentIndex, cases.length]);
+  }, []);
 
   return (
     <section id="casos" className="cases">
@@ -118,10 +88,10 @@ const Cases = () => {
           </div>
 
           <div className="carousel-controls">
-            <button className="carousel-btn" onClick={() => scrollCarousel(-1)} disabled={currentIndex === 0} aria-label="Anterior">
+            <button className="carousel-btn" onClick={() => scrollToCard(currentIndex - 2)} disabled={currentIndex === 0} aria-label="Anterior">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
             </button>
-            <button className="carousel-btn" onClick={() => scrollCarousel(1)} disabled={currentIndex >= cases.length - 2} aria-label="Siguiente">
+            <button className="carousel-btn" onClick={() => scrollToCard(currentIndex + 2)} disabled={currentIndex >= cases.length - 2} aria-label="Siguiente">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
             </button>
           </div>

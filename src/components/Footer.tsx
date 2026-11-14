@@ -1,24 +1,10 @@
 import { useLanguage } from '../i18n/LanguageContext';
-import { getLenis } from '../lib/lenis';
+import BeeLogo from './BeeLogo';
+import SectionLink from './SectionLink';
 import './Footer.css';
 
 const Footer = () => {
   const { t } = useLanguage();
-
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (!target) return;
-    const header = document.querySelector('header');
-    const headerHeight = header ? header.offsetHeight : 72;
-    const lenis = getLenis();
-    if (lenis) {
-      lenis.scrollTo(target as HTMLElement, { offset: -headerHeight });
-    } else {
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: targetPosition - headerHeight, behavior: 'smooth' });
-    }
-  };
 
   return (
     <footer className="footer">
@@ -26,17 +12,7 @@ const Footer = () => {
         <div className="footer-grid">
           <div>
             <div className="footer-brand-name">
-              <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ color: 'var(--yellow)' }}>
-                <path d="M10 15 L7 18 L10 21" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M26 15 L29 18 L26 21" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M18 13 L21 15 L21.5 22 L18 26 L14.5 22 L15 15 Z" fill="currentColor"/>
-                <line x1="15.5" y1="16.5" x2="20.5" y2="16.5" stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="15" y1="19.5" x2="21" y2="19.5" stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
-                <line x1="15.5" y1="23" x2="20.5" y2="23" stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
-                <circle cx="18" cy="11" r="3" fill="currentColor"/>
-                <path d="M16.5 8.5 Q15 7 15 5.5" stroke="currentColor" strokeWidth="0.7" fill="none" strokeLinecap="round"/>
-                <path d="M19.5 8.5 Q21 7 21 5.5" stroke="currentColor" strokeWidth="0.7" fill="none" strokeLinecap="round"/>
-              </svg>
+              <BeeLogo size={28} className="footer-logo" />
               abeeFlow
             </div>
             <p className="footer-brand-desc">{t.footer.brandDesc}</p>
@@ -55,18 +31,18 @@ const Footer = () => {
 
           <div className="footer-col">
             <div className="footer-col-title">{t.footer.servicios}</div>
-            <a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>{t.footer.links.automatizacion}</a>
-            <a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>{t.footer.links.migracion}</a>
-            <a href="#soluciones" onClick={(e) => handleSmoothScroll(e, '#soluciones')}>{t.footer.links.saas}</a>
-            <a href="#servicios" onClick={(e) => handleSmoothScroll(e, '#servicios')}>{t.footer.links.web}</a>
+            <SectionLink href="#servicios">{t.footer.links.automatizacion}</SectionLink>
+            <SectionLink href="#servicios">{t.footer.links.migracion}</SectionLink>
+            <SectionLink href="#soluciones">{t.footer.links.saas}</SectionLink>
+            <SectionLink href="#servicios">{t.footer.links.web}</SectionLink>
           </div>
 
           <div className="footer-col">
             <div className="footer-col-title">{t.footer.empresa}</div>
-            <a href="#nosotros" onClick={(e) => handleSmoothScroll(e, '#nosotros')}>{t.footer.links.nosotros}</a>
-            <a href="#casos" onClick={(e) => handleSmoothScroll(e, '#casos')}>{t.footer.links.casos}</a>
-            <a href="#proceso" onClick={(e) => handleSmoothScroll(e, '#proceso')}>{t.footer.links.proceso}</a>
-            <a href="#contacto" onClick={(e) => handleSmoothScroll(e, '#contacto')}>{t.footer.links.contacto}</a>
+            <SectionLink href="#nosotros">{t.footer.links.nosotros}</SectionLink>
+            <SectionLink href="#casos">{t.footer.links.casos}</SectionLink>
+            <SectionLink href="#proceso">{t.footer.links.proceso}</SectionLink>
+            <SectionLink href="#contacto">{t.footer.links.contacto}</SectionLink>
           </div>
 
           <div className="footer-col">

@@ -75,6 +75,7 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 6px;
+    color: var(--yellow-hover);
 }
 
 .project-card-name {

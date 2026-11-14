@@ -1,121 +1,76 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import './WhatsAppWidget.css';
+import './ChatWidget.css';
 
-type Message = { role: 'user' | 'model'; content: string };
+type Message = { role: 'user' | 'assistant'; content: string };
 
 const WHATSAPP_URL = 'https://wa.me/51999950133';
-const MAX_USER_TURNS = 8;
-const STORAGE_DISMISSED = 'abeeflow-chat-dismissed';
 
-const WhatsAppWidget = () => {
-  const { t, language } = useLanguage();
+// Vuelve clicable el enlace de WhatsApp que el asistente escribe en un mensaje.
+const withLinks = (text: string) =>
+  text.split(/(https:\/\/wa\.me\/\d+)/).map((part, i) =>
+    part.startsWith('https://wa.me/') ? (
+      <a key={i} href={part} target="_blank" rel="noopener noreferrer">{part}</a>
+    ) : (
+      part
+    )
+  );
+
+// Botón flotante que abre el chat con el asistente (api/chat.js).
+const ChatWidget = () => {
+  const { t } = useLanguage();
 
   const [open, setOpen] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [suggestWA, setSuggestWA] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [failed, setFailed] = useState(false);
+  // Cuando es true se oculta el campo de texto y queda el botón de WhatsApp.
+  const [suggestWhatsapp, setSuggestWhatsapp] = useState(false);
   const threadRef = useRef<HTMLDivElement>(null);
 
-  // Welcome message al abrir por primera vez (o al cambiar idioma con panel cerrado)
-  useEffect(() => {
-    if (open && messages.length === 0) {
-      setMessages([{ role: 'model', content: t.chatWidget.welcome }]);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, language]);
-
-  // Auto-scroll al fondo cuando entra mensaje nuevo
+  // Mantiene a la vista el último mensaje.
   useEffect(() => {
     if (threadRef.current) {
       threadRef.current.scrollTop = threadRef.current.scrollHeight;
     }
-  }, [messages, loading]);
+  }, [messages, loading, open]);
 
-  // Detectar dismissal de sesión anterior
-  useEffect(() => {
-    try {
-      if (sessionStorage.getItem(STORAGE_DISMISSED) === '1') {
-        setDismissed(true);
-      }
-    } catch {
-      // sessionStorage unavailable — ignore
-    }
-  }, []);
+  const send = async (text: string) => {
+    const content = text.trim();
+    if (!content || loading) return;
 
-  const handleSend = async (override?: string) => {
-    const text = (override ?? input).trim();
-    if (!text || loading) return;
-
-    const userTurns = messages.filter((m) => m.role === 'user').length;
-    if (userTurns >= MAX_USER_TURNS) {
-      setSuggestWA(true);
-      return;
-    }
-
-    const newMessages: Message[] = [...messages, { role: 'user', content: text }];
-    setMessages(newMessages);
-    if (override === undefined) setInput('');
+    const conversation: Message[] = [...messages, { role: 'user', content }];
+    setMessages(conversation);
+    setInput('');
     setLoading(true);
-    setError(null);
+    setFailed(false);
 
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages: newMessages.map((m) => ({ role: m.role, content: m.content })),
-        }),
+        body: JSON.stringify({ messages: conversation }),
       });
-
       const data = await res.json();
 
-      if (!res.ok) {
-        setError(data.error || t.chatWidget.errorGeneric);
-        if (data.suggestWhatsapp) setSuggestWA(true);
-        return;
+      if (res.ok) {
+        setMessages([...conversation, { role: 'assistant', content: data.reply }]);
+      } else {
+        setFailed(true);
       }
-
-      setMessages([...newMessages, { role: 'model', content: data.reply }]);
-      if (data.suggestWhatsapp) setSuggestWA(true);
+      if (data.suggestWhatsapp) setSuggestWhatsapp(true);
     } catch {
-      setError(t.chatWidget.errorGeneric);
-      setSuggestWA(true);
+      setFailed(true);
+      setSuggestWhatsapp(true);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDismiss = () => {
-    setOpen(false);
-    setDismissed(true);
-    try {
-      sessionStorage.setItem(STORAGE_DISMISSED, '1');
-    } catch {
-      // sessionStorage unavailable — ignore
-    }
-  };
-
-  const handleToggle = () => {
-    if (dismissed) {
-      setDismissed(false);
-      try {
-        sessionStorage.removeItem(STORAGE_DISMISSED);
-      } catch {
-        // ignore
-      }
-    }
-    setOpen((prev) => !prev);
-  };
-
-  const isOpen = open && !dismissed;
-
   return (
-    <div className="whatsapp-widget-container">
-      {isOpen && (
+    <div className="chat-widget">
+      {open && (
         <div className="chat-panel" role="dialog" aria-label={t.chatWidget.aria}>
           <div className="chat-panel-header">
             <div className="chat-avatar" aria-hidden="true">
@@ -146,7 +101,7 @@ const WhatsAppWidget = () => {
             <button
               type="button"
               className="chat-close"
-              onClick={handleDismiss}
+              onClick={() => setOpen(false)}
               aria-label={t.chatWidget.dismiss}
             >
               ×
@@ -154,9 +109,10 @@ const WhatsAppWidget = () => {
           </div>
 
           <div className="chat-thread" ref={threadRef}>
+            <div className="chat-msg in">{t.chatWidget.welcome}</div>
             {messages.map((m, i) => (
               <div key={i} className={`chat-msg ${m.role === 'user' ? 'out' : 'in'}`}>
-                {m.content}
+                {withLinks(m.content)}
               </div>
             ))}
             {loading && (
@@ -166,22 +122,22 @@ const WhatsAppWidget = () => {
                 <span></span>
               </div>
             )}
-            {!loading && messages.length === 1 && messages[0].role === 'model' && (
+            {!loading && messages.length === 0 && (
               <div className="chat-quick-options">
                 {t.chatWidget.quickOptions.map((opt) => (
                   <button
                     key={opt.label}
                     type="button"
                     className="chat-quick-option"
-                    onClick={() => handleSend(opt.prompt)}
+                    onClick={() => send(opt.prompt)}
                   >
                     {opt.label}
                   </button>
                 ))}
               </div>
             )}
-            {error && <div className="chat-error">{error}</div>}
-            {suggestWA && (
+            {failed && <div className="chat-error">{t.chatWidget.errorGeneric}</div>}
+            {suggestWhatsapp && (
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -193,17 +149,18 @@ const WhatsAppWidget = () => {
             )}
           </div>
 
-          {!suggestWA && (
+          {!suggestWhatsapp && (
             <form
               className="chat-input-form"
               onSubmit={(e) => {
                 e.preventDefault();
-                handleSend();
+                send(input);
               }}
             >
               <input
                 type="text"
                 className="chat-input"
+                name="message"
                 placeholder={t.chatWidget.placeholder}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -229,10 +186,10 @@ const WhatsAppWidget = () => {
 
       <button
         type="button"
-        className={`whatsapp-widget ${isOpen ? 'active' : ''}`}
-        onClick={handleToggle}
+        className={`chat-toggle ${open ? 'active' : ''}`}
+        onClick={() => setOpen(!open)}
         aria-label={t.chatWidget.ariaButton}
-        aria-expanded={isOpen}
+        aria-expanded={open}
       >
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M12 3v2" />
@@ -248,4 +205,4 @@ const WhatsAppWidget = () => {
   );
 };
 
-export default WhatsAppWidget;
+export default ChatWidget;

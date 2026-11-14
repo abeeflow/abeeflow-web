@@ -81,7 +81,7 @@ const HeroHoneycomb = () => {
   return (
     <div className="hero-honeycomb-stage" aria-hidden="true">
       <svg viewBox="0 0 540 540" className="hero-honeycomb-svg" xmlns="http://www.w3.org/2000/svg">
-        {/* Center cell — brand mark, NOT interactive */}
+        {/* Celda central con el logo: no es interactiva */}
         <g className="hex-cell center" transform="translate(210 201)">
           <polygon className="hex-shape center" points={HEX_POINTS} />
           <g transform="translate(29 28) scale(1.7)">
@@ -98,7 +98,7 @@ const HeroHoneycomb = () => {
           <text className="hex-label center" x="60" y="118">{cells.center}</text>
         </g>
 
-        {/* 6 outer interactive cells */}
+        {/* Las 6 celdas de alrededor */}
         {outerCells.map((cell) => (
           <g key={cell.id} className="hex-cell interactive" transform={cell.translate}>
             <polygon className="hex-shape" points={HEX_POINTS} />
@@ -110,7 +110,7 @@ const HeroHoneycomb = () => {
           </g>
         ))}
 
-        {/* Bee that orbits the 6 vertices */}
+        {/* Abeja que recorre las celdas */}
         <g className="bee-fly" transform="translate(270 270)">
           <ellipse cx="-5" cy="0" rx="9" ry="3" fill="var(--yellow)" opacity="0.4" />
           <path d="M0 -4 L2 -2 L2.5 5 L0 9 L-2.5 5 L-2 -2 Z" fill="var(--yellow)" stroke="var(--ink)" strokeWidth="0.4" />

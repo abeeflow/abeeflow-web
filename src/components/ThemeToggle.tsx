@@ -1,15 +1,19 @@
-import { useTheme } from '../hooks/useTheme';
+import type { Theme } from '../hooks/useTheme';
 import './ThemeToggle.css';
 
-const ThemeToggle = () => {
-  const { theme, toggle } = useTheme();
+interface ThemeToggleProps {
+  theme: Theme;
+  onToggle: () => void;
+}
+
+const ThemeToggle = ({ theme, onToggle }: ThemeToggleProps) => {
   const isLight = theme === 'light';
 
   return (
     <button
       type="button"
       className="theme-toggle"
-      onClick={toggle}
+      onClick={onToggle}
       aria-label={isLight ? 'Activar modo oscuro' : 'Activar modo claro'}
       aria-pressed={!isLight}
     >

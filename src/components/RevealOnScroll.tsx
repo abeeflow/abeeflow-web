@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
+import { prefersReducedMotion } from '../lib/motion';
 
 interface RevealOnScrollProps {
   children: ReactNode;
@@ -8,11 +9,7 @@ interface RevealOnScrollProps {
 }
 
 const RevealOnScroll = ({ children, delay = 0, className }: RevealOnScrollProps) => {
-  const reduced =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (reduced) {
+  if (prefersReducedMotion()) {
     return <div className={className}>{children}</div>;
   }
 

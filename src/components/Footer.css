@@ -38,6 +38,10 @@
     color: var(--ink);
 }
 
+.footer-logo {
+    color: var(--yellow);
+}
+
 .footer-brand-desc {
     font-family: var(--font-sans);
     color: var(--text-muted);
