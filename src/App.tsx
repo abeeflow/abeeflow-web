@@ -1,20 +1,19 @@
+import type { ComponentType } from 'react';
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import { useLenis } from './hooks/useLenis';
 import Header from './components/Header';
 import HoneycombBackground from './components/HoneycombBackground';
-import Hero from './components/Hero';
-import Metrics from './components/Metrics';
-import LogoStrip from './components/LogoStrip';
-import Benefits from './components/Benefits';
-import SaasSolutions from './components/SaasSolutions';
-import About from './components/About';
-import Cases from './components/Cases';
-import Process from './components/Process';
-import InlineCTA from './components/InlineCTA';
-import Contact from './components/Contact';
-import PreFooterCTA from './components/PreFooterCTA';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
+import Home from './pages/Home';
+import VetSuitePage from './pages/VetSuitePage';
+import DevPage from './pages/DevPage';
+
+// Páginas internas. Cualquier otra ruta muestra el inicio.
+const pages: Record<string, ComponentType> = {
+  '/vetsuite': VetSuitePage,
+  '/desarrollo-web': DevPage,
+};
 
 const SkipLink = () => {
   const { t } = useLanguage();
@@ -27,6 +26,7 @@ const SkipLink = () => {
 
 function App() {
   useLenis();
+  const Page = pages[window.location.pathname.replace(/\/+$/, '')] ?? Home;
 
   return (
     <LanguageProvider>
@@ -34,17 +34,7 @@ function App() {
       <SkipLink />
       <Header />
       <main id="main" tabIndex={-1}>
-        <Hero />
-        <Metrics />
-        <LogoStrip />
-        <Benefits />
-        <SaasSolutions />
-        <Process />
-        <Cases />
-        <InlineCTA />
-        <About />
-        <Contact />
-        <PreFooterCTA />
+        <Page />
       </main>
       <Footer />
       <ChatWidget />

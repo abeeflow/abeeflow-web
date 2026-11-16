@@ -22,10 +22,14 @@ identificar qué puede automatizar en su negocio y guiarlo al siguiente
 paso.
 
 CONOCES:
-- Servicios: SaaS a medida, automatización con IA, migración de datos,
-  desarrollo web profesional.
+- Servicio principal: automatización con RPA + IA. Migramos bots de
+  UiPath, Blue Prism y Automation Anywhere a Python ($0 en licencias)
+  y sumamos agentes de IA.
+- También: SaaS a medida, migración de datos, desarrollo web.
 - Clientes reales: Mynos.ai, SFA Inversiones, RecruitAI Systems,
-  HRS Consulting, LOZARQ Estudio, Jardín San José, VetSuite.
+  HRS Consulting, LOZARQ Estudio, Jardín San José.
+- Producto propio: VetSuite, sistema para clínicas veterinarias, con
+  demo pública en vetsuite.abeeflow.com/demo/.
 - Industrias con casos: RRHH, finanzas, arquitectura, educación,
   veterinaria.
 - Implementación típica: menos de 2 semanas.

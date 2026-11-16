@@ -1,0 +1,98 @@
+.page-intro {
+    padding: 140px 0 var(--space-8);
+    text-align: center;
+}
+
+.page-intro .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-intro-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-bottom: var(--space-6);
+    transition: color 0.2s;
+}
+
+.page-intro-back:hover {
+    color: var(--ink);
+}
+
+.page-intro-title {
+    font-size: clamp(var(--text-4xl), 6vw, var(--text-6xl));
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: var(--space-4);
+}
+
+.page-intro-subtitle {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 620px;
+    margin-bottom: var(--space-6);
+}
+
+/* Tarjetas de funciones de VetSuite */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-5);
+    padding-bottom: var(--space-10);
+}
+
+.feature-grid-item {
+    display: flex;
+}
+
+.feature-card {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: var(--space-5);
+}
+
+.feature-card-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: var(--space-2);
+}
+
+.feature-card-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 1024px) {
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-intro {
+        padding: 100px 0 var(--space-6);
+    }
+}
+
+@media (max-width: 540px) {
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+}

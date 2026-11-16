@@ -13,7 +13,6 @@ const clients: ClientLogo[] = [
   { name: 'HRS Consulting' },
   { name: 'LOZARQ Estudio', url: 'https://lozarqestudio.com' },
   { name: 'Jardín San José', url: 'https://guarderiajardinsanjose.com' },
-  { name: 'VetSuite' },
 ];
 
 const LogoStrip = () => {

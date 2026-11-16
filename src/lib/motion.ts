@@ -17,9 +17,10 @@ export const scrollToTop = () => {
 };
 
 // Baja hasta una sección ('#contacto') sin que el menú fijo la tape.
+// Devuelve false si la sección no está en esta página.
 export const scrollToSection = (href: string) => {
   const section = document.querySelector<HTMLElement>(href);
-  if (!section) return;
+  if (!section) return false;
   const headerHeight = document.querySelector('header')?.offsetHeight ?? 72;
 
   if (lenis) {
@@ -28,4 +29,5 @@ export const scrollToSection = (href: string) => {
     const top = section.getBoundingClientRect().top + window.scrollY - headerHeight;
     window.scrollTo({ top, behavior: 'smooth' });
   }
+  return true;
 };

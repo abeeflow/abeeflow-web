@@ -23,7 +23,7 @@
 
 .logo-strip-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: var(--space-4);
     align-items: center;
 }
@@ -55,7 +55,7 @@ a.logo-strip-item:hover {
 
 @media (max-width: 1024px) {
     .logo-strip-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

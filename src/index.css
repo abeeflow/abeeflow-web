@@ -118,8 +118,7 @@
    sobreescribimos con un dark explícito */
 [data-theme="dark"] .btn-primary,
 [data-theme="dark"] .contact-book-btn,
-[data-theme="dark"] .inline-cta-button,
-[data-theme="dark"] .pre-footer-cta-button {
+[data-theme="dark"] .inline-cta-button {
     color: #15110D;
 }
 
@@ -136,14 +135,6 @@
 
 [data-theme="dark"] .inline-cta-button:hover {
     box-shadow: 0 12px 32px rgba(217, 164, 54, 0.4);
-}
-
-[data-theme="dark"] .pre-footer-cta-button {
-    box-shadow: 0 8px 24px rgba(217, 164, 54, 0.3);
-}
-
-[data-theme="dark"] .pre-footer-cta-button:hover {
-    box-shadow: 0 14px 36px rgba(217, 164, 54, 0.45);
 }
 
 html {

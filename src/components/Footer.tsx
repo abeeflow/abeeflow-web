@@ -33,8 +33,8 @@ const Footer = () => {
             <div className="footer-col-title">{t.footer.servicios}</div>
             <SectionLink href="#servicios">{t.footer.links.automatizacion}</SectionLink>
             <SectionLink href="#servicios">{t.footer.links.migracion}</SectionLink>
-            <SectionLink href="#soluciones">{t.footer.links.saas}</SectionLink>
-            <SectionLink href="#servicios">{t.footer.links.web}</SectionLink>
+            <a href="/vetsuite">{t.footer.links.saas}</a>
+            <a href="/desarrollo-web">{t.footer.links.web}</a>
           </div>
 
           <div className="footer-col">

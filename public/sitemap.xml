@@ -21,6 +21,22 @@
         </image:image>
     </url>
 
+    <!-- VetSuite -->
+    <url>
+        <loc>https://abeeflow.com/vetsuite</loc>
+        <lastmod>2026-11-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Software a medida y desarrollo web -->
+    <url>
+        <loc>https://abeeflow.com/desarrollo-web</loc>
+        <lastmod>2026-11-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
     <!-- Sección Servicios -->
     <url>
         <loc>https://abeeflow.com/#servicios</loc>

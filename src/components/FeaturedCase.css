@@ -1,0 +1,119 @@
+.featured-case {
+    padding: var(--space-12) 0 var(--space-6);
+}
+
+/* Bloque amarillo: el texto va en tinta fija en ambos temas. */
+.featured-case-box {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+    color: #0A0A0A;
+    background: linear-gradient(135deg, #F6CB5C 0%, #E0AC36 55%, #C9952A 100%);
+    border-radius: 28px;
+    padding: var(--space-10) var(--space-8);
+    box-shadow: 0 30px 80px rgba(224, 172, 54, 0.3);
+}
+
+.featured-case-badge {
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-4);
+}
+
+.featured-case-title {
+    font-size: clamp(var(--text-3xl), 4.6vw, 60px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: #0A0A0A;
+    margin-bottom: var(--space-5);
+}
+
+.featured-case-desc {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    line-height: 1.6;
+    color: rgba(10, 10, 10, 0.78);
+    max-width: 460px;
+}
+
+.featured-case-compare {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(10, 10, 10, 0.12);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+}
+
+.featured-case-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    column-gap: var(--space-4);
+    row-gap: var(--space-2);
+}
+
+.featured-case-label {
+    font-family: var(--font-pixel);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.featured-case-value {
+    font-family: var(--font-display);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.featured-case-bar {
+    grid-column: 1 / -1;
+    height: 12px;
+    border-radius: var(--radius-pill);
+}
+
+.featured-case-before {
+    color: rgba(10, 10, 10, 0.55);
+    margin-bottom: var(--space-5);
+}
+
+.featured-case-before .featured-case-value {
+    font-size: var(--text-4xl);
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
+
+.featured-case-before .featured-case-bar {
+    width: 100%;
+    background: rgba(10, 10, 10, 0.22);
+}
+
+.featured-case-after .featured-case-value {
+    font-size: clamp(var(--text-5xl), 7vw, 88px);
+}
+
+/* 30 minutos de 8 horas es el 6% de la barra de arriba. */
+.featured-case-after .featured-case-bar {
+    width: 6%;
+    background: #0A0A0A;
+}
+
+.featured-case-note {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: rgba(10, 10, 10, 0.75);
+    margin-top: var(--space-5);
+}
+
+@media (max-width: 900px) {
+    .featured-case-box {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+        padding: var(--space-8) var(--space-5);
+    }
+}

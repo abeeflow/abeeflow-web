@@ -8,14 +8,15 @@ interface SectionLinkProps {
   children: ReactNode;
 }
 
-// Enlace a una sección de la página ('#contacto') con scroll suave.
+// Enlace a una sección ('#contacto') con scroll suave.
+// Si la sección está en el inicio y no aquí, navega al inicio.
 const SectionLink = ({ href, className, onNavigate, children }: SectionLinkProps) => (
   <a
     href={href}
     className={className}
     onClick={(e) => {
       e.preventDefault();
-      scrollToSection(href);
+      if (!scrollToSection(href)) window.location.href = `/${href}`;
       onNavigate?.();
     }}
   >

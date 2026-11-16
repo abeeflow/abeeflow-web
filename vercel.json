@@ -2,6 +2,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
+  "rewrites": [
+    { "source": "/vetsuite", "destination": "/index.html" },
+    { "source": "/desarrollo-web", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
