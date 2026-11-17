@@ -10,6 +10,7 @@ import About from '../components/About';
 import Cases from '../components/Cases';
 import Process from '../components/Process';
 import InlineCTA from '../components/InlineCTA';
+import Faq from '../components/Faq';
 import Contact from '../components/Contact';
 
 const Home = () => {
@@ -34,6 +35,7 @@ const Home = () => {
       <Cases />
       <InlineCTA />
       <About />
+      <Faq />
       <Contact />
     </>
   );

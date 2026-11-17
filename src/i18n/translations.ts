@@ -10,11 +10,11 @@ export const translations = {
     },
     hero: {
       badge: '// soluciones a medida',
-      words: ['Desarrollamos', 'Automatizamos', 'Optimizamos', 'Integramos', 'Transformamos'],
+      words: ['Automatizamos', 'Agilizamos', 'Integramos', 'Ordenamos'],
       subtitle: 'tu negocio',
       and: 'y',
-      description: 'Software a medida, automatización de procesos, migración de datos y desarrollo web. Construimos la solución que tu empresa necesita para crecer.',
-      cta: 'Solicitar cotización',
+      description: 'Robots de software e IA que hacen las tareas repetitivas de tu empresa: conciliaciones, reportes, cargas de datos y atención por WhatsApp. Código propio, sin pagar licencias.',
+      cta: 'Agendar diagnóstico gratuito',
       secondary: 'Ver casos de uso',
       cells: {
         nw: 'DATOS',
@@ -134,12 +134,12 @@ export const translations = {
     },
     cases: {
       title: 'Casos de uso reales',
-      subtitle: 'Soluciones implementadas que optimizan procesos, reducen costos operativos y aumentan la productividad desde el primer día.',
+      subtitle: 'Procesos que automatizamos para nuestros clientes: qué hacían a mano y qué hace ahora el sistema.',
       items: [
-        { company: 'RecruitAI Systems', tag: 'Selección de personal', title: 'Selección automatizada de candidatos con IA', description: 'Sistema de videoentrevistas con avatares de IA. Análisis automático de respuestas verbales, lenguaje corporal y soft skills.', features: ['Reducción de tiempo de entrevista de 30 a 5 minutos', 'Evaluación objetiva con criterios uniformes', 'Incremento del 85% en eficiencia de contratación'] },
-        { company: 'SocialSense Analytics', tag: 'Marketing inteligente', title: 'Análisis de sentimientos e ideación con IA', description: 'Sistema de monitoreo y análisis automatizado de redes sociales. Interpreta tono emocional, identifica tendencias y genera propuestas de contenido.', features: ['Identificación de sentimientos y tendencias en tiempo real', 'Generación automática de ideas y copys personalizados', 'Mejora del 45% en engagement y reputación de marca', 'Dashboards automáticos de desempeño y percepción'] },
-        { company: 'DataHub Integrator', tag: 'Integración de datos', title: 'Portal centralizado de datos empresariales', description: 'Plataforma de recopilación y consolidación desde múltiples fuentes: ERP, APIs REST, web services, Google Sheets y archivos locales.', features: ['Reportes en tiempo real con actualización automática', 'Consultas inteligentes segmentadas por usuario y área', 'Acceso unificado a información crítica de negocio', 'Eliminación del 92% de errores por procesamiento manual'] },
-        { company: 'SalesFlow AI', tag: 'Automatización de ventas', title: 'Chatbot inteligente de ventas y atención', description: 'Asistente conversacional con IA para atender consultas, calificar leads, guiar compras y resolver objeciones. Integración con CRM y WhatsApp.', features: ['Atención instantánea 24/7 en múltiples canales', 'Calificación automática de leads por scoring predictivo', 'Integración bidireccional con CRM y WhatsApp Business', 'Mejora continua mediante machine learning'] },
+        { company: 'RecruitAI Systems', tag: 'Selección de personal', title: 'Selección automatizada de candidatos con IA', description: 'Sistema de videoentrevistas con avatares de IA. Análisis automático de respuestas verbales, lenguaje corporal y soft skills.', features: ['Reducción de tiempo de entrevista de 30 a 5 minutos', 'Evaluación objetiva con criterios uniformes', 'Más candidatos evaluados con el mismo equipo'] },
+        { company: 'SocialSense Analytics', tag: 'Marketing inteligente', title: 'Análisis de sentimientos e ideación con IA', description: 'Sistema de monitoreo y análisis automatizado de redes sociales. Interpreta tono emocional, identifica tendencias y genera propuestas de contenido.', features: ['Identificación de sentimientos y tendencias en tiempo real', 'Generación automática de ideas y copys personalizados', 'Ideas de contenido basadas en lo que dice la audiencia', 'Dashboards automáticos de desempeño y percepción'] },
+        { company: 'DataHub Integrator', tag: 'Integración de datos', title: 'Portal centralizado de datos empresariales', description: 'Plataforma de recopilación y consolidación desde múltiples fuentes: ERP, APIs REST, web services, Google Sheets y archivos locales.', features: ['Reportes en tiempo real con actualización automática', 'Consultas inteligentes segmentadas por usuario y área', 'Acceso unificado a información crítica de negocio', 'Menos errores al dejar de copiar datos a mano'] },
+        { company: 'SalesFlow AI', tag: 'Automatización de ventas', title: 'Chatbot inteligente de ventas y atención', description: 'Asistente conversacional con IA para atender consultas, calificar leads, guiar compras y resolver objeciones. Integración con CRM y WhatsApp.', features: ['Atención instantánea 24/7 en múltiples canales', 'Calificación automática de leads por scoring predictivo', 'Integración bidireccional con CRM y WhatsApp Business', 'Pasa a una persona lo que no puede resolver'] },
         { company: 'HR SmartWriter', tag: 'Automatización de redacción', title: 'Redacción automatizada de ofertas de empleo', description: 'Proceso automatizado que recibe un brief, genera ofertas con IA y las publica automáticamente en múltiples portales de empleo.', features: ['Reducción drástica del tiempo de redacción', 'Coherencia de tono y estilo en todas las publicaciones', 'Mayor atractivo y alcance de las ofertas', 'Publicación automática en múltiples plataformas'] },
         { company: 'CustomerCare AI', tag: 'Seguimiento inteligente', title: 'Agente de seguimiento de satisfacción del cliente', description: 'Agente conversacional que se activa automáticamente después de un ticket o compra. Recoge opiniones, analiza sentimiento y escala casos.', features: ['Incremento en la retención de clientes', 'Feedback estructurado y accionable', 'Menor carga operativa para el equipo de soporte', 'Mejora continua de la experiencia del cliente'] },
         { company: 'DocuManage Solutions', tag: 'Gestión documental', title: 'De papel a la nube en 4 pasos', description: 'Digitalización, clasificación y migración de documentación física a un sistema de gestión documental en la nube con búsqueda indexada.', features: ['Acceso a cualquier documento en menos de 30 segundos', 'Backup automático diario', 'Cumplimiento de normativas de retención documental'] },
@@ -153,6 +153,18 @@ export const translations = {
         { number: '01', title: 'Diagnóstico', description: 'Una reunión de 30 minutos para ver qué procesos conviene automatizar y cuánto ahorrarías.' },
         { number: '02', title: 'Piloto', description: 'Automatizamos un proceso a precio fijo. Lo comparas con el actual antes de decidir si seguimos.' },
         { number: '03', title: 'Implementación y soporte', description: 'Automatizamos el resto y nos encargamos del monitoreo y las correcciones.' }
+      ]
+    },
+    faq: {
+      badge: '// preguntas frecuentes',
+      title: 'Preguntas frecuentes',
+      items: [
+        { q: '¿Tengo que cambiar los sistemas que ya uso?', a: 'No. Los robots trabajan sobre tus sistemas actuales (ERP, Excel, portales bancarios, correo) igual que lo haría una persona.' },
+        { q: 'Ya tengo bots en UiPath o Automation Anywhere, ¿qué pasa con ellos?', a: 'Los pasamos a código propio en Python. Hacen lo mismo y dejas de pagar la licencia anual.' },
+        { q: '¿Cuánto tarda un piloto?', a: 'Un proceso suele estar listo en menos de 2 semanas. El plazo y el precio quedan por escrito antes de empezar.' },
+        { q: '¿El código es mío?', a: 'Sí. Te entregamos el código y la documentación. No dependes de nosotros ni de un proveedor de licencias.' },
+        { q: '¿Qué pasa si cambia un portal o un sistema?', a: 'Con el soporte mensual monitoreamos los robots y los ajustamos cuando algo cambia. Respondemos en menos de 24 horas.' },
+        { q: '¿Trabajan solo en Perú?', a: 'Estamos en Lima, pero trabajamos de forma remota con empresas de cualquier país.' }
       ]
     },
     contact: {
@@ -209,11 +221,11 @@ export const translations = {
     },
     hero: {
       badge: '// custom solutions',
-      words: ['We Build', 'We Automate', 'We Optimize', 'We Integrate', 'We Transform'],
+      words: ['We Automate', 'We Speed Up', 'We Integrate', 'We Organize'],
       subtitle: 'your business',
       and: 'and',
-      description: 'Custom software, process automation, data migration, and web development. We build the solution your company needs to grow.',
-      cta: 'Request a quote',
+      description: 'Software robots and AI that handle your company\'s repetitive tasks: reconciliations, reports, data entry, and WhatsApp support. Code you own, no license fees.',
+      cta: 'Book a free diagnosis',
       secondary: 'See use cases',
       cells: {
         nw: 'DATA',
@@ -333,12 +345,12 @@ export const translations = {
     },
     cases: {
       title: 'Real Use Cases',
-      subtitle: 'Implemented solutions that optimize processes, reduce operating costs, and increase productivity from day one.',
+      subtitle: 'Processes we automated for our clients: what they did by hand and what the system does now.',
       items: [
-        { company: 'RecruitAI Systems', tag: 'Recruitment', title: 'AI-powered automated candidate screening', description: 'Video interview system with AI avatars. Automatic analysis of verbal responses, body language, and soft skills.', features: ['Interview time reduced from 30 to 5 minutes', 'Objective evaluation with uniform criteria', '85% increase in hiring efficiency'] },
-        { company: 'SocialSense Analytics', tag: 'Smart marketing', title: 'Sentiment analysis and AI-driven ideation', description: 'Automated social media monitoring and analysis system. Interprets emotional tone, identifies trends, and generates content proposals.', features: ['Real-time sentiment and trend identification', 'Automatic generation of personalized ideas and copy', '45% improvement in engagement and brand reputation', 'Automated performance and perception dashboards'] },
-        { company: 'DataHub Integrator', tag: 'Data integration', title: 'Centralized enterprise data portal', description: 'Collection and consolidation platform from multiple sources: ERP, REST APIs, web services, Google Sheets, and local files.', features: ['Real-time reports with automatic updates', 'Smart queries segmented by user and area', 'Unified access to critical business information', '92% reduction in manual processing errors'] },
-        { company: 'SalesFlow AI', tag: 'Sales automation', title: 'Intelligent sales and support chatbot', description: 'AI conversational assistant for handling queries, qualifying leads, guiding purchases, and resolving objections. CRM and WhatsApp integration.', features: ['24/7 instant support across multiple channels', 'Automatic lead qualification via predictive scoring', 'Bidirectional CRM and WhatsApp Business integration', 'Continuous improvement through machine learning'] },
+        { company: 'RecruitAI Systems', tag: 'Recruitment', title: 'AI-powered automated candidate screening', description: 'Video interview system with AI avatars. Automatic analysis of verbal responses, body language, and soft skills.', features: ['Interview time reduced from 30 to 5 minutes', 'Objective evaluation with uniform criteria', 'More candidates evaluated with the same team'] },
+        { company: 'SocialSense Analytics', tag: 'Smart marketing', title: 'Sentiment analysis and AI-driven ideation', description: 'Automated social media monitoring and analysis system. Interprets emotional tone, identifies trends, and generates content proposals.', features: ['Real-time sentiment and trend identification', 'Automatic generation of personalized ideas and copy', 'Content ideas based on what the audience says', 'Automated performance and perception dashboards'] },
+        { company: 'DataHub Integrator', tag: 'Data integration', title: 'Centralized enterprise data portal', description: 'Collection and consolidation platform from multiple sources: ERP, REST APIs, web services, Google Sheets, and local files.', features: ['Real-time reports with automatic updates', 'Smart queries segmented by user and area', 'Unified access to critical business information', 'Fewer errors from copying data by hand'] },
+        { company: 'SalesFlow AI', tag: 'Sales automation', title: 'Intelligent sales and support chatbot', description: 'AI conversational assistant for handling queries, qualifying leads, guiding purchases, and resolving objections. CRM and WhatsApp integration.', features: ['24/7 instant support across multiple channels', 'Automatic lead qualification via predictive scoring', 'Bidirectional CRM and WhatsApp Business integration', 'Hands over to a person what it cannot solve'] },
         { company: 'HR SmartWriter', tag: 'Writing automation', title: 'Automated job posting creation', description: 'Automated process that receives a brief, generates job offers with AI, and publishes them automatically across multiple job portals.', features: ['Drastic reduction in writing time', 'Consistent tone and style across all postings', 'Greater reach and attractiveness of offers', 'Automatic publication on multiple platforms'] },
         { company: 'CustomerCare AI', tag: 'Smart follow-up', title: 'Customer satisfaction tracking agent', description: 'Conversational agent that activates automatically after a ticket or purchase. Collects feedback, analyzes sentiment, and escalates cases.', features: ['Increased customer retention', 'Structured and actionable feedback', 'Reduced workload for support team', 'Continuous improvement of customer experience'] },
         { company: 'DocuManage Solutions', tag: 'Document management', title: 'From paper to cloud in 4 steps', description: 'Digitization, classification, and migration of physical documentation to a cloud document management system with indexed search.', features: ['Access any document in under 30 seconds', 'Automatic daily backup', 'Compliance with document retention regulations'] },
@@ -352,6 +364,18 @@ export const translations = {
         { number: '01', title: 'Diagnosis', description: 'A 30-minute meeting to see which processes are worth automating and how much you would save.' },
         { number: '02', title: 'Pilot', description: 'We automate one process at a fixed price. You compare it with the current one before deciding whether to continue.' },
         { number: '03', title: 'Rollout and support', description: 'We automate the rest and take care of monitoring and fixes.' }
+      ]
+    },
+    faq: {
+      badge: '// faq',
+      title: 'Frequently asked questions',
+      items: [
+        { q: 'Do I have to change the systems I already use?', a: 'No. The robots work on top of your current systems (ERP, Excel, bank portals, email) just like a person would.' },
+        { q: 'I already have bots in UiPath or Automation Anywhere. What happens to them?', a: 'We move them to Python code you own. They do the same work and you stop paying the yearly license.' },
+        { q: 'How long does a pilot take?', a: 'One process is usually ready in under 2 weeks. Timeline and price are agreed in writing before we start.' },
+        { q: 'Do I own the code?', a: 'Yes. We hand over the code and documentation. You do not depend on us or on a license vendor.' },
+        { q: 'What if a portal or system changes?', a: 'With monthly support we monitor the robots and adjust them when something changes. We reply in under 24 hours.' },
+        { q: 'Do you only work in Peru?', a: 'We are based in Lima, but we work remotely with companies in any country.' }
       ]
     },
     contact: {
