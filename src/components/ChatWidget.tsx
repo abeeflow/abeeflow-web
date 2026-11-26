@@ -35,12 +35,20 @@ const ChatWidget = () => {
     const heroCta = document.querySelector('.hero .btn-primary');
     if (!heroCta) return;
     const phone = window.matchMedia('(max-width: 768px)');
+    let ctaVisible = false;
+    const update = () => setTucked(phone.matches && ctaVisible);
 
     const observer = new IntersectionObserver(([entry]) => {
-      setTucked(phone.matches && entry.isIntersecting);
+      ctaVisible = entry.isIntersecting;
+      update();
     });
     observer.observe(heroCta);
-    return () => observer.disconnect();
+    // También al girar el teléfono o cambiar el ancho de la ventana.
+    phone.addEventListener('change', update);
+    return () => {
+      observer.disconnect();
+      phone.removeEventListener('change', update);
+    };
   }, []);
 
   // Mantiene a la vista el último mensaje.

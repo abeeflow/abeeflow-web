@@ -138,4 +138,8 @@
 
 @media (max-width: 768px) {
     .hex-label { font-size: 10px; }
+
+    /* Más chico en el teléfono para que el botón principal entre en la
+       primera pantalla junto al titular. */
+    .hero-honeycomb-stage { max-width: 220px; }
 }

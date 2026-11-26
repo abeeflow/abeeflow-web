@@ -10,7 +10,10 @@ export const translations = {
     },
     hero: {
       badge: 'Automatización, IA y software a medida',
-      title: 'Automatizamos los procesos repetitivos de tu empresa.',
+      // El verbo cambia cada pocos segundos; el primero es el que leen
+      // los lectores de pantalla y quien prefiere menos movimiento.
+      words: ['Automatizamos', 'Integramos', 'Optimizamos', 'Digitalizamos', 'Transformamos'],
+      title: 'los procesos repetitivos de tu empresa.',
       highlight: 'Código propio, sin licencias.',
       description: 'Construimos robots de software (RPA), agentes de IA y sistemas a medida para que tu equipo deje de perder horas en tareas manuales o pagando licencias caras.',
       cta: 'Agendar diagnóstico gratuito (30 min)',
@@ -233,7 +236,8 @@ export const translations = {
     },
     hero: {
       badge: 'Automation, AI and custom software',
-      title: 'We automate your company\'s repetitive processes.',
+      words: ['We automate', 'We integrate', 'We optimize', 'We digitize', 'We transform'],
+      title: 'your company\'s repetitive processes.',
       highlight: 'Code you own, no licenses.',
       description: 'We build software robots (RPA), AI agents, and custom systems so your team stops losing hours on manual tasks or paying for expensive licenses.',
       cta: 'Book a free diagnosis (30 min)',

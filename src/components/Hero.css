@@ -42,6 +42,34 @@
     letter-spacing: -0.02em;
     color: var(--ink);
     margin-bottom: var(--space-5);
+    text-wrap: balance;
+}
+
+/* "Código propio, sin licencias." no se parte en desktop. */
+@media (min-width: 901px) {
+    .hero-highlight {
+        white-space: nowrap;
+    }
+}
+
+/* Verbo que cambia. Va solo en su línea, así el resto del titular no
+   se mueve cuando la palabra es más larga o más corta. */
+.hero-word {
+    position: relative;
+    display: block;
+    color: var(--yellow-hover);
+    white-space: nowrap;
+}
+
+/* "los procesos repetitivos de tu empresa." en líneas parejas. */
+.hero-title-rest {
+    display: block;
+    text-wrap: balance;
+}
+
+.hero-word-text {
+    display: inline-block;
+    will-change: transform, filter;
 }
 
 /* Segunda frase del titular, subrayada en amarillo. */
