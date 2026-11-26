@@ -163,6 +163,8 @@
     animation: msg-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     word-wrap: break-word;
     overflow-wrap: anywhere;
+    /* Respeta los saltos de línea del asistente (p. ej. la línea del asesor). */
+    white-space: pre-line;
 }
 
 .chat-msg.in {
@@ -287,6 +289,63 @@
 
 .chat-cta:active {
     transform: scale(0.97);
+}
+
+/* Botón rápido "Hablar con un asesor": en amarillo, es la acción principal. */
+.chat-quick-option-advisor {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: #15110D;
+    font-weight: 600;
+}
+
+.chat-quick-option-advisor:hover {
+    background: var(--yellow-hover);
+    border-color: var(--yellow-hover);
+}
+
+/* Acceso fijo a un asesor, sobre el campo de texto. */
+.chat-advisor-bar {
+    display: flex;
+    justify-content: center;
+    padding: 6px 12px 0;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+/* La barra ya lleva la línea divisoria: el campo de abajo no repite la suya. */
+.chat-advisor-bar + .chat-input-form {
+    border-top: none;
+}
+
+.chat-advisor-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 6px 14px;
+    border: 1px solid color-mix(in srgb, var(--yellow) 45%, transparent);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--yellow-hover);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 150ms ease, transform 160ms var(--ease-out);
+}
+
+.chat-advisor-btn:hover:not(:disabled) {
+    background: var(--yellow-light);
+}
+
+.chat-advisor-btn:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+.chat-advisor-btn:disabled {
+    opacity: 0.5;
+    cursor: wait;
 }
 
 /* Formulario de contacto dentro del chat. */

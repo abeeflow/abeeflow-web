@@ -136,9 +136,17 @@ export default async function handler(req, res) {
     try {
       const { text, askContact } = await askModel(model, conversation);
       const lastUser = [...messages].reverse().find((m) => m.role === 'user')?.content ?? '';
+      // Si el formulario sale solo por la palabra clave ("contacto") y el
+      // modelo no lo mencionó, se agrega una línea para que la respuesta
+      // y el formulario digan lo mismo.
+      const byKeyword = !askContact && CONTACT_INTENT.test(lastUser);
+      const english = /\b(schedule|book|meeting|quote|pricing|talk to|contact)\b/i.test(lastUser) && !/[áéíóúñ¿]/i.test(lastUser);
+      const formLine = english
+        ? 'If you prefer, leave your details below and an advisor will get back to you shortly.'
+        : 'Si prefieres, deja tus datos abajo y un asesor te escribe en breve.';
       return res.status(200).json({
-        reply: text,
-        askContact: askContact || CONTACT_INTENT.test(lastUser),
+        reply: byKeyword ? `${text}\n\n${formLine}` : text,
+        askContact: askContact || byKeyword,
         suggestWhatsapp: messages.length >= MAX_MESSAGES,
       });
     } catch (err) {

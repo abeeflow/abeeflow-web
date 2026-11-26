@@ -201,8 +201,15 @@ export const translations = {
         { label: 'Automatizar mi negocio', prompt: '¿Qué procesos suelen automatizar y por dónde empiezo?' },
         { label: 'Ver soluciones', prompt: '¿Qué servicios ofrecen y para qué industrias?' },
         { label: 'Casos reales', prompt: '¿Pueden contarme un caso de éxito reciente?' },
-        { label: 'Hablar con el equipo', prompt: 'Quiero agendar un diagnóstico gratuito.' }
-      ]
+        // Este abre el formulario al instante, sin esperar al asistente.
+        { label: 'Hablar con un asesor', prompt: 'Quiero hablar con un asesor.', advisor: true }
+      ],
+      // Botón para pedir un asesor en cualquier momento de la conversación.
+      advisor: {
+        button: 'Hablar con un asesor',
+        ask: 'Quiero hablar con un asesor.',
+        reply: 'Perfecto. Déjanos tus datos y un asesor del equipo te escribe en breve. También puedes elegir un horario.'
+      }
     }
   },
   en: {
@@ -403,8 +410,13 @@ export const translations = {
         { label: 'Automate my business', prompt: 'What processes do you usually automate and where should I start?' },
         { label: 'See solutions', prompt: 'What services do you offer and for which industries?' },
         { label: 'Real cases', prompt: 'Can you share a recent success case?' },
-        { label: 'Talk to the team', prompt: 'I want to schedule a free diagnostic.' }
-      ]
+        { label: 'Talk to an advisor', prompt: 'I want to talk to an advisor.', advisor: true }
+      ],
+      advisor: {
+        button: 'Talk to an advisor',
+        ask: 'I want to talk to an advisor.',
+        reply: 'Great. Leave your details and an advisor from our team will get back to you shortly. You can also pick a time.'
+      }
     }
   }
 };

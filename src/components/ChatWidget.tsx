@@ -99,6 +99,19 @@ const ChatWidget = () => {
     }
   };
 
+  // "Hablar con un asesor": abre el formulario al instante, sin pasar por
+  // el asistente. Deja el pedido y la respuesta en la conversación para
+  // que el correo al equipo los incluya.
+  const openAdvisor = () => {
+    if (showLead || loading) return;
+    setMessages([
+      ...messages,
+      { role: 'user', content: t.chatWidget.advisor.ask },
+      { role: 'assistant', content: t.chatWidget.advisor.reply },
+    ]);
+    setShowLead(true);
+  };
+
   const send = async (text: string) => {
     const content = text.trim();
     if (!content || loading) return;
@@ -192,8 +205,8 @@ const ChatWidget = () => {
                   <button
                     key={opt.label}
                     type="button"
-                    className="chat-quick-option"
-                    onClick={() => send(opt.prompt)}
+                    className={`chat-quick-option ${'advisor' in opt ? 'chat-quick-option-advisor' : ''}`}
+                    onClick={() => ('advisor' in opt ? openAdvisor() : send(opt.prompt))}
                   >
                     {opt.label}
                   </button>
@@ -282,6 +295,20 @@ const ChatWidget = () => {
               </a>
             )}
           </div>
+
+          {/* Acceso fijo a un asesor mientras se conversa (ya en la
+              bienvenida está como botón rápido). */}
+          {messages.length > 0 && !showLead && leadStatus !== 'sent' && (
+            <div className="chat-advisor-bar">
+              <button type="button" className="chat-advisor-btn" onClick={openAdvisor} disabled={loading}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                {t.chatWidget.advisor.button}
+              </button>
+            </div>
+          )}
 
           {!suggestWhatsapp && (
             <form
