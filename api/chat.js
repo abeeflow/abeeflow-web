@@ -15,6 +15,15 @@ const MODEL_TIMEOUT_MS = 12000;
 const MAX_MESSAGES = 13;
 const MAX_MESSAGE_CHARS = 1000;
 
+// El modelo agrega esta marca cuando conviene pedir los datos de contacto.
+// Se quita antes de responder y el chat muestra el formulario.
+const CONTACT_MARK = '[[CONTACTO]]';
+
+// Respaldo por si el modelo olvida la marca: el visitante pide algo
+// que solo se resuelve hablando con el equipo.
+const CONTACT_INTENT =
+  /agend|reuni[oó]n|cita|cotiza|presupuesto|precio|cu[aá]nto cuesta|hablar con|llamada|ll[aá]mame|cont[aá]ct|schedule|book|meeting|quote|pricing|talk to/i;
+
 const SYSTEM_PROMPT = `
 Eres el asistente comercial de Abeeflow, una agencia de automatización
 empresarial en Lima, Perú. Tu trabajo es ayudar al visitante a
@@ -56,12 +65,14 @@ REGLAS:
   diagnóstico gratuito.
 - NUNCA inventes casos que no estén en la lista. Si preguntan por
   un caso específico, referencia solo los reales.
-- Desde este chat no puedes agendar ni coordinar reuniones. Si el
-  usuario quiere agendar, dale el enlace de WhatsApp.
-- Solo sugiere WhatsApp (${WHATSAPP_URL}) cuando el usuario
-  muestre intención concreta: pide cotización, quiere agendar, pide
-  hablar con alguien, describe un problema específico que ya quiere
-  resolver. No lo sugieras en respuestas informativas generales.
+- Cuando el usuario muestre intención concreta (quiere agendar, pide
+  cotización o precio, pide hablar con alguien, o describe un problema
+  específico que ya quiere resolver), dile en una oración que deje su
+  nombre y su correo o WhatsApp en el formulario que aparece aquí abajo,
+  que el equipo le escribe en breve y que también puede elegir un
+  horario. No le pidas que escriba él por WhatsApp. Termina esa
+  respuesta con la marca ${CONTACT_MARK} (el visitante no la ve).
+- No pongas la marca en respuestas informativas generales.
 - Si preguntan algo fuera de scope (clima, deportes, política),
   redirige en una oración al tema de automatización.
 `.trim();
@@ -86,8 +97,10 @@ async function askModel(model, messages) {
     // Si el modelo cambia un dígito del número, se restaura el enlace oficial.
     .replace(/https?:\/\/wa\.me\/\d+/g, WHATSAPP_URL)
     .trim();
-  if (!reply) throw new Error('respuesta vacía');
-  return reply;
+  const askContact = reply.includes(CONTACT_MARK);
+  const text = reply.split(CONTACT_MARK).join('').trim();
+  if (!text) throw new Error('respuesta vacía');
+  return { text, askContact };
 }
 
 export default async function handler(req, res) {
@@ -121,9 +134,11 @@ export default async function handler(req, res) {
 
   for (const model of MODELS) {
     try {
-      const reply = await askModel(model, conversation);
+      const { text, askContact } = await askModel(model, conversation);
+      const lastUser = [...messages].reverse().find((m) => m.role === 'user')?.content ?? '';
       return res.status(200).json({
-        reply,
+        reply: text,
+        askContact: askContact || CONTACT_INTENT.test(lastUser),
         suggestWhatsapp: messages.length >= MAX_MESSAGES,
       });
     } catch (err) {

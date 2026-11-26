@@ -1,9 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
+import type { FormEvent } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { WHATSAPP_URL } from '../lib/links';
+import { CALENDAR_URL, WHATSAPP_URL } from '../lib/links';
 import './ChatWidget.css';
 
 type Message = { role: 'user' | 'assistant'; content: string };
+type LeadStatus = 'idle' | 'sending' | 'sent' | 'error';
+
+// Las mismas reglas que valida api/lead.js.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const isContact = (value: string) =>
+  EMAIL_RE.test(value) || (/^\+?[\d\s()-]{7,20}$/.test(value) && value.replace(/\D/g, '').length >= 7);
 
 // Vuelve clicable el enlace de WhatsApp que el asistente escribe en un mensaje.
 const withLinks = (text: string) =>
@@ -26,6 +33,12 @@ const ChatWidget = () => {
   const [failed, setFailed] = useState(false);
   // Cuando es true se oculta el campo de texto y queda el botón de WhatsApp.
   const [suggestWhatsapp, setSuggestWhatsapp] = useState(false);
+  // Formulario de contacto: aparece cuando el visitante quiere agendar,
+  // cotizar o hablar con el equipo. Los datos llegan por correo (api/lead.js).
+  const [showLead, setShowLead] = useState(false);
+  const [lead, setLead] = useState({ name: '', contact: '', need: '', website: '' });
+  const [leadStatus, setLeadStatus] = useState<LeadStatus>('idle');
+  const [leadErrors, setLeadErrors] = useState({ name: false, contact: false });
   const threadRef = useRef<HTMLDivElement>(null);
   // En el teléfono el botón flotante tapaba el botón principal del hero.
   // Mientras ese botón está a la vista, el flotante se esconde.
@@ -56,7 +69,35 @@ const ChatWidget = () => {
     if (threadRef.current) {
       threadRef.current.scrollTop = threadRef.current.scrollHeight;
     }
-  }, [messages, loading, open]);
+  }, [messages, loading, open, showLead, leadStatus]);
+
+  const sendLead = async (e: FormEvent) => {
+    e.preventDefault();
+    if (leadStatus === 'sending') return;
+    const name = lead.name.trim();
+    const contact = lead.contact.trim();
+    const errors = { name: !name, contact: !isContact(contact) };
+    setLeadErrors(errors);
+    if (errors.name || errors.contact) return;
+
+    setLeadStatus('sending');
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...lead,
+          name,
+          contact,
+          transcript: messages,
+          page: window.location.pathname,
+        }),
+      });
+      setLeadStatus(res.ok ? 'sent' : 'error');
+    } catch {
+      setLeadStatus('error');
+    }
+  };
 
   const send = async (text: string) => {
     const content = text.trim();
@@ -78,6 +119,7 @@ const ChatWidget = () => {
 
       if (res.ok) {
         setMessages([...conversation, { role: 'assistant', content: data.reply }]);
+        if (data.askContact) setShowLead(true);
       } else {
         setFailed(true);
       }
@@ -159,7 +201,77 @@ const ChatWidget = () => {
               </div>
             )}
             {failed && <div className="chat-error">{t.chatWidget.errorGeneric}</div>}
-            {suggestWhatsapp && (
+
+            {showLead && leadStatus !== 'sent' && (
+              <form className="chat-lead" onSubmit={sendLead} noValidate>
+                <p className="chat-lead-title">{t.chatWidget.lead.title}</p>
+                <label className="chat-lead-field">
+                  <span>{t.chatWidget.lead.name}</span>
+                  <input
+                    type="text"
+                    name="name"
+                    autoComplete="name"
+                    maxLength={80}
+                    value={lead.name}
+                    onChange={(e) => setLead({ ...lead, name: e.target.value })}
+                    aria-invalid={leadErrors.name}
+                  />
+                  {leadErrors.name && <span className="chat-lead-error">{t.chatWidget.lead.invalidName}</span>}
+                </label>
+                <label className="chat-lead-field">
+                  <span>{t.chatWidget.lead.contact}</span>
+                  <input
+                    type="text"
+                    name="contact"
+                    autoComplete="email"
+                    inputMode="email"
+                    maxLength={120}
+                    value={lead.contact}
+                    onChange={(e) => setLead({ ...lead, contact: e.target.value })}
+                    aria-invalid={leadErrors.contact}
+                  />
+                  {leadErrors.contact && <span className="chat-lead-error">{t.chatWidget.lead.invalidContact}</span>}
+                </label>
+                <label className="chat-lead-field">
+                  <span>{t.chatWidget.lead.need}</span>
+                  <textarea
+                    name="need"
+                    rows={2}
+                    maxLength={1000}
+                    value={lead.need}
+                    onChange={(e) => setLead({ ...lead, need: e.target.value })}
+                  />
+                </label>
+                {/* Campo trampa para bots: oculto para las personas. */}
+                <input
+                  type="text"
+                  name="website"
+                  className="chat-lead-trap"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  value={lead.website}
+                  onChange={(e) => setLead({ ...lead, website: e.target.value })}
+                />
+                {leadStatus === 'error' && <p className="chat-error">{t.chatWidget.lead.error}</p>}
+                <button type="submit" className="chat-cta chat-lead-send" disabled={leadStatus === 'sending'}>
+                  {leadStatus === 'sending' ? t.chatWidget.lead.sending : t.chatWidget.lead.send}
+                </button>
+              </form>
+            )}
+
+            {leadStatus === 'sent' && (
+              <>
+                <div className="chat-msg in">
+                  {t.chatWidget.lead.thanks.replace('{name}', lead.name.trim().split(/\s+/)[0])}
+                </div>
+                <a href={CALENDAR_URL} target="_blank" rel="noopener noreferrer" className="chat-cta">
+                  {t.chatWidget.lead.pickTime} <span aria-hidden="true">→</span>
+                </a>
+              </>
+            )}
+
+            {(suggestWhatsapp || leadStatus === 'error') && (
               <a
                 href={WHATSAPP_URL}
                 target="_blank"

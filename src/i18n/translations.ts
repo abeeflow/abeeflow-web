@@ -183,6 +183,20 @@ export const translations = {
       cta: 'Continúa por WhatsApp',
       toWhatsapp: 'Hablar con un humano por WhatsApp',
       errorGeneric: 'No pude responder. Escríbenos por WhatsApp y te contestamos.',
+      // Formulario de contacto dentro del chat (llega por correo al equipo).
+      lead: {
+        title: 'Déjanos tus datos y te escribimos en breve',
+        name: 'Tu nombre',
+        contact: 'Correo o WhatsApp',
+        need: '¿Qué necesitas? (opcional)',
+        send: 'Enviar',
+        sending: 'Enviando…',
+        invalidName: 'Escribe tu nombre.',
+        invalidContact: 'Escribe un correo o un número de WhatsApp.',
+        error: 'No se pudo enviar. Escríbenos por WhatsApp y te atendemos.',
+        thanks: 'Listo, {name}. Recibimos tus datos y te escribimos en breve.',
+        pickTime: 'Elegir horario ahora'
+      },
       quickOptions: [
         { label: 'Automatizar mi negocio', prompt: '¿Qué procesos suelen automatizar y por dónde empiezo?' },
         { label: 'Ver soluciones', prompt: '¿Qué servicios ofrecen y para qué industrias?' },
@@ -372,6 +386,19 @@ export const translations = {
       cta: 'Continue on WhatsApp',
       toWhatsapp: 'Talk to a human on WhatsApp',
       errorGeneric: 'I couldn\'t reply. Message us on WhatsApp and we\'ll get back to you.',
+      lead: {
+        title: 'Leave your details and we\'ll get back to you shortly',
+        name: 'Your name',
+        contact: 'Email or WhatsApp',
+        need: 'What do you need? (optional)',
+        send: 'Send',
+        sending: 'Sending…',
+        invalidName: 'Enter your name.',
+        invalidContact: 'Enter an email or a WhatsApp number.',
+        error: 'We couldn\'t send it. Message us on WhatsApp and we\'ll help you.',
+        thanks: 'Done, {name}. We got your details and will get back to you shortly.',
+        pickTime: 'Pick a time now'
+      },
       quickOptions: [
         { label: 'Automate my business', prompt: 'What processes do you usually automate and where should I start?' },
         { label: 'See solutions', prompt: 'What services do you offer and for which industries?' },

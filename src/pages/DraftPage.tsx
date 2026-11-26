@@ -77,13 +77,13 @@ const steps = [
   },
   {
     number: '02',
-    title: 'Automatizamos una tarea',
-    description: 'A precio cerrado y en menos de 2 semanas. La pruebas con tu equipo antes de decidir si seguimos.',
+    title: 'Te hacemos una propuesta',
+    description: 'Con la solución para tu problema, el precio cerrado y el plazo, todo por escrito. Tú decides si avanzamos.',
   },
   {
     number: '03',
-    title: 'Seguimos con lo demás',
-    description: 'Automatizamos el resto y nos encargamos de que siga funcionando. Si algo cambia, respondemos en menos de 24 horas.',
+    title: 'Lo ponemos en marcha',
+    description: 'La primera tarea suele estar lista en menos de 2 semanas, y nos encargamos de que siga funcionando. Si algo cambia, respondemos en menos de 24 horas.',
   },
 ];
 
