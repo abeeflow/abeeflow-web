@@ -16,9 +16,9 @@
     overflow: visible;
 }
 
-/* Capa base: tenue, siempre visible */
+/* Capa base: tenue, siempre visible (en claro un poco más marcada; el oscuro tiene su propio valor abajo) */
 .hex-bg-svg.base polygon {
-    stroke: rgba(232, 180, 65, 0.06);
+    stroke: rgba(232, 180, 65, 0.14);
     stroke-width: 1;
     fill: none;
 }

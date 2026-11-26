@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import type { RefObject } from 'react';
 import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
 import { WHATSAPP_URL } from '../lib/links';
@@ -16,25 +17,30 @@ const arrow = (
 const WORD_INTERVAL_MS = 2800;
 const easeOut = [0.23, 1, 0.32, 1] as const;
 
-// Verbo del titular que cambia solo. La palabra vieja sube y se desenfoca
-// mientras la nueva entra desde abajo: las dos se cruzan sin dejar hueco.
-// Se detiene fuera de pantalla y con "reducir movimiento" queda la primera.
-const RotatingWord = ({ words }: { words: readonly string[] }) => {
-  const ref = useRef<HTMLSpanElement>(null);
+// Pulso común del hero: sube cada 2,8 s y mueve a la vez el verbo del
+// titular y el panal. Se detiene fuera de pantalla y con "reducir
+// movimiento" no avanza.
+const useHeroTick = (ref: RefObject<HTMLElement | null>) => {
   const inView = useInView(ref);
-  const reduceMotion = useReducedMotion();
-  const [index, setIndex] = useState(0);
+  const reduceMotion = useReducedMotion() ?? false;
+  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     if (reduceMotion || !inView) return;
-    const id = setInterval(() => setIndex((i) => (i + 1) % words.length), WORD_INTERVAL_MS);
+    const id = setInterval(() => setTick((n) => n + 1), WORD_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [reduceMotion, inView, words.length]);
+  }, [reduceMotion, inView]);
 
-  const word = reduceMotion ? words[0] : words[index % words.length];
+  return { tick: reduceMotion ? 0 : tick, animate: !reduceMotion };
+};
+
+// Verbo del titular que cambia solo. La palabra vieja sube y se desenfoca
+// mientras la nueva entra desde abajo: las dos se cruzan sin dejar hueco.
+const RotatingWord = ({ words, tick }: { words: readonly string[]; tick: number }) => {
+  const word = words[tick % words.length];
 
   return (
-    <span ref={ref} className="hero-word">
+    <span className="hero-word">
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={word}
@@ -58,9 +64,11 @@ const RotatingWord = ({ words }: { words: readonly string[] }) => {
 
 const Hero = () => {
   const { t } = useLanguage();
+  const heroRef = useRef<HTMLElement>(null);
+  const { tick, animate } = useHeroTick(heroRef);
 
   return (
-    <section className="hero">
+    <section ref={heroRef} className="hero">
       <div className="container">
         <div className="hero-inner">
           <div className="hero-content">
@@ -70,7 +78,7 @@ const Hero = () => {
                 {t.hero.words[0]} {t.hero.title} {t.hero.highlight}
               </span>
               <span aria-hidden="true">
-                <RotatingWord words={t.hero.words} />
+                <RotatingWord words={t.hero.words} tick={tick} />
                 <span className="hero-title-rest">{t.hero.title}</span>{' '}
                 <span className="hero-highlight">{t.hero.highlight}</span>
               </span>
@@ -91,7 +99,7 @@ const Hero = () => {
           </div>
 
           <div className="hero-visual">
-            <HeroHoneycomb />
+            <HeroHoneycomb tick={tick} animate={animate} />
           </div>
         </div>
       </div>

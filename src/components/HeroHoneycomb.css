@@ -1,7 +1,9 @@
 .hero-honeycomb-stage {
     width: 100%;
-    max-width: clamp(280px, 38vw, 600px);
-    aspect-ratio: 1;
+    /* El SVG ya no trae margen vacío alrededor del panal, así que el
+       escenario es más chico y el panal se ve del mismo tamaño que antes. */
+    max-width: clamp(220px, 27vw, 400px);
+    aspect-ratio: 380 / 367;
     margin: 0 auto;
     perspective: 1400px;
 }
@@ -16,10 +18,8 @@
     fill: var(--surface);
     stroke: var(--border);
     stroke-width: 1.2;
-    transition: fill 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                stroke 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                stroke-width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Solo color: stroke-width y filter obligaban a repintar en cada cuadro. */
+    transition: fill 400ms ease, stroke 400ms ease;
 }
 
 .hex-shape.center {
@@ -28,7 +28,7 @@
     stroke-width: 2;
 }
 
-[data-theme="dark"] .hex-shape {
+[data-theme="dark"] .hex-shape:not(.center) {
     stroke: var(--border-strong);
 }
 
@@ -71,7 +71,7 @@
     stroke-width: 1.6;
     stroke-linecap: round;
     stroke-linejoin: round;
-    transition: stroke 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: stroke 400ms ease;
 }
 
 /* Labels */
@@ -83,37 +83,99 @@
     text-anchor: middle;
     font-weight: 700;
     text-transform: uppercase;
-    transition: fill 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: fill 400ms ease;
 }
 
-/* Bee orbit */
-.bee-fly {
+/* 1. Entrada, una vez al cargar: el centro primero y luego las seis
+   celdas en sentido horario, 60ms entre una y otra. */
+.hex-inner {
+    transform-box: fill-box;
     transform-origin: center;
-    animation: bee-orbit 16s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-    filter: drop-shadow(0 0 6px rgba(224, 172, 54, 0.4));
+    animation: hex-in 500ms var(--ease-out) both;
+    animation-delay: calc(150ms + var(--i) * 60ms);
 }
 
-@keyframes bee-orbit {
-    0%   { transform: translate(0px, 0px) rotate(0deg); }
-    14%  { transform: translate(-118px, -68px) rotate(-30deg); }
-    28%  { transform: translate(0px, -136px) rotate(0deg); }
-    42%  { transform: translate(118px, -68px) rotate(30deg); }
-    57%  { transform: translate(118px, 68px) rotate(150deg); }
-    71%  { transform: translate(0px, 136px) rotate(180deg); }
-    86%  { transform: translate(-118px, 68px) rotate(-150deg); }
-    100% { transform: translate(0px, 0px) rotate(-360deg); }
+@keyframes hex-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
 }
 
+/* 2. Celda encendida: cambia con el verbo del titular (cada 2,8 s).
+   Es un cambio de color, por eso ease. */
+.hex-inner.is-active .hex-shape {
+    fill: var(--yellow-light);
+    stroke: var(--yellow);
+}
+
+.hex-inner.is-active .hex-icon {
+    stroke: var(--yellow-hover);
+}
+
+.hex-inner.is-active .hex-label {
+    fill: var(--yellow-hover);
+}
+
+/* 3. Pulso de la celda encendida al centro. Recorre la pantalla, así
+   que va con ease-in-out; arranca cuando la celda ya se encendió. */
+.hex-pulse {
+    fill: var(--yellow);
+    pointer-events: none;
+    animation: hex-pulse 800ms var(--ease-in-out) 250ms both;
+}
+
+@keyframes hex-pulse {
+    0% {
+        transform: translate(var(--fx), var(--fy));
+        opacity: 0;
+    }
+    15%,
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty));
+        opacity: 0;
+    }
+}
+
+/* Cuando llega el pulso, el centro se ilumina un instante. */
+.hex-hub-glow {
+    fill: var(--yellow);
+    pointer-events: none;
+    animation: hub-glow 700ms ease-out 950ms both;
+}
+
+@keyframes hub-glow {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 0.22;
+    }
+}
+
+/* Con "reducir movimiento" el panal aparece ya armado; el pulso y la
+   celda encendida no se dibujan (Hero.tsx). */
 @media (prefers-reduced-motion: reduce) {
-    .bee-fly {
-        animation: none !important;
+    .hex-inner {
+        animation: none;
     }
 }
 
 @media (max-width: 768px) {
-    .hex-label { font-size: 10px; }
+    /* A este tamaño las etiquetas quedaban en unos 5px: ilegibles.
+       En el teléfono hablan los iconos. */
+    .hex-label { display: none; }
 
-    /* Más chico en el teléfono para que el botón principal entre en la
+    /* Sin etiqueta, el icono baja al centro de la celda (69 de 138).
+       transform en CSS reemplaza al atributo del SVG. */
+    .hex-icon { transform: translate(44px, 53px) scale(1.33); }
+    .hex-logo { transform: translate(29px, 43px) scale(1.7); }
+
+    /* Chico en el teléfono para que el botón principal entre en la
        primera pantalla junto al titular. */
     .hero-honeycomb-stage { max-width: 220px; }
 }

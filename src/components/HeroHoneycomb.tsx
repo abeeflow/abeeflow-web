@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import './HeroHoneycomb.css';
 
@@ -74,50 +74,83 @@ const outerCells: OuterCell[] = [
   },
 ];
 
-const HeroHoneycomb = () => {
+// Recorrido del pulso, en sentido horario, y centro de cada celda
+// (traslado de la celda + la mitad del hexágono: 60, 69).
+const RING: OuterCell['id'][] = ['nw', 'ne', 'e', 'se', 'sw', 'w'];
+const HUB = { x: 270, y: 270 };
+const cellCenter = (cell: OuterCell) => {
+  const [x, y] = cell.translate.match(/[\d.]+/g)!.map(Number);
+  return { x: x + 60, y: y + 69 };
+};
+
+interface HeroHoneycombProps {
+  // Sube cada vez que cambia el verbo del titular (cada 2,8 s).
+  tick: number;
+  // false con "reducir movimiento": el panal queda quieto.
+  animate: boolean;
+}
+
+// Panal del hero. Al cargar, las celdas se arman desde el centro hacia
+// afuera. Luego, al mismo ritmo que el verbo del titular, se enciende
+// una celda y un pulso viaja de ella al centro: el "flow" de abeeFlow.
+const HeroHoneycomb = ({ tick, animate }: HeroHoneycombProps) => {
   const { t } = useLanguage();
   const cells = t.hero.cells;
+  const activeId = animate ? RING[tick % RING.length] : null;
+  const activeCell = outerCells.find((cell) => cell.id === activeId);
+  const from = activeCell ? cellCenter(activeCell) : null;
 
   return (
     <div className="hero-honeycomb-stage" aria-hidden="true">
-      <svg viewBox="0 0 540 540" className="hero-honeycomb-svg" xmlns="http://www.w3.org/2000/svg">
+      {/* Recortado al panal (celdas de x 90 a 450, y 97 a 443) con 10 de aire. */}
+      <svg viewBox="80 87 380 367" className="hero-honeycomb-svg" xmlns="http://www.w3.org/2000/svg">
         {/* Celda central con el logo: no es interactiva */}
         <g className="hex-cell center" transform="translate(210 201)">
-          <polygon className="hex-shape center" points={HEX_POINTS} />
-          <g transform="translate(29 28) scale(1.7)">
-            <path d="M16.5 8.5 Q15 7 15 5.5" stroke="var(--yellow)" strokeWidth="0.7" fill="none" strokeLinecap="round" />
-            <path d="M19.5 8.5 Q21 7 21 5.5" stroke="var(--yellow)" strokeWidth="0.7" fill="none" strokeLinecap="round" />
-            <circle cx="18" cy="11" r="3" fill="var(--yellow)" />
-            <path d="M18 13 L21 15 L21.5 22 L18 26 L14.5 22 L15 15 Z" fill="var(--yellow)" />
-            <line x1="15.5" y1="16.5" x2="20.5" y2="16.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
-            <line x1="15" y1="19.5" x2="21" y2="19.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
-            <line x1="15.5" y1="23" x2="20.5" y2="23" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
-            <path d="M10 15 L7 18 L10 21" stroke="var(--yellow)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M26 15 L29 18 L26 21" stroke="var(--yellow)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <g className="hex-inner" style={{ '--i': 0 } as CSSProperties}>
+            <polygon className="hex-shape center" points={HEX_POINTS} />
+            {/* Se ilumina cuando llega el pulso. La key reinicia la animación. */}
+            {from && tick > 0 && <polygon key={`glow-${tick}`} className="hex-hub-glow" points={HEX_POINTS} />}
+            <g className="hex-logo" transform="translate(29 28) scale(1.7)">
+              <path d="M16.5 8.5 Q15 7 15 5.5" stroke="var(--yellow)" strokeWidth="0.7" fill="none" strokeLinecap="round" />
+              <path d="M19.5 8.5 Q21 7 21 5.5" stroke="var(--yellow)" strokeWidth="0.7" fill="none" strokeLinecap="round" />
+              <circle cx="18" cy="11" r="3" fill="var(--yellow)" />
+              <path d="M18 13 L21 15 L21.5 22 L18 26 L14.5 22 L15 15 Z" fill="var(--yellow)" />
+              <line x1="15.5" y1="16.5" x2="20.5" y2="16.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
+              <line x1="15" y1="19.5" x2="21" y2="19.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
+              <line x1="15.5" y1="23" x2="20.5" y2="23" stroke="white" strokeWidth="1.2" strokeLinecap="round" />
+              <path d="M10 15 L7 18 L10 21" stroke="var(--yellow)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M26 15 L29 18 L26 21" stroke="var(--yellow)" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </g>
+            <text className="hex-label center" x="60" y="118">{cells.center}</text>
           </g>
-          <text className="hex-label center" x="60" y="118">{cells.center}</text>
         </g>
 
-        {/* Las 6 celdas de alrededor */}
+        {/* Las 6 celdas de alrededor. El <g> interno lleva la entrada:
+            un transform en CSS sobre el externo borraría su traslado. */}
         {outerCells.map((cell) => (
           <g key={cell.id} className="hex-cell interactive" transform={cell.translate}>
-            <polygon className="hex-shape" points={HEX_POINTS} />
-            <g className="hex-icon" transform="translate(44 36) scale(1.33)">
-              {cell.icon}
+            <g
+              className={`hex-inner ${cell.id === activeId ? 'is-active' : ''}`}
+              style={{ '--i': RING.indexOf(cell.id) + 1 } as CSSProperties}
+            >
+              <polygon className="hex-shape" points={HEX_POINTS} />
+              <g className="hex-icon" transform="translate(44 36) scale(1.33)">
+                {cell.icon}
+              </g>
+              <text className="hex-label" x="60" y="113">{cells[cell.id]}</text>
             </g>
-            <text className="hex-label" x="60" y="113">{cells[cell.id]}</text>
           </g>
         ))}
 
-        {/* Abeja que recorre las celdas */}
-        <g className="bee-fly" transform="translate(270 270)">
-          <ellipse cx="-5" cy="0" rx="9" ry="3" fill="var(--yellow)" opacity="0.4" />
-          <path d="M0 -4 L2 -2 L2.5 5 L0 9 L-2.5 5 L-2 -2 Z" fill="var(--yellow)" stroke="var(--ink)" strokeWidth="0.4" />
-          <circle cx="0" cy="-6" r="2" fill="var(--yellow)" stroke="var(--ink)" strokeWidth="0.4" />
-          <line x1="-2" y1="-1" x2="2" y2="-1" stroke="white" strokeWidth="0.6" />
-          <line x1="-2.2" y1="2" x2="2.2" y2="2" stroke="white" strokeWidth="0.6" />
-          <line x1="-2" y1="5" x2="2" y2="5" stroke="white" strokeWidth="0.6" />
-        </g>
+        {/* Pulso de la celda encendida al centro. La key lo reinicia en cada cambio. */}
+        {from && tick > 0 && (
+          <circle
+            key={`pulse-${tick}`}
+            className="hex-pulse"
+            r="6"
+            style={{ '--fx': `${from.x}px`, '--fy': `${from.y}px`, '--tx': `${HUB.x}px`, '--ty': `${HUB.y}px` } as CSSProperties}
+          />
+        )}
       </svg>
     </div>
   );

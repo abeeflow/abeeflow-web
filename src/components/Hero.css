@@ -172,17 +172,16 @@
 
 /* Entrada del hero, una sola vez al cargar: cada pieza sube 8px y
    aparece, con 50ms entre una y otra. Con "reducir movimiento" la
-   regla global de index.css la deja casi instantánea. */
+   regla global de index.css la deja casi instantánea. El panal tiene
+   su propia entrada, celda por celda (HeroHoneycomb.css). */
 .hero h1,
 .hero-content > p,
-.hero-buttons,
-.hero-visual {
+.hero-buttons {
     animation: hero-enter 500ms var(--ease-out) both;
 }
 
 .hero-content > p { animation-delay: 50ms; }
 .hero-buttons { animation-delay: 100ms; }
-.hero-visual { animation-delay: 50ms; }
 
 @keyframes hero-enter {
     from {
