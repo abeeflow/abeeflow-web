@@ -9,7 +9,7 @@
 }
 
 .section-title {
-    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+    font-size: clamp(var(--text-3xl), 3.4vw, 48px); /* menor que el h1 (56px) */
     font-weight: 400;
     color: var(--ink);
     margin-bottom: var(--space-3);
@@ -58,7 +58,7 @@
 
 .service-main-title {
     font-family: var(--font-display);
-    font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+    font-size: clamp(var(--text-2xl), 2.6vw, var(--text-3xl));
     font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.01em;
@@ -157,7 +157,8 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Giro en pantalla: ease-in-out fuerte, 400ms (600ms se sentía lento). */
+    transition: transform 400ms var(--ease-in-out);
     transform-style: preserve-3d;
 }
 

@@ -64,20 +64,34 @@
     font-weight: 700;
     font-size: var(--text-base);
     text-decoration: none;
-    transition: all 0.25s;
+    transition:
+        transform 160ms var(--ease-out),
+        background-color 200ms ease,
+        box-shadow 200ms ease;
 }
 
 .contact-book-btn:hover {
     background: var(--yellow-hover);
-    transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(224,172,54,0.3);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .contact-book-btn:hover {
+        transform: translateY(-2px);
+    }
+}
+
+.contact-book-btn:active {
+    transform: scale(0.97);
 }
 
 /* Enlace secundario bajo el botón principal. */
 .contact-whatsapp {
     display: block;
     width: fit-content;
-    margin: var(--space-4) auto 0;
+    /* El padding lleva el área de toque a 44px sin cambiar cómo se ve. */
+    margin: var(--space-1) auto 0;
+    padding: 11px 0;
     font-family: var(--font-sans);
     font-size: var(--text-sm);
     font-weight: 600;

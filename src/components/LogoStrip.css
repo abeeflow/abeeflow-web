@@ -38,6 +38,10 @@
     text-decoration: none;
     text-align: center;
     padding: 8px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     transition:
         opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
         color 0.3s cubic-bezier(0.22, 1, 0.36, 1);

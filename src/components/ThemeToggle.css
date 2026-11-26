@@ -25,3 +25,11 @@
     outline: 2px solid var(--yellow);
     outline-offset: 3px;
 }
+
+/* En el teléfono, 44px: el mínimo cómodo para el dedo. */
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
+    }
+}

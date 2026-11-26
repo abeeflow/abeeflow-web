@@ -9,17 +9,6 @@
 .hero-honeycomb-svg {
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
-    animation: hc-float 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-
-.hero-honeycomb-svg:has(.hex-cell.interactive:hover) {
-    animation-play-state: paused;
-}
-
-@keyframes hc-float {
-    0%, 100% { transform: rotateX(8deg) rotateY(-5deg) translateY(0); }
-    50%      { transform: rotateX(11deg) rotateY(0deg) translateY(-6px); }
 }
 
 /* Hex shapes */
@@ -43,9 +32,10 @@
     stroke: var(--border-strong);
 }
 
-/* Interactive cells (6 outer) */
+/* Celdas de alrededor: se iluminan al pasar el mouse, pero no son
+   links, así que el cursor no promete un clic. */
 .hex-cell.interactive {
-    cursor: pointer;
+    cursor: default;
 }
 
 .hex-cell.interactive:hover .hex-shape {
@@ -139,7 +129,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero-honeycomb-svg,
     .bee-fly,
     .hex-pulse-overlay {
         animation: none !important;

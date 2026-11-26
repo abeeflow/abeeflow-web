@@ -79,6 +79,10 @@
     --surface: #FFFFFF;
     --surface-2: #FAFAFA;
     --surface-3: #F2F2F2;
+
+    /* Curvas de animación. Las de CSS (ease, ease-in-out) son muy suaves. */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);       /* entrar, salir, hover */
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);   /* algo que se mueve en pantalla */
 }
 
 [data-theme="dark"] {
@@ -140,6 +144,8 @@
 html {
     background: var(--bg);
     scroll-behavior: smooth;
+    /* Que el menú fijo no tape lo que recibe foco o un ancla. */
+    scroll-padding-top: 88px;
 }
 
 body {
@@ -159,6 +165,16 @@ h2,
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 1.1;
+}
+
+/* Anillo de foco visible para teclado en todo link y botón.
+   Los componentes que tienen el suyo lo sobreescriben. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--yellow);
+    outline-offset: 3px;
+    border-radius: 4px;
 }
 
 .container {

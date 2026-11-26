@@ -8,9 +8,10 @@ export const useLenis = () => {
   useEffect(() => {
     if (prefersReducedMotion()) return;
 
+    // lerp 0.1: suave pero sigue de cerca a la rueda. Con duration 1.2
+    // el scroll se quedaba atrás del dedo y se sentía secuestrado.
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1,
       smoothWheel: true,
     });
     setLenis(lenis);

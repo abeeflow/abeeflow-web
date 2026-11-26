@@ -7,7 +7,9 @@ const COLS = 20;
 const ROWS = 15;
 
 const HoneycombBackground = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  // La capa que sigue al mouse. Las variables van en ella y no en el
+  // contenedor: así cada movimiento recalcula estilos solo de esta capa.
+  const highlightRef = useRef<SVGSVGElement>(null);
 
   const { hexagons, viewBoxWidth, viewBoxHeight } = useMemo(() => {
     const sqrt3div2 = Math.sqrt(3) / 2;
@@ -43,8 +45,8 @@ const HoneycombBackground = () => {
   }, []);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const highlight = highlightRef.current;
+    if (!highlight) return;
 
     if (prefersReducedMotion()) return;
     if (window.innerWidth < 768) return;
@@ -60,8 +62,8 @@ const HoneycombBackground = () => {
       if (scheduled) return;
       scheduled = true;
       rafId = requestAnimationFrame(() => {
-        container.style.setProperty('--mouse-x', `${pendingX}px`);
-        container.style.setProperty('--mouse-y', `${pendingY}px`);
+        highlight.style.setProperty('--mouse-x', `${pendingX}px`);
+        highlight.style.setProperty('--mouse-y', `${pendingY}px`);
         scheduled = false;
       });
     };
@@ -74,7 +76,7 @@ const HoneycombBackground = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="hex-bg" aria-hidden="true">
+    <div className="hex-bg" aria-hidden="true">
       <svg
         className="hex-bg-svg base"
         viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
@@ -87,6 +89,7 @@ const HoneycombBackground = () => {
         </g>
       </svg>
       <svg
+        ref={highlightRef}
         className="hex-bg-svg highlight"
         viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
         preserveAspectRatio="xMidYMid slice"

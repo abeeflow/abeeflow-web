@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import type { ReactElement } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import RevealOnScroll from './RevealOnScroll';
 import './Cases.css';
 
 // Un icono por caso, en el mismo orden que t.cases.items.
@@ -37,7 +36,7 @@ const Cases = () => {
 
         <div className="cases-grid">
           {cases.map((caseItem, index) => (
-            <RevealOnScroll key={caseItem.title} delay={0.05 * (index % 2)}>
+            <div key={caseItem.title}>
               <article
                 id={index === MIGRATION_INDEX ? 'caso-migracion' : undefined}
                 className={`case-card ${index % 2 === 0 ? 'case-card-warm' : 'case-card-blue'}`}
@@ -58,7 +57,7 @@ const Cases = () => {
                   </div>
                 </dl>
               </article>
-            </RevealOnScroll>
+            </div>
           ))}
         </div>
 

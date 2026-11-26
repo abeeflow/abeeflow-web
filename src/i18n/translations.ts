@@ -13,7 +13,7 @@ export const translations = {
       title: 'Automatizamos los procesos repetitivos de tu empresa.',
       highlight: 'Código propio, sin licencias.',
       description: 'Construimos robots de software (RPA), agentes de IA y sistemas a medida para que tu equipo deje de perder horas en tareas manuales o pagando licencias caras.',
-      cta: 'Agendar diagnóstico gratuito (30 min)',
+      cta: 'Agendar diagnóstico gratuito (30 min)',
       whatsapp: 'Escribir por WhatsApp',
       cells: {
         nw: 'DATOS',
@@ -236,7 +236,7 @@ export const translations = {
       title: 'We automate your company\'s repetitive processes.',
       highlight: 'Code you own, no licenses.',
       description: 'We build software robots (RPA), AI agents, and custom systems so your team stops losing hours on manual tasks or paying for expensive licenses.',
-      cta: 'Book a free diagnosis (30 min)',
+      cta: 'Book a free diagnosis (30 min)',
       whatsapp: 'Message us on WhatsApp',
       cells: {
         nw: 'DATA',
