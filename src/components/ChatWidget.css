@@ -339,6 +339,16 @@
     border-color: var(--yellow);
 }
 
+/* El autocompletado del navegador pinta el campo de celeste. Se tapa con
+   el fondo del tema (una sombra interior, porque background no aplica). */
+.chat-lead-field input:-webkit-autofill,
+.chat-lead-field input:-webkit-autofill:hover,
+.chat-lead-field input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--ink);
+    caret-color: var(--ink);
+    box-shadow: 0 0 0 100px var(--bg) inset;
+}
+
 .chat-lead-field [aria-invalid='true'] {
     border-color: #B85D3A;
 }
