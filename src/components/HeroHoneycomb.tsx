@@ -147,7 +147,7 @@ const HeroHoneycomb = ({ tick, animate }: HeroHoneycombProps) => {
           <circle
             key={`pulse-${tick}`}
             className="hex-pulse"
-            r="6"
+            r="9"
             style={{ '--fx': `${from.x}px`, '--fy': `${from.y}px`, '--tx': `${HUB.x}px`, '--ty': `${HUB.y}px` } as CSSProperties}
           />
         )}

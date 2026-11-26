@@ -4,12 +4,20 @@ import './Contact.css';
 
 const teamImages = ['/maria.jpg', '/chris.jpg', '/esau.jpg'];
 
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
+
 interface ContactProps {
   // En el inicio el cierre suma los tres pasos y el equipo.
   full?: boolean;
+  // Pasos con otras palabras (la vDraft para mypes). Por defecto, los del sitio.
+  steps?: readonly Step[];
 }
 
-const Contact = ({ full = false }: ContactProps) => {
+const Contact = ({ full = false, steps }: ContactProps) => {
   const { t } = useLanguage();
   const calendarUrl = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3J3r3K7-GmhVRDOp2PYGN66AQUKCkP0F-Y_fhgG3nKqhtyyg7vykG27zkLGe1gfE04zlBU3TAl?gv=true';
 
@@ -52,7 +60,7 @@ const Contact = ({ full = false }: ContactProps) => {
               <div className="contact-steps">
                 <h3 className="contact-aside-title">{t.process.title}</h3>
                 <ol className="contact-steps-list">
-                  {t.process.steps.map((step) => (
+                  {(steps ?? t.process.steps).map((step) => (
                     <li key={step.number} className="contact-step">
                       <span className="contact-step-number" aria-hidden="true">{step.number}</span>
                       <div>

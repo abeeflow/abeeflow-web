@@ -1,0 +1,281 @@
+/* vDraft para mypes. Usa los mismos tokens y componentes que el inicio;
+   aquí solo va lo que esta versión tiene de distinto. */
+
+/* Primera línea del titular, en el amarillo de la marca. */
+.draft-h1-lead {
+    display: block;
+    color: var(--yellow-hover);
+}
+
+/* Tres datos bajo los botones: lo que una mype pregunta primero. */
+.draft-facts {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    margin-top: var(--space-6);
+}
+
+.draft-facts li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.draft-facts li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--yellow);
+    flex-shrink: 0;
+}
+
+.draft-section {
+    padding: var(--space-12) 0 var(--space-10);
+}
+
+/* "¿Te suena familiar?": una tarjeta por problema. Arriba, el problema
+   con las palabras del dueño ("Hoy"); abajo, en una franja amarilla,
+   cómo queda ("Con abeeFlow"). El mismo antes/después de los casos. */
+.draft-pains {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+}
+
+/* Cada tarjeta ocupa tres filas de la grilla (icono, "Hoy", franja) con
+   subgrid: así la franja amarilla empieza a la misma altura en toda la fila. */
+.draft-pain {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    transition: border-color 200ms ease;
+}
+
+.draft-pain:hover {
+    border-color: var(--yellow);
+}
+
+.draft-pain-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: var(--space-6) var(--space-6) 0;
+    border-radius: var(--radius);
+    background: var(--yellow-light);
+    color: var(--yellow-hover);
+}
+
+/* El dl no arma caja propia: sus dos partes son filas de la tarjeta. */
+.draft-pain-compare {
+    display: contents;
+}
+
+.draft-pain-compare dt {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: var(--space-1);
+}
+
+.draft-pain-now {
+    padding: var(--space-4) var(--space-6) var(--space-5);
+}
+
+.draft-pain-now dt {
+    color: var(--text-muted);
+}
+
+.draft-pain-now dd {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: 1.2;
+    color: var(--ink);
+    text-wrap: balance;
+}
+
+.draft-pain-fix {
+    padding: var(--space-4) var(--space-6) var(--space-5);
+    background: color-mix(in srgb, var(--yellow) 10%, var(--surface));
+    border-top: 1px solid color-mix(in srgb, var(--yellow) 30%, var(--surface));
+}
+
+.draft-pain-fix dt {
+    color: var(--yellow-hover);
+}
+
+.draft-pain-fix dd {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.55;
+    color: var(--ink);
+}
+
+/* Cierre de la sección: invitación con su enlace, no una nota suelta. */
+.draft-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+    margin-top: var(--space-8);
+    text-align: center;
+}
+
+.draft-note p {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+}
+
+/* Resultados: tres cifras grandes y los clientes en una línea. */
+.draft-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    padding: var(--space-8) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+/* La cifra va arriba a la vista; en el código, la etiqueta primero. */
+.draft-result {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--space-2);
+}
+
+.draft-result dd {
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-3xl), 3.4vw, 48px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--yellow-hover);
+    white-space: nowrap;
+}
+
+.draft-result dt {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    color: var(--text-secondary);
+    max-width: 280px;
+}
+
+.draft-clients {
+    margin-top: var(--space-6);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.draft-clients span {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+/* Marca de borrador: abajo a la izquierda, lejos del botón del chat. */
+.draft-badge {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    z-index: 90;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding: var(--space-1) var(--space-4) var(--space-1) var(--space-1);
+    border-radius: var(--radius-pill);
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: var(--shadow-lg);
+    transition: transform 160ms var(--ease-out);
+}
+
+.draft-badge:active {
+    transform: scale(0.97);
+}
+
+.draft-badge-tag {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-pill);
+    background: var(--yellow);
+    color: #15110D;
+    font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+    .draft-pains {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .draft-results {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+        padding: var(--space-6) 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .draft-section {
+        padding: var(--space-10) 0 var(--space-8);
+    }
+
+    .draft-facts {
+        justify-content: center;
+        margin-top: var(--space-5);
+    }
+
+    /* En el teléfono solo la etiqueta: el texto completo chocaba con el
+       botón del chat, abajo a la derecha. */
+    .draft-badge {
+        left: 16px;
+        bottom: 16px;
+        padding-right: var(--space-1);
+    }
+
+    .draft-badge-text {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .draft-pains {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .draft-pain-icon {
+        margin: var(--space-5) var(--space-5) 0;
+    }
+
+    .draft-pain-now,
+    .draft-pain-fix {
+        padding-left: var(--space-5);
+        padding-right: var(--space-5);
+    }
+
+    .draft-pain-now dd {
+        font-size: var(--text-xl);
+    }
+}

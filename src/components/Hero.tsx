@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import type { RefObject } from 'react';
-import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
+import { useRef } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
 import { WHATSAPP_URL } from '../lib/links';
+import { useHeroTick } from '../hooks/useHeroTick';
 import SectionLink from './SectionLink';
 import HeroHoneycomb from './HeroHoneycomb';
 import './Hero.css';
@@ -13,26 +13,7 @@ const arrow = (
   </svg>
 );
 
-// Cada cuánto cambia el verbo del titular.
-const WORD_INTERVAL_MS = 2800;
 const easeOut = [0.23, 1, 0.32, 1] as const;
-
-// Pulso común del hero: sube cada 2,8 s y mueve a la vez el verbo del
-// titular y el panal. Se detiene fuera de pantalla y con "reducir
-// movimiento" no avanza.
-const useHeroTick = (ref: RefObject<HTMLElement | null>) => {
-  const inView = useInView(ref);
-  const reduceMotion = useReducedMotion() ?? false;
-  const [tick, setTick] = useState(0);
-
-  useEffect(() => {
-    if (reduceMotion || !inView) return;
-    const id = setInterval(() => setTick((n) => n + 1), WORD_INTERVAL_MS);
-    return () => clearInterval(id);
-  }, [reduceMotion, inView]);
-
-  return { tick: reduceMotion ? 0 : tick, animate: !reduceMotion };
-};
 
 // Verbo del titular que cambia solo. La palabra vieja sube y se desenfoca
 // mientras la nueva entra desde abajo: las dos se cruzan sin dejar hueco.

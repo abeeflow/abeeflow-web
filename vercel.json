@@ -4,7 +4,9 @@
   "framework": "vite",
   "rewrites": [
     { "source": "/vetsuite", "destination": "/index.html" },
-    { "source": "/desarrollo-web", "destination": "/index.html" }
+    { "source": "/desarrollo-web", "destination": "/index.html" },
+    { "source": "/vdraft", "destination": "/index.html" },
+    { "source": "/vDraft", "destination": "/index.html" }
   ],
   "headers": [
     {

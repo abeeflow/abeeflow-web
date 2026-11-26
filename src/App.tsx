@@ -8,11 +8,14 @@ import ChatWidget from './components/ChatWidget';
 import Home from './pages/Home';
 import VetSuitePage from './pages/VetSuitePage';
 import DevPage from './pages/DevPage';
+import DraftPage from './pages/DraftPage';
 
 // Páginas internas. Cualquier otra ruta muestra el inicio.
 const pages: Record<string, ComponentType> = {
   '/vetsuite': VetSuitePage,
   '/desarrollo-web': DevPage,
+  // Borrador del inicio para mypes, para comparar antes de publicarlo.
+  '/vdraft': DraftPage,
 };
 
 const SkipLink = () => {
@@ -26,7 +29,8 @@ const SkipLink = () => {
 
 function App() {
   useLenis();
-  const Page = pages[window.location.pathname.replace(/\/+$/, '')] ?? Home;
+  // En minúsculas: /vDraft y /vdraft llevan a la misma página.
+  const Page = pages[window.location.pathname.replace(/\/+$/, '').toLowerCase()] ?? Home;
 
   return (
     <LanguageProvider>

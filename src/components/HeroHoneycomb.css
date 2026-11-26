@@ -140,9 +140,13 @@
     }
 }
 
-/* Cuando llega el pulso, el centro se ilumina un instante. */
+/* Cuando llega el pulso, el borde del centro se enciende un instante.
+   Solo el borde: un relleno amarillo dejaba el logo amarillo sin
+   contraste. */
 .hex-hub-glow {
-    fill: var(--yellow);
+    fill: none;
+    stroke: var(--yellow);
+    stroke-width: 5;
     pointer-events: none;
     animation: hub-glow 700ms ease-out 950ms both;
 }
@@ -153,7 +157,7 @@
         opacity: 0;
     }
     30% {
-        opacity: 0.22;
+        opacity: 0.7;
     }
 }
 
