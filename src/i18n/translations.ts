@@ -2,14 +2,12 @@ export const translations = {
   es: {
     nav: {
       servicios: 'Servicios',
-      nosotros: 'Nosotros',
       casos: 'Casos reales',
-      proceso: 'Proceso',
+      faq: 'Preguntas',
       contacto: 'Contacto',
       skip: 'Saltar al contenido'
     },
     hero: {
-      badge: 'Automatización, IA y software a medida',
       // El verbo cambia cada pocos segundos; el primero es el que leen
       // los lectores de pantalla y quien prefiere menos movimiento.
       words: ['Automatizamos', 'Integramos', 'Optimizamos', 'Digitalizamos', 'Transformamos'],
@@ -36,37 +34,21 @@ export const translations = {
         { value: '<24h', label: 'Respuesta de soporte' }
       ]
     },
-    paths: {
-      aria: 'Dos caminos',
-      items: [
-        { tag: 'Si hoy trabajan a mano', title: '¿Tu equipo pierde horas en Excel, reportes y WhatsApp?', desc: 'Automatizamos conciliaciones, cargas de datos y atención al cliente, o construimos el software que tu operación necesita.', link: 'Ver servicios' },
-        { tag: 'Si ya usan RPA con licencia', title: '¿Ya pagas UiPath, Blue Prism o Automation Anywhere?', desc: 'Migramos tus robots a código propio en Python. Hacen exactamente lo mismo y tu costo anual de licencia baja a $0.', link: 'Ver caso de migración' }
-      ]
-    },
     featured: {
-      badge: '// caso de éxito',
       title: 'Conciliación bancaria automática',
       desc: 'Un equipo de finanzas conciliaba sus bancos a mano todos los días. Automatizamos el proceso completo y dejaron de pagar licencias de RPA.',
       before: { label: 'Antes', value: '8 horas' },
       after: { label: 'Ahora', value: '30 min' },
       note: '99.7% de precisión en la detección de errores'
     },
-    logoStrip: {
-      aria: 'Empresas que confían en nosotros',
-      title: 'Empresas que confían en nosotros'
-    },
-    inlineCta: {
-      aria: 'Llamado a la acción',
-      action: 'Empieza con un diagnóstico gratuito',
-      outcome: 'mira qué automatizar primero'
+    proof: {
+      aria: 'Resultados y clientes',
+      clients: 'Empresas que confían en nosotros'
     },
     services: {
       title: 'Servicios',
       subtitle: 'La automatización es nuestro foco. También desarrollamos software y sitios web.',
-      viewDetail: 'Ver detalle',
-      back: 'Volver',
       main: {
-        tag: 'Servicio principal',
         title: 'Automatización con robots de software (RPA) + IA',
         desc: 'Robots de software que hacen las tareas repetitivas de tu empresa, e inteligencia artificial para las que necesitan leer o decidir.',
         benefits: [
@@ -78,29 +60,21 @@ export const translations = {
       alsoTitle: 'También desarrollamos',
       pageLinks: { dev: 'Ver proyectos de software y web' },
       items: [
-        { title: 'SaaS a medida', shortDesc: 'Sistemas de gestión en una sola plataforma para varias empresas o sedes, con paneles admin y APIs.', features: ['Sistemas de gestión por industria', 'Arquitectura multi-tenant desde el día uno', 'Apps web, paneles admin y APIs'] },
-        { title: 'Migración de datos', shortDesc: 'Digitalización documental de papel a la nube e integraciones en tiempo real entre sistemas.', features: ['Diseño y migración de bases de datos', 'Digitalización documental a la nube', 'Integraciones entre sistemas en tiempo real'] },
-        { title: 'Consultoría de procesos', shortDesc: 'Diagnóstico de cuellos de botella, KPIs, tableros y plan de optimización.', features: ['Diagnóstico de procesos y KPIs', 'Plan de optimización por etapas', 'Paneles, reportes y alertas proactivas'] },
-        { title: 'Desarrollo web', shortDesc: 'Sitios corporativos y landing pages rápidas, adaptadas a móviles y listas para buscadores.', features: ['Landing pages y sitios corporativos', 'SEO básico y rendimiento optimizado', 'Adaptados a cualquier dispositivo'] }
+        { title: 'SaaS a medida', shortDesc: 'Sistemas de gestión en una sola plataforma para varias empresas o sedes, con paneles admin y APIs.' },
+        { title: 'Migración de datos', shortDesc: 'Digitalización documental de papel a la nube e integraciones en tiempo real entre sistemas.' },
+        { title: 'Consultoría de procesos', shortDesc: 'Diagnóstico de cuellos de botella, KPIs, tableros y plan de optimización.' },
+        { title: 'Desarrollo web', shortDesc: 'Sitios corporativos y landing pages rápidas, adaptadas a móviles y listas para buscadores.' }
       ]
     },
     product: {
-      tag: 'Producto propio',
       title: 'VetSuite',
-      desc: 'Nuestro sistema para clínicas veterinarias. Entra a una clínica de ejemplo y recórrela con el rol que quieras.',
+      desc: 'Nuestro propio sistema para clínicas veterinarias. Entra a una clínica de ejemplo y recórrela con el rol que quieras.',
       demo: 'Probar la demo',
-      more: 'Ver más',
-      roles: [
-        { name: 'Administrador', desc: 'Toda la clínica: agenda, ventas, inventario y reportes.' },
-        { name: 'Veterinario', desc: 'Agenda del día, historias clínicas, vacunas y recetas.' },
-        { name: 'Recepción', desc: 'Citas, sala de espera, cotizaciones y cobros.' },
-        { name: 'Almacén', desc: 'Stock, lotes, movimientos de inventario (kardex) y órdenes de compra.' }
-      ]
+      more: 'Ver más'
     },
     pages: {
       back: 'Volver al inicio',
       vetsuite: {
-        badge: '// SaaS para veterinarias',
         title: 'VetSuite',
         subtitle: 'El sistema para gestionar tu clínica veterinaria: agenda, historias clínicas, ventas e inventario. Pruébalo ahora con una clínica de ejemplo.',
         features: [
@@ -113,7 +87,6 @@ export const translations = {
         cta: 'Probar la demo'
       },
       dev: {
-        badge: '// software y web',
         title: 'Software a medida y desarrollo web',
         subtitle: 'Sistemas de gestión, plataformas SaaS y sitios profesionales que hemos desarrollado.',
         cta: 'Solicitar cotización'
@@ -128,12 +101,6 @@ export const translations = {
       ]
     },
     about: {
-      title: 'Sobre nosotros',
-      paragraphs: [
-        'En abeeFlow automatizamos procesos empresariales con RPA e IA. Migramos bots con licencia a Python, construimos agentes de IA y desarrollamos el software que tu operación necesita.',
-        'Trabajamos con startups, PYMEs y empresas que necesitan digitalizar sus operaciones: desarrollo de sistemas de gestión, automatización con Python e IA, migración de datos y desarrollo web profesional.',
-        'Nuestro compromiso es entregar soluciones escalables, seguras y documentadas, con código limpio y buenas prácticas que garantizan resultados a largo plazo.'
-      ],
       teamTitle: 'Nuestro equipo',
       team: [
         { name: 'Maria Flores', role: 'Head, Product & Strategy' },
@@ -160,7 +127,6 @@ export const translations = {
       ]
     },
     process: {
-      badge: '// proceso',
       title: 'Cómo trabajamos',
       steps: [
         { number: '01', title: 'Diagnóstico', description: 'Una reunión de 30 minutos para ver qué procesos conviene automatizar y cuánto ahorrarías.' },
@@ -169,7 +135,6 @@ export const translations = {
       ]
     },
     faq: {
-      badge: '// preguntas frecuentes',
       title: 'Preguntas frecuentes',
       items: [
         { q: '¿Tengo que cambiar los sistemas que ya uso?', a: 'No. Los robots trabajan sobre tus sistemas actuales (ERP, Excel, portales bancarios, correo) igual que lo haría una persona.' },
@@ -202,7 +167,7 @@ export const translations = {
         vetsuite: 'Producto: VetSuite',
         nosotros: 'Nosotros',
         casos: 'Casos reales',
-        proceso: 'Proceso',
+        faq: 'Preguntas frecuentes',
         contacto: 'Contacto'
       }
     },
@@ -228,14 +193,12 @@ export const translations = {
   en: {
     nav: {
       servicios: 'Services',
-      nosotros: 'About',
       casos: 'Real Cases',
-      proceso: 'Process',
+      faq: 'FAQ',
       contacto: 'Contact',
       skip: 'Skip to content'
     },
     hero: {
-      badge: 'Automation, AI and custom software',
       words: ['We automate', 'We integrate', 'We optimize', 'We digitize', 'We transform'],
       title: 'your company\'s repetitive processes.',
       highlight: 'Code you own, no licenses.',
@@ -260,37 +223,21 @@ export const translations = {
         { value: '<24h', label: 'Support response' }
       ]
     },
-    paths: {
-      aria: 'Two paths',
-      items: [
-        { tag: 'If you work by hand today', title: 'Is your team losing hours on Excel, reports, and WhatsApp?', desc: 'We automate reconciliations, data entry, and customer support, or build the software your operation needs.', link: 'See services' },
-        { tag: 'If you already pay for RPA', title: 'Already paying for UiPath, Blue Prism, or Automation Anywhere?', desc: 'We migrate your robots to Python code you own. They do exactly the same work and your yearly license cost drops to $0.', link: 'See migration case' }
-      ]
-    },
     featured: {
-      badge: '// success story',
       title: 'Automated bank reconciliation',
       desc: 'A finance team reconciled its banks by hand every day. We automated the whole process and they stopped paying for RPA licenses.',
       before: { label: 'Before', value: '8 hours' },
       after: { label: 'Now', value: '30 min' },
       note: '99.7% accuracy in error detection'
     },
-    logoStrip: {
-      aria: 'Companies that trust us',
-      title: 'Companies that trust us'
-    },
-    inlineCta: {
-      aria: 'Call to action',
-      action: 'Start with a free diagnosis',
-      outcome: 'see what to automate first'
+    proof: {
+      aria: 'Results and clients',
+      clients: 'Companies that trust us'
     },
     services: {
       title: 'Services',
       subtitle: 'Automation is our focus. We also build software and websites.',
-      viewDetail: 'View details',
-      back: 'Back',
       main: {
-        tag: 'Core service',
         title: 'Automation with software robots (RPA) + AI',
         desc: 'Software robots that handle your company\'s repetitive tasks, and artificial intelligence for the ones that need reading or deciding.',
         benefits: [
@@ -302,29 +249,21 @@ export const translations = {
       alsoTitle: 'We also develop',
       pageLinks: { dev: 'See software and web projects' },
       items: [
-        { title: 'Custom SaaS', shortDesc: 'Management systems on a single platform for several companies or branches, with admin panels and APIs.', features: ['Industry-specific management systems', 'Multi-tenant architecture from day one', 'Web apps, admin panels, and APIs'] },
-        { title: 'Data Migration', shortDesc: 'Document digitization from paper to the cloud and real-time integrations between systems.', features: ['Database design and migration', 'Document digitization to the cloud', 'Real-time system integrations'] },
-        { title: 'Process Consulting', shortDesc: 'Bottleneck diagnosis, KPIs, dashboards, and an optimization plan.', features: ['Process and KPI diagnostics', 'Step-by-step optimization plan', 'Dashboards, reports, and proactive alerts'] },
-        { title: 'Web Development', shortDesc: 'Fast corporate sites and landing pages, mobile-ready and search-engine friendly.', features: ['Landing pages and corporate sites', 'Basic SEO and optimized performance', 'Adapted to any device'] }
+        { title: 'Custom SaaS', shortDesc: 'Management systems on a single platform for several companies or branches, with admin panels and APIs.' },
+        { title: 'Data Migration', shortDesc: 'Document digitization from paper to the cloud and real-time integrations between systems.' },
+        { title: 'Process Consulting', shortDesc: 'Bottleneck diagnosis, KPIs, dashboards, and an optimization plan.' },
+        { title: 'Web Development', shortDesc: 'Fast corporate sites and landing pages, mobile-ready and search-engine friendly.' }
       ]
     },
     product: {
-      tag: 'Our own product',
       title: 'VetSuite',
-      desc: 'Our system for veterinary clinics. Step into a sample clinic and explore it with the role you choose.',
+      desc: 'Our own system for veterinary clinics. Step into a sample clinic and explore it with the role you choose.',
       demo: 'Try the demo',
-      more: 'Learn more',
-      roles: [
-        { name: 'Administrator', desc: 'The whole clinic: schedule, sales, inventory, and reports.' },
-        { name: 'Veterinarian', desc: 'Daily schedule, medical records, vaccines, and prescriptions.' },
-        { name: 'Front desk', desc: 'Appointments, waiting room, quotes, and payments.' },
-        { name: 'Warehouse', desc: 'Stock, batches, inventory movements (stock ledger), and purchase orders.' }
-      ]
+      more: 'Learn more'
     },
     pages: {
       back: 'Back to home',
       vetsuite: {
-        badge: '// SaaS for vet clinics',
         title: 'VetSuite',
         subtitle: 'The system to run your veterinary clinic: schedule, medical records, sales, and inventory. Try it now with a sample clinic.',
         features: [
@@ -337,7 +276,6 @@ export const translations = {
         cta: 'Try the demo'
       },
       dev: {
-        badge: '// software and web',
         title: 'Custom software and web development',
         subtitle: 'Management systems, SaaS platforms, and professional sites we have built.',
         cta: 'Request a quote'
@@ -352,12 +290,6 @@ export const translations = {
       ]
     },
     about: {
-      title: 'About Us',
-      paragraphs: [
-        'At abeeFlow we automate business processes with RPA and AI. We migrate licensed bots to Python, build AI agents, and develop the software your operation needs.',
-        'We work with startups, SMEs, and companies that need to digitize their operations: management system development, automation with Python and AI, data migration, and professional web development.',
-        'Our commitment is to deliver scalable, secure, and documented solutions, with clean code and best practices that guarantee long-term results.'
-      ],
       teamTitle: 'Our Team',
       team: [
         { name: 'Maria Flores', role: 'Head, Product & Strategy' },
@@ -384,7 +316,6 @@ export const translations = {
       ]
     },
     process: {
-      badge: '// process',
       title: 'How We Work',
       steps: [
         { number: '01', title: 'Diagnosis', description: 'A 30-minute meeting to see which processes are worth automating and how much you would save.' },
@@ -393,7 +324,6 @@ export const translations = {
       ]
     },
     faq: {
-      badge: '// faq',
       title: 'Frequently asked questions',
       items: [
         { q: 'Do I have to change the systems I already use?', a: 'No. The robots work on top of your current systems (ERP, Excel, bank portals, email) just like a person would.' },
@@ -426,7 +356,7 @@ export const translations = {
         vetsuite: 'Product: VetSuite',
         nosotros: 'About Us',
         casos: 'Real Cases',
-        proceso: 'Process',
+        faq: 'FAQ',
         contacto: 'Contact'
       }
     },

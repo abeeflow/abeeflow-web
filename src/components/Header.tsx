@@ -7,7 +7,7 @@ import SectionLink from './SectionLink';
 import ThemeToggle from './ThemeToggle';
 import './Header.css';
 
-const sections = ['servicios', 'proceso', 'casos', 'nosotros', 'contacto'] as const;
+const sections = ['servicios', 'casos', 'faq', 'contacto'] as const;
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);

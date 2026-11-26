@@ -42,7 +42,7 @@ const Footer = () => {
             <div className="footer-col-title">{t.footer.empresa}</div>
             <SectionLink href="#nosotros">{t.footer.links.nosotros}</SectionLink>
             <SectionLink href="#casos">{t.footer.links.casos}</SectionLink>
-            <SectionLink href="#proceso">{t.footer.links.proceso}</SectionLink>
+            <SectionLink href="#faq">{t.footer.links.faq}</SectionLink>
             <SectionLink href="#contacto">{t.footer.links.contacto}</SectionLink>
           </div>
 

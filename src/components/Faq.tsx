@@ -10,7 +10,6 @@ const Faq = () => {
     <section id="faq" className="faq-section">
       <div className="container">
         <div className="section-header">
-          <div className="faq-badge">{t.faq.badge}</div>
           <h2 className="section-title">{t.faq.title}</h2>
         </div>
         <RevealOnScroll className="faq-list">

@@ -9,7 +9,7 @@ const VetSuitePage = () => {
 
   return (
     <>
-      <PageIntro badge={page.badge} title={page.title} subtitle={page.subtitle} cta={page.cta} ctaHref={VETSUITE_DEMO_URL} />
+      <PageIntro title={page.title} subtitle={page.subtitle} cta={page.cta} ctaHref={VETSUITE_DEMO_URL} />
       <section className="container" aria-label={page.title}>
         <div className="feature-grid">
           {page.features.map((feature) => (

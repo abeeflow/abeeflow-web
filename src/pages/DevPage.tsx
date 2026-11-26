@@ -9,7 +9,7 @@ const DevPage = () => {
 
   return (
     <>
-      <PageIntro badge={page.badge} title={page.title} subtitle={page.subtitle} cta={page.cta} />
+      <PageIntro title={page.title} subtitle={page.subtitle} cta={page.cta} />
       <SaasSolutions />
       <Contact />
     </>

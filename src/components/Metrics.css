@@ -80,3 +80,59 @@
         font-size: clamp(var(--text-xl), 7vw, var(--text-3xl));
     }
 }
+
+/* Clientes, en la misma banda que las cifras. */
+.metrics-clients {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+}
+
+.metrics-clients-title {
+    flex-shrink: 0;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.metrics-clients-list {
+    list-style: none;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-5);
+}
+
+.metrics-client {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.82);
+    text-decoration: none;
+    transition: color 200ms ease;
+}
+
+a.metrics-client:hover {
+    color: var(--yellow);
+}
+
+@media (max-width: 900px) {
+    .metrics-clients {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-3);
+    }
+
+    .metrics-clients-list {
+        justify-content: flex-start;
+        column-gap: var(--space-6);
+    }
+}

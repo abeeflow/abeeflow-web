@@ -1,5 +1,5 @@
 .featured-case {
-    padding: var(--space-12) 0 var(--space-6);
+    margin-bottom: var(--space-8);
 }
 
 /* Bloque amarillo: el texto va en tinta fija en ambos temas. */
@@ -11,20 +11,14 @@
     align-items: center;
     color: #0A0A0A;
     background: linear-gradient(135deg, #F6CB5C 0%, #E0AC36 55%, #C9952A 100%);
-    border-radius: 28px;
+    border-radius: var(--radius-lg);
     padding: var(--space-10) var(--space-8);
     box-shadow: 0 30px 80px rgba(224, 172, 54, 0.3);
 }
 
-.featured-case-badge {
-    font-family: var(--font-pixel);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--space-4);
-}
-
 .featured-case-title {
-    font-size: clamp(var(--text-3xl), 3.4vw, 48px); /* menor que el h1 (56px) */
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-2xl), 2.8vw, var(--text-4xl)); /* h3: debajo del h2 de la sección */
     font-weight: 400;
     line-height: 1.02;
     letter-spacing: -0.02em;
@@ -99,6 +93,7 @@
 /* 30 minutos de 8 horas es el 6% de la barra de arriba. */
 .featured-case-after .featured-case-bar {
     width: 6%;
+    min-width: 32px; /* tan corta que sin mínimo se leía como un punto */
     background: #0A0A0A;
 }
 

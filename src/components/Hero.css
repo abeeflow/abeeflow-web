@@ -13,28 +13,6 @@
     align-items: center;
 }
 
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    background: var(--yellow-light);
-    color: var(--yellow-hover);
-    padding: var(--space-2) var(--space-4);
-    border-radius: 24px;
-    font-family: var(--font-pixel);
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    margin-bottom: var(--space-5);
-}
-
-.hero-badge-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--yellow);
-    border-radius: 50%;
-}
-
 .hero h1 {
     font-size: clamp(var(--text-3xl), 4.4vw, var(--text-5xl));
     font-weight: 400;
@@ -195,7 +173,6 @@
 /* Entrada del hero, una sola vez al cargar: cada pieza sube 8px y
    aparece, con 50ms entre una y otra. Con "reducir movimiento" la
    regla global de index.css la deja casi instantánea. */
-.hero-badge,
 .hero h1,
 .hero-content > p,
 .hero-buttons,
@@ -203,72 +180,15 @@
     animation: hero-enter 500ms var(--ease-out) both;
 }
 
-.hero h1 { animation-delay: 50ms; }
-.hero-content > p { animation-delay: 100ms; }
-.hero-buttons { animation-delay: 150ms; }
-.hero-visual { animation-delay: 100ms; }
+.hero-content > p { animation-delay: 50ms; }
+.hero-buttons { animation-delay: 100ms; }
+.hero-visual { animation-delay: 50ms; }
 
 @keyframes hero-enter {
     from {
         opacity: 0;
         transform: translateY(8px);
     }
-}
-
-/* Dos caminos: quien trabaja a mano y quien ya paga licencias RPA. */
-.hero-paths {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-5);
-    margin-top: var(--space-10);
-}
-
-.hero-path {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    padding: var(--space-6);
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.hero-path:hover {
-    border-color: var(--yellow);
-    box-shadow: var(--shadow-lg);
-}
-
-.hero-path-tag {
-    font-family: var(--font-pixel);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--yellow-hover);
-    background: var(--yellow-light);
-    padding: var(--space-1) var(--space-3);
-    border-radius: var(--radius-pill);
-    margin-bottom: var(--space-4);
-}
-
-.hero-path-title {
-    font-family: var(--font-sans);
-    font-size: var(--text-lg);
-    font-weight: 700;
-    line-height: 1.35;
-    color: var(--ink);
-    margin-bottom: var(--space-2);
-}
-
-.hero .hero-path-desc {
-    font-size: var(--text-sm);
-    line-height: 1.6;
-    max-width: none;
-    margin: 0 0 var(--space-4);
-}
-
-.hero-path .btn-link-arrow {
-    margin-top: auto;
 }
 
 @media (max-width: 900px) {
@@ -288,12 +208,6 @@
 
     .hero-buttons {
         justify-content: center;
-    }
-
-    .hero-paths {
-        grid-template-columns: 1fr;
-        text-align: left;
-        margin-top: var(--space-8);
     }
 }
 

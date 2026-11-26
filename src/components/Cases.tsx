@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ReactElement } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import FeaturedCase from './FeaturedCase';
 import './Cases.css';
 
 // Un icono por caso, en el mismo orden que t.cases.items.
@@ -15,16 +16,15 @@ const caseIcons: ReactElement[] = [
   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
 ];
 
-// Los primeros casos son los destacados; el resto aparece al expandir.
-const FEATURED_COUNT = 4;
-
-// El caso de migración recibe un id para el enlace del hero.
-const MIGRATION_INDEX = 1;
+// El primer caso va arriba como caso destacado; de los demás se ven
+// cuatro y el resto aparece al expandir.
+const VISIBLE_COUNT = 4;
 
 const Cases = () => {
   const { t } = useLanguage();
   const [showAll, setShowAll] = useState(false);
-  const cases = showAll ? t.cases.items : t.cases.items.slice(0, FEATURED_COUNT);
+  const rest = t.cases.items.slice(1);
+  const cases = showAll ? rest : rest.slice(0, VISIBLE_COUNT);
 
   return (
     <section id="casos" className="cases">
@@ -34,15 +34,16 @@ const Cases = () => {
           <p className="section-subtitle">{t.cases.subtitle}</p>
         </div>
 
+        <FeaturedCase />
+
         <div className="cases-grid">
           {cases.map((caseItem, index) => (
             <div key={caseItem.title}>
               <article
-                id={index === MIGRATION_INDEX ? 'caso-migracion' : undefined}
                 className={`case-card ${index % 2 === 0 ? 'case-card-warm' : 'case-card-blue'}`}
               >
                 <div className="case-company">
-                  <div className="case-company-logo" aria-hidden="true">{caseIcons[index]}</div>
+                  <div className="case-company-logo" aria-hidden="true">{caseIcons[index + 1]}</div>
                   <div className="case-company-name">{caseItem.who}</div>
                 </div>
                 <h3 className="case-title">{caseItem.title}</h3>

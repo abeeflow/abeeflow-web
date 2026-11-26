@@ -12,9 +12,6 @@ const arrow = (
   </svg>
 );
 
-// Destino de cada tarjeta de "dos caminos", en el mismo orden que el texto.
-const pathLinks = ['#servicios', '#caso-migracion'];
-
 // Cada cuánto cambia el verbo del titular.
 const WORD_INTERVAL_MS = 2800;
 const easeOut = [0.23, 1, 0.32, 1] as const;
@@ -67,11 +64,6 @@ const Hero = () => {
       <div className="container">
         <div className="hero-inner">
           <div className="hero-content">
-            <div className="hero-badge">
-              <span className="hero-badge-dot"></span>
-              {t.hero.badge}
-            </div>
-
             <h1>
               {/* Los lectores de pantalla leen una frase fija; la parte visual cambia. */}
               <span className="sr-only">
@@ -101,20 +93,6 @@ const Hero = () => {
           <div className="hero-visual">
             <HeroHoneycomb />
           </div>
-        </div>
-
-        <div className="hero-paths" aria-label={t.paths.aria}>
-          {t.paths.items.map((path, index) => (
-            <div key={path.tag} className="hero-path">
-              <span className="hero-path-tag">{path.tag}</span>
-              <h2 className="hero-path-title">{path.title}</h2>
-              <p className="hero-path-desc">{path.desc}</p>
-              <SectionLink href={pathLinks[index]} className="btn-link-arrow">
-                {path.link}
-                {arrow}
-              </SectionLink>
-            </div>
-          ))}
         </div>
       </div>
     </section>

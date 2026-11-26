@@ -3,7 +3,6 @@ import SectionLink from './SectionLink';
 import './PageIntro.css';
 
 interface PageIntroProps {
-  badge: string;
   title: string;
   subtitle: string;
   cta: string;
@@ -18,7 +17,7 @@ const arrow = (
 );
 
 // Cabecera de las páginas internas (VetSuite, desarrollo web).
-const PageIntro = ({ badge, title, subtitle, cta, ctaHref }: PageIntroProps) => {
+const PageIntro = ({ title, subtitle, cta, ctaHref }: PageIntroProps) => {
   const { t } = useLanguage();
 
   return (
@@ -30,10 +29,6 @@ const PageIntro = ({ badge, title, subtitle, cta, ctaHref }: PageIntroProps) => 
           </svg>
           {t.pages.back}
         </a>
-        <div className="hero-badge">
-          <span className="hero-badge-dot"></span>
-          {badge}
-        </div>
         <h1 className="page-intro-title">{title}</h1>
         <p className="page-intro-subtitle">{subtitle}</p>
         {ctaHref ? (
