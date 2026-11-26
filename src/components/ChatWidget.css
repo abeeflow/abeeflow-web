@@ -7,6 +7,22 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 12px;
+    transition:
+        opacity 200ms var(--ease-out),
+        transform 200ms var(--ease-out),
+        visibility 0s;
+}
+
+/* Escondido mientras el botón principal del hero se ve (solo teléfono). */
+.chat-widget-tucked {
+    opacity: 0;
+    transform: translateY(16px);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 200ms var(--ease-out),
+        transform 200ms var(--ease-out),
+        visibility 0s linear 200ms;
 }
 
 /* Panel de chat */
@@ -21,18 +37,26 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    animation: panel-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     overflow: hidden;
+    /* Crece desde el botón que lo abre (abajo a la derecha), no desde el centro.
+       Transition + @starting-style: se puede interrumpir, a diferencia de keyframes. */
+    transform-origin: bottom right;
+    transition:
+        opacity 250ms var(--ease-out),
+        transform 250ms var(--ease-out);
+}
+
+@starting-style {
+    .chat-panel {
+        opacity: 0;
+        transform: translateY(8px) scale(0.96);
+    }
 }
 
 [data-theme="dark"] .chat-panel {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes panel-in {
-    from { opacity: 0; transform: translateY(12px) scale(0.96); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-}
 
 /* Header */
 .chat-panel-header {
@@ -310,12 +334,15 @@
     justify-content: center;
     cursor: pointer;
     flex-shrink: 0;
-    transition: background 0.25s, transform 0.25s;
+    transition: background-color 200ms ease, transform 160ms var(--ease-out);
 }
 
 .chat-send:hover:not(:disabled) {
     background: var(--yellow-hover);
-    transform: scale(1.05);
+}
+
+.chat-send:active:not(:disabled) {
+    transform: scale(0.95);
 }
 
 .chat-send:disabled {
@@ -336,16 +363,18 @@
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 4px 16px rgba(217, 164, 54, 0.2);
-    transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+    transition:
+        transform 160ms var(--ease-out),
+        box-shadow 200ms ease,
+        background-color 200ms ease;
 }
 
 .chat-toggle:hover {
     background: var(--yellow-hover);
-    transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(217, 164, 54, 0.3);
 }
 
-.chat-toggle.active {
+.chat-toggle:active {
     transform: scale(0.95);
 }
 

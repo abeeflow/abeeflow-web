@@ -1,5 +1,4 @@
 import { useLanguage } from '../i18n/LanguageContext';
-import RevealOnScroll from './RevealOnScroll';
 import './SaasSolutions.css';
 
 const projectMeta = [
@@ -18,7 +17,7 @@ const SaasSolutions = () => {
           {t.projects.items.map((project, index) => {
             const meta = projectMeta[index];
             return (
-              <RevealOnScroll key={project.name} delay={0.05 * index} className="projects-grid-item">
+              <div key={project.name} className="projects-grid-item">
                 <div className={`project-card ${meta.bgClass}`}>
                   <div className="project-card-icon">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -37,7 +36,7 @@ const SaasSolutions = () => {
                     </a>
                   )}
                 </div>
-              </RevealOnScroll>
+              </div>
             );
           })}
         </div>

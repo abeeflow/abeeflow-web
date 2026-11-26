@@ -27,6 +27,21 @@ const ChatWidget = () => {
   // Cuando es true se oculta el campo de texto y queda el botón de WhatsApp.
   const [suggestWhatsapp, setSuggestWhatsapp] = useState(false);
   const threadRef = useRef<HTMLDivElement>(null);
+  // En el teléfono el botón flotante tapaba el botón principal del hero.
+  // Mientras ese botón está a la vista, el flotante se esconde.
+  const [tucked, setTucked] = useState(false);
+
+  useEffect(() => {
+    const heroCta = document.querySelector('.hero .btn-primary');
+    if (!heroCta) return;
+    const phone = window.matchMedia('(max-width: 768px)');
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setTucked(phone.matches && entry.isIntersecting);
+    });
+    observer.observe(heroCta);
+    return () => observer.disconnect();
+  }, []);
 
   // Mantiene a la vista el último mensaje.
   useEffect(() => {
@@ -68,7 +83,7 @@ const ChatWidget = () => {
   };
 
   return (
-    <div className="chat-widget">
+    <div className={`chat-widget ${tucked && !open ? 'chat-widget-tucked' : ''}`}>
       {open && (
         <div className="chat-panel" role="dialog" aria-label={t.chatWidget.aria}>
           <div className="chat-panel-header">

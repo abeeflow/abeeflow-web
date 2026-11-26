@@ -19,7 +19,7 @@
     width: 100%;
     padding: var(--space-6);
     border-radius: var(--radius-card);
-    transition: all 0.3s;
+    transition: box-shadow 200ms ease;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -36,8 +36,8 @@
     border: 1px solid rgba(59,130,246,0.15);
 }
 
+/* La tarjeta no es un link: no se levanta, solo gana sombra. */
 .case-card:hover {
-    transform: translateY(-4px);
     box-shadow: var(--shadow-xl);
 }
 
@@ -122,7 +122,7 @@
     font-size: 10px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin-bottom: var(--space-1);
 }
 
@@ -175,9 +175,5 @@
 
     .case-card {
         padding: var(--space-5);
-    }
-
-    .case-card:hover {
-        transform: none;
     }
 }

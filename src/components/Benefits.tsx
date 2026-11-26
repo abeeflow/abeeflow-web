@@ -110,9 +110,9 @@ const Benefits = () => {
         <h3 className="services-also-title">{t.services.alsoTitle}</h3>
         <div className="services-grid">
           {t.services.items.map((service, index) => (
-            <RevealOnScroll key={service.title} delay={0.05 * index}>
+            <div key={service.title}>
               <ServiceCard icon={serviceIcons[index]} title={service.title} shortDesc={service.shortDesc} features={[...service.features]} viewDetail={t.services.viewDetail} back={t.services.back} />
-            </RevealOnScroll>
+            </div>
           ))}
         </div>
         <div className="services-page-links">

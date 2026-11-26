@@ -21,14 +21,14 @@
 .project-card {
     border-radius: var(--radius-card);
     padding: var(--space-6) var(--space-5);
-    transition: all 0.3s;
+    transition: box-shadow 200ms ease;
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
+/* La tarjeta no es un link (el link va adentro): no se levanta. */
 .project-card:hover {
-    transform: translateY(-4px);
     box-shadow: var(--shadow-xl);
 }
 

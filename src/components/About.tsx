@@ -1,5 +1,4 @@
 import { useLanguage } from '../i18n/LanguageContext';
-import RevealOnScroll from './RevealOnScroll';
 import SpotlightText from './SpotlightText';
 import './About.css';
 
@@ -23,7 +22,7 @@ const About = () => {
             <h3 className="team-title">{t.about.teamTitle}</h3>
             <div className="team-grid">
               {t.about.team.map((member, index) => (
-                <RevealOnScroll key={member.name} delay={0.08 * index}>
+                <div key={member.name}>
                   <div className="team-member" itemScope itemType="https://schema.org/Person">
                     <div className="team-avatar">
                       <img src={teamImages[index]} alt={`${member.name} - ${member.role}`} loading="lazy" width="120" height="120" itemProp="image" />
@@ -33,7 +32,7 @@ const About = () => {
                       <div className="team-role">{member.role}</div>
                     </div>
                   </div>
-                </RevealOnScroll>
+                </div>
               ))}
             </div>
           </div>

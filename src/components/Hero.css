@@ -80,15 +80,29 @@
     font-weight: 700;
     font-size: var(--text-base);
     text-decoration: none;
-    transition: all 0.25s;
+    transition:
+        transform 160ms var(--ease-out),
+        background-color 200ms ease,
+        box-shadow 200ms ease;
     border: none;
     cursor: pointer;
 }
 
 .btn-primary:hover {
     background: var(--yellow-hover);
-    transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(224, 172, 54, 0.3);
+}
+
+/* Solo con mouse: en pantallas táctiles el hover se queda pegado. */
+@media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* Al presionar, el botón se hunde un poco: confirma el clic. */
+.btn-primary:active {
+    transform: scale(0.97);
 }
 
 /* Secondary CTA: text link with arrow */
@@ -105,35 +119,36 @@
     background: transparent;
     border: none;
     padding: var(--space-2) 0;
-    transition: gap 0.25s;
+    min-height: 44px;
     cursor: pointer;
 }
 
+/* Subrayado que se dibuja de izquierda a derecha (transform, no width). */
 .btn-link-arrow::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: 4px;
-    width: 0;
+    bottom: 6px;
+    width: calc(100% - 24px);
     height: 2px;
     background: var(--yellow);
-    transition: width 0.25s ease;
-}
-
-.btn-link-arrow:hover {
-    gap: 12px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 200ms var(--ease-out);
 }
 
 .btn-link-arrow:hover::after {
-    width: calc(100% - 24px);
+    transform: scaleX(1);
 }
 
 .btn-link-arrow svg {
-    transition: transform 0.25s;
+    transition: transform 200ms var(--ease-out);
 }
 
-.btn-link-arrow:hover svg {
-    transform: translateX(2px);
+@media (hover: hover) and (pointer: fine) {
+    .btn-link-arrow:hover svg {
+        transform: translateX(3px);
+    }
 }
 
 .btn-link-arrow:focus-visible {
@@ -147,6 +162,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* Entrada del hero, una sola vez al cargar: cada pieza sube 8px y
+   aparece, con 50ms entre una y otra. Con "reducir movimiento" la
+   regla global de index.css la deja casi instantánea. */
+.hero-badge,
+.hero h1,
+.hero-content > p,
+.hero-buttons,
+.hero-visual {
+    animation: hero-enter 500ms var(--ease-out) both;
+}
+
+.hero h1 { animation-delay: 50ms; }
+.hero-content > p { animation-delay: 100ms; }
+.hero-buttons { animation-delay: 150ms; }
+.hero-visual { animation-delay: 100ms; }
+
+@keyframes hero-enter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
 }
 
 /* Dos caminos: quien trabaja a mano y quien ya paga licencias RPA. */

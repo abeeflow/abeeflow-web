@@ -23,7 +23,7 @@
 }
 
 .product-demo-title {
-    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+    font-size: clamp(var(--text-3xl), 3.4vw, 48px); /* menor que el h1 (56px) */
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.01em;
@@ -61,13 +61,21 @@
     border-radius: var(--radius-card);
     padding: var(--space-5);
     text-decoration: none;
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition:
+        border-color 200ms ease,
+        box-shadow 200ms ease,
+        transform 200ms var(--ease-out);
 }
 
 .product-demo-role:hover {
     border-color: var(--yellow);
-    transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .product-demo-role:hover {
+        transform: translateY(-2px);
+    }
 }
 
 .product-demo-role-name {

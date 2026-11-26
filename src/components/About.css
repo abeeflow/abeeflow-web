@@ -11,7 +11,7 @@
 }
 
 .about-content h2 {
-    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+    font-size: clamp(var(--text-3xl), 3.4vw, 48px); /* menor que el h1 (56px) */
     font-weight: 400;
     margin-bottom: var(--space-5);
     color: var(--ink);
@@ -48,7 +48,7 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: var(--space-4) var(--space-5);
-    transition: all 0.2s;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
 }
 
 .team-member:hover {
