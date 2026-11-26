@@ -1,52 +1,31 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import type { ReactElement } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import RevealOnScroll from './RevealOnScroll';
 import './Cases.css';
 
+// Un icono por caso, en el mismo orden que t.cases.items.
 const caseIcons: ReactElement[] = [
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>,
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg>,
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>,
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>,
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>,
   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>,
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>,
-  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>,
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>,
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>,
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>,
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>,
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/></svg>,
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
 ];
 
-const caseLogos = ['RAI', 'SSA', 'DHI', 'SFA', 'HRS', 'CCA', 'DMS', 'OSS'];
+// Los primeros casos son los destacados; el resto aparece al expandir.
+const FEATURED_COUNT = 4;
 
-const CARD_GAP = 32;
-
-// Distancia entre el inicio de una tarjeta y el de la siguiente.
-const cardStep = (carousel: HTMLElement) =>
-  (carousel.querySelector('.case-card')?.clientWidth ?? 0) + CARD_GAP;
+// El caso de migración recibe un id para el enlace del hero.
+const MIGRATION_INDEX = 1;
 
 const Cases = () => {
   const { t } = useLanguage();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const cases = t.cases.items;
-
-  const scrollToCard = (index: number) => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-    const target = Math.min(Math.max(index, 0), cases.length - 1);
-    carousel.scrollTo({ left: cardStep(carousel) * target, behavior: 'smooth' });
-  };
-
-  // El punto activo sigue al scroll: botones, puntos o arrastre con el dedo.
-  useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-
-    const handleScroll = () =>
-      setCurrentIndex(Math.round(carousel.scrollLeft / cardStep(carousel)));
-
-    carousel.addEventListener('scroll', handleScroll);
-    return () => carousel.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [showAll, setShowAll] = useState(false);
+  const cases = showAll ? t.cases.items : t.cases.items.slice(0, FEATURED_COUNT);
 
   return (
     <section id="casos" className="cases">
@@ -56,59 +35,46 @@ const Cases = () => {
           <p className="section-subtitle">{t.cases.subtitle}</p>
         </div>
 
-        <RevealOnScroll className="cases-carousel-wrapper">
-          <div className="cases-carousel" ref={carouselRef}>
-            {cases.map((caseItem, index) => (
-              <div key={index} className={`case-card ${index % 2 === 0 ? 'case-card-warm' : 'case-card-blue'}`}>
+        <div className="cases-grid">
+          {cases.map((caseItem, index) => (
+            <RevealOnScroll key={caseItem.title} delay={0.05 * (index % 2)}>
+              <article
+                id={index === MIGRATION_INDEX ? 'caso-migracion' : undefined}
+                className={`case-card ${index % 2 === 0 ? 'case-card-warm' : 'case-card-blue'}`}
+              >
                 <div className="case-company">
-                  <div className="case-company-logo">{caseLogos[index]}</div>
-                  <div className="case-company-name">{caseItem.company}</div>
-                </div>
-                <div className="case-badge">
-                  {caseIcons[index]}
-                  {caseItem.tag}
+                  <div className="case-company-logo" aria-hidden="true">{caseIcons[index]}</div>
+                  <div className="case-company-name">{caseItem.who}</div>
                 </div>
                 <h3 className="case-title">{caseItem.title}</h3>
-                <p className="case-text">{caseItem.description}</p>
-                <ul className="case-results">
-                  {caseItem.features.map((feature, i) => (
-                    <li key={i}>
-                      <span className="case-check">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M5 13l4 4L19 7"/>
-                        </svg>
-                      </span>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+                <dl className="case-compare">
+                  <div className="case-step">
+                    <dt>{t.cases.before}</dt>
+                    <dd>{caseItem.before}</dd>
+                  </div>
+                  <div className="case-step case-step-after">
+                    <dt>{t.cases.after}</dt>
+                    <dd>{caseItem.after}</dd>
+                  </div>
+                </dl>
+              </article>
+            </RevealOnScroll>
+          ))}
+        </div>
 
-          <div className="carousel-controls">
-            <button className="carousel-btn" onClick={() => scrollToCard(currentIndex - 2)} disabled={currentIndex === 0} aria-label="Anterior">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
-            </button>
-            <button className="carousel-btn" onClick={() => scrollToCard(currentIndex + 2)} disabled={currentIndex >= cases.length - 2} aria-label="Siguiente">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-
-          <div className="carousel-dots" role="tablist" aria-label="Navegación de casos">
-            {cases.map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                role="tab"
-                className={`carousel-dot ${index === currentIndex ? 'active' : ''}`}
-                onClick={() => scrollToCard(index)}
-                aria-label={`Ir al caso ${index + 1}`}
-                aria-selected={index === currentIndex}
-              />
-            ))}
-          </div>
-        </RevealOnScroll>
+        <div className="cases-more">
+          <button
+            type="button"
+            className="btn-link-arrow"
+            onClick={() => setShowAll(!showAll)}
+            aria-expanded={showAll}
+          >
+            {showAll ? t.cases.showLess : t.cases.showAll}
+            <svg className={showAll ? 'cases-more-up' : undefined} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
   );

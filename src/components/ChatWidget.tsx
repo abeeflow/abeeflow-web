@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { WHATSAPP_URL } from '../lib/links';
 import './ChatWidget.css';
 
 type Message = { role: 'user' | 'assistant'; content: string };
-
-const WHATSAPP_URL = 'https://wa.me/51999950133';
 
 // Vuelve clicable el enlace de WhatsApp que el asistente escribe en un mensaje.
 const withLinks = (text: string) =>

@@ -73,6 +73,25 @@
     box-shadow: 0 8px 24px rgba(224,172,54,0.3);
 }
 
+/* Enlace secundario bajo el botón principal. */
+.contact-whatsapp {
+    display: block;
+    width: fit-content;
+    margin: var(--space-4) auto 0;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+.contact-whatsapp:hover {
+    color: var(--ink);
+}
+
 [data-theme="dark"] .contact-box {
     background: var(--surface);
     border-color: var(--border);

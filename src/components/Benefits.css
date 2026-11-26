@@ -135,7 +135,7 @@
 /* ═══ FLIP CARD ═══ */
 .flip-card {
     perspective: 1000px;
-    height: 340px;
+    height: 300px;
     cursor: pointer;
     background: transparent;
     border: none;

@@ -3,19 +3,18 @@ export const translations = {
     nav: {
       servicios: 'Servicios',
       nosotros: 'Nosotros',
-      casos: 'Casos de uso',
+      casos: 'Casos reales',
       proceso: 'Proceso',
       contacto: 'Contacto',
       skip: 'Saltar al contenido'
     },
     hero: {
-      badge: '// soluciones a medida',
-      words: ['Automatizamos', 'Agilizamos', 'Integramos', 'Ordenamos'],
-      subtitle: 'tu negocio',
-      and: 'y',
-      description: 'Robots de software e IA que hacen las tareas repetitivas de tu empresa: conciliaciones, reportes, cargas de datos y atención por WhatsApp. Código propio, sin pagar licencias.',
-      cta: 'Agendar diagnóstico gratuito',
-      secondary: 'Ver casos de uso',
+      badge: 'Automatización, IA y software a medida',
+      title: 'Automatizamos los procesos repetitivos de tu empresa.',
+      highlight: 'Código propio, sin licencias.',
+      description: 'Construimos robots de software (RPA), agentes de IA y sistemas a medida para que tu equipo deje de perder horas en tareas manuales o pagando licencias caras.',
+      cta: 'Agendar diagnóstico gratuito (30 min)',
+      whatsapp: 'Escribir por WhatsApp',
       cells: {
         nw: 'DATOS',
         ne: 'MENSAJES',
@@ -28,10 +27,17 @@ export const translations = {
     },
     metrics: {
       items: [
-        { value: '$0', label: 'Licencias RPA al año' },
-        { value: '12', label: 'Bots RPA migrados' },
-        { value: '+15K', label: 'Horas ahorradas / año' },
+        { value: '+15K', label: 'Horas de trabajo manual ahorradas al año' },
+        { value: '12', label: 'Robots migrados a código propio' },
+        { value: '$0', label: 'En licencias anuales' },
         { value: '<24h', label: 'Respuesta de soporte' }
+      ]
+    },
+    paths: {
+      aria: 'Dos caminos',
+      items: [
+        { tag: 'Si hoy trabajan a mano', title: '¿Tu equipo pierde horas en Excel, reportes y WhatsApp?', desc: 'Automatizamos conciliaciones, cargas de datos y atención al cliente, o construimos el software que tu operación necesita.', link: 'Ver servicios' },
+        { tag: 'Si ya usan RPA con licencia', title: '¿Ya pagas UiPath, Blue Prism o Automation Anywhere?', desc: 'Migramos tus robots a código propio en Python. Hacen exactamente lo mismo y tu costo anual de licencia baja a $0.', link: 'Ver caso de migración' }
       ]
     },
     featured: {
@@ -58,21 +64,21 @@ export const translations = {
       back: 'Volver',
       main: {
         tag: 'Servicio principal',
-        title: 'Automatización con RPA + IA',
+        title: 'Automatización con robots de software (RPA) + IA',
         desc: 'Robots de software que hacen las tareas repetitivas de tu empresa, e inteligencia artificial para las que necesitan leer o decidir.',
         benefits: [
           { title: 'Tareas repetitivas', desc: 'Conciliaciones, reportes, cargas de datos y validaciones que hoy hace una persona a mano.' },
-          { title: 'Documentos y atención', desc: 'La IA lee documentos, responde consultas por WhatsApp y pasa a una persona lo que no puede resolver.' },
-          { title: 'Robots sin licencias', desc: 'Si ya usas UiPath, Blue Prism o Automation Anywhere, pasamos tus robots a código propio y dejas de pagar la licencia.' }
+          { title: 'Documentos y atención', desc: 'IA que lee documentos, responde consultas por WhatsApp, lee y actualiza tu CRM y deriva a una persona solo lo que no puede resolver.' },
+          { title: 'Robots sin licencias', desc: '¿Ya pagas UiPath, Blue Prism o Automation Anywhere? Pasamos tus robots a código propio en Python y dejas de pagar la licencia anual.' }
         ]
       },
-      alsoTitle: 'También construimos',
+      alsoTitle: 'También desarrollamos',
       pageLinks: { dev: 'Ver proyectos de software y web' },
       items: [
-        { title: 'SaaS a medida', shortDesc: 'Plataformas SaaS completas, multi-tenant y escalables para tu negocio.', features: ['Sistemas de gestión por industria', 'Arquitectura multi-tenant desde el día uno', 'Apps web, paneles admin y APIs'] },
-        { title: 'Migración de datos', shortDesc: 'Migramos tu data y digitalizamos documentos. De papel a base de datos.', features: ['Diseño y migración de bases de datos', 'Digitalización documental a la nube', 'Integraciones entre sistemas en tiempo real'] },
-        { title: 'Consultoría continua', shortDesc: 'Diagnosticamos, implementamos y optimizamos con datos reales.', features: ['Diagnóstico de procesos y KPIs', 'Roadmap de optimización trimestral', 'Paneles, reportes y alertas proactivas'] },
-        { title: 'Desarrollo web', shortDesc: 'Sitios profesionales, rápidos y optimizados para buscadores.', features: ['Landing pages y sitios corporativos', 'SEO básico y rendimiento optimizado', 'Adaptados a cualquier dispositivo'] }
+        { title: 'SaaS a medida', shortDesc: 'Sistemas de gestión en una sola plataforma para varias empresas o sedes, con paneles admin y APIs.', features: ['Sistemas de gestión por industria', 'Arquitectura multi-tenant desde el día uno', 'Apps web, paneles admin y APIs'] },
+        { title: 'Migración de datos', shortDesc: 'Digitalización documental de papel a la nube e integraciones en tiempo real entre sistemas.', features: ['Diseño y migración de bases de datos', 'Digitalización documental a la nube', 'Integraciones entre sistemas en tiempo real'] },
+        { title: 'Consultoría de procesos', shortDesc: 'Diagnóstico de cuellos de botella, KPIs, tableros y plan de optimización.', features: ['Diagnóstico de procesos y KPIs', 'Plan de optimización por etapas', 'Paneles, reportes y alertas proactivas'] },
+        { title: 'Desarrollo web', shortDesc: 'Sitios corporativos y landing pages rápidas, adaptadas a móviles y listas para buscadores.', features: ['Landing pages y sitios corporativos', 'SEO básico y rendimiento optimizado', 'Adaptados a cualquier dispositivo'] }
       ]
     },
     product: {
@@ -85,7 +91,7 @@ export const translations = {
         { name: 'Administrador', desc: 'Toda la clínica: agenda, ventas, inventario y reportes.' },
         { name: 'Veterinario', desc: 'Agenda del día, historias clínicas, vacunas y recetas.' },
         { name: 'Recepción', desc: 'Citas, sala de espera, cotizaciones y cobros.' },
-        { name: 'Almacén', desc: 'Stock, lotes, kardex y órdenes de compra.' }
+        { name: 'Almacén', desc: 'Stock, lotes, movimientos de inventario (kardex) y órdenes de compra.' }
       ]
     },
     pages: {
@@ -98,7 +104,7 @@ export const translations = {
           { title: 'Agenda y citas', description: 'Citas, sala de espera y la agenda del día de cada veterinario.' },
           { title: 'Historias clínicas', description: 'Consultas, vacunas, recetas y cirugías en el historial de cada paciente.' },
           { title: 'Ventas y cobros', description: 'Cotizaciones, ventas y cobros desde recepción.' },
-          { title: 'Inventario', description: 'Stock por almacén, lotes, kardex y órdenes de compra.' },
+          { title: 'Inventario', description: 'Stock por almacén, lotes, movimientos de inventario (kardex) y órdenes de compra.' },
           { title: 'Reportes', description: 'Reportes y configuración de toda la clínica para el administrador.' }
         ],
         cta: 'Probar la demo'
@@ -133,17 +139,21 @@ export const translations = {
       ]
     },
     cases: {
-      title: 'Casos de uso reales',
-      subtitle: 'Procesos que automatizamos para nuestros clientes: qué hacían a mano y qué hace ahora el sistema.',
+      title: 'Casos reales',
+      subtitle: 'Proyectos entregados: qué hacían a mano y qué hace ahora el sistema.',
+      before: 'Antes',
+      after: 'Después',
+      showAll: 'Ver los 8 proyectos',
+      showLess: 'Ver menos',
       items: [
-        { company: 'RecruitAI Systems', tag: 'Selección de personal', title: 'Selección automatizada de candidatos con IA', description: 'Sistema de videoentrevistas con avatares de IA. Análisis automático de respuestas verbales, lenguaje corporal y soft skills.', features: ['Reducción de tiempo de entrevista de 30 a 5 minutos', 'Evaluación objetiva con criterios uniformes', 'Más candidatos evaluados con el mismo equipo'] },
-        { company: 'SocialSense Analytics', tag: 'Marketing inteligente', title: 'Análisis de sentimientos e ideación con IA', description: 'Sistema de monitoreo y análisis automatizado de redes sociales. Interpreta tono emocional, identifica tendencias y genera propuestas de contenido.', features: ['Identificación de sentimientos y tendencias en tiempo real', 'Generación automática de ideas y copys personalizados', 'Ideas de contenido basadas en lo que dice la audiencia', 'Dashboards automáticos de desempeño y percepción'] },
-        { company: 'DataHub Integrator', tag: 'Integración de datos', title: 'Portal centralizado de datos empresariales', description: 'Plataforma de recopilación y consolidación desde múltiples fuentes: ERP, APIs REST, web services, Google Sheets y archivos locales.', features: ['Reportes en tiempo real con actualización automática', 'Consultas inteligentes segmentadas por usuario y área', 'Acceso unificado a información crítica de negocio', 'Menos errores al dejar de copiar datos a mano'] },
-        { company: 'SalesFlow AI', tag: 'Automatización de ventas', title: 'Chatbot inteligente de ventas y atención', description: 'Asistente conversacional con IA para atender consultas, calificar leads, guiar compras y resolver objeciones. Integración con CRM y WhatsApp.', features: ['Atención instantánea 24/7 en múltiples canales', 'Calificación automática de leads por scoring predictivo', 'Integración bidireccional con CRM y WhatsApp Business', 'Pasa a una persona lo que no puede resolver'] },
-        { company: 'HR SmartWriter', tag: 'Automatización de redacción', title: 'Redacción automatizada de ofertas de empleo', description: 'Proceso automatizado que recibe un brief, genera ofertas con IA y las publica automáticamente en múltiples portales de empleo.', features: ['Reducción drástica del tiempo de redacción', 'Coherencia de tono y estilo en todas las publicaciones', 'Mayor atractivo y alcance de las ofertas', 'Publicación automática en múltiples plataformas'] },
-        { company: 'CustomerCare AI', tag: 'Seguimiento inteligente', title: 'Agente de seguimiento de satisfacción del cliente', description: 'Agente conversacional que se activa automáticamente después de un ticket o compra. Recoge opiniones, analiza sentimiento y escala casos.', features: ['Incremento en la retención de clientes', 'Feedback estructurado y accionable', 'Menor carga operativa para el equipo de soporte', 'Mejora continua de la experiencia del cliente'] },
-        { company: 'DocuManage Solutions', tag: 'Gestión documental', title: 'De papel a la nube en 4 pasos', description: 'Digitalización, clasificación y migración de documentación física a un sistema de gestión documental en la nube con búsqueda indexada.', features: ['Acceso a cualquier documento en menos de 30 segundos', 'Backup automático diario', 'Cumplimiento de normativas de retención documental'] },
-        { company: 'OpenStack Solutions', tag: 'Migración RPA', title: 'Misma automatización. Sin licencia.', description: 'Migración de bots RPA propietarios (UiPath, Automation Anywhere) a soluciones open source en Python. Cero costo de licencia anual.', features: ['Ahorro de $15K-$80K/año en licencias', 'Ejecución programada sin intervención humana', 'Código propio, sin dependencia de proveedor'] }
+        { who: 'Sector: Finanzas', title: 'Conciliación bancaria automática', before: 'El equipo conciliaba bancos a mano todos los días durante 8 horas y pagaba licencias de RPA.', after: 'El proceso corre solo en 30 minutos, con 99.7% de precisión y $0 en licencias.' },
+        { who: 'Sector: Finanzas', title: 'Migración de robots UiPath a Python', before: 'Pagaban entre $15K y $80K al año en licencias propietarias y dependían de terceros para cada cambio.', after: 'Los mismos procesos corren en código propio en Python, sin intervención humana y sin costo anual de licencia.' },
+        { who: 'Cliente: SFA Inversiones', title: 'Chatbot de ventas por WhatsApp', before: 'Los prospectos esperaban horas por respuesta y el equipo comercial filtraba consultas a mano.', after: 'Atención 24/7 por WhatsApp que prioriza a los clientes con más probabilidad de compra, lee y actualiza el CRM y pasa al vendedor los casos listos para cerrar.' },
+        { who: 'Cliente: RecruitAI Systems', title: 'Entrevistas de selección con IA', before: 'Cada entrevista inicial tomaba 30 minutos del equipo de selección y los criterios variaban según el entrevistador.', after: 'Videoentrevistas automatizadas de 5 minutos con evaluación uniforme, permitiendo evaluar más candidatos con el mismo equipo.' },
+        { who: 'Cliente: HRS Consulting', title: 'Redacción y publicación automática de ofertas de empleo', before: 'Cada oferta se redactaba a mano y se publicaba portal por portal, con un tono distinto en cada una.', after: 'A partir de un brief, la IA redacta la oferta y la publica sola en varios portales de empleo, con el mismo tono en todas.' },
+        { who: 'Sector: Integración de datos / ERP', title: 'Portal centralizado de datos y reportes empresariales', before: 'La información estaba repartida entre el ERP, APIs, hojas de cálculo y archivos, y los reportes se armaban copiando datos a mano.', after: 'Un solo portal reúne todas las fuentes y genera reportes que se actualizan solos, con acceso según el usuario y el área.' },
+        { who: 'Sector: Marketing', title: 'Análisis de redes sociales y generación de contenido con IA', before: 'El equipo revisaba las redes a mano para entender qué opinaba la audiencia y pensar nuevas publicaciones.', after: 'La IA mide el tono y las tendencias en tiempo real y propone ideas y textos basados en lo que dice la audiencia.' },
+        { who: 'Sector: Gestión documental', title: 'Digitalización y gestión documental en la nube', before: 'Los documentos estaban en papel y encontrar uno podía tomar horas.', after: 'Todo está clasificado en la nube con búsqueda indexada: cualquier documento aparece en menos de 30 segundos, con respaldo diario.' }
       ]
     },
     process: {
@@ -171,7 +181,8 @@ export const translations = {
       title: 'Agenda con nosotros',
       subtitle: 'Analizamos tus procesos para identificar oportunidades. 30 minutos, sin compromiso.',
       features: ['30 min', 'Google Meet', 'Sin compromiso'],
-      bookBtn: 'Reservar horario'
+      bookBtn: 'Reservar horario',
+      whatsapp: 'O escríbenos directo por WhatsApp'
     },
     footer: {
       brandDesc: 'Soluciones tecnológicas personalizadas para tu industria. Automatización inteligente e integraciones a medida.',
@@ -185,8 +196,9 @@ export const translations = {
         migracion: 'Migración de datos',
         saas: 'Soluciones SaaS',
         web: 'Desarrollo web',
+        vetsuite: 'Producto: VetSuite',
         nosotros: 'Nosotros',
-        casos: 'Casos de uso',
+        casos: 'Casos reales',
         proceso: 'Proceso',
         contacto: 'Contacto'
       }
@@ -214,19 +226,18 @@ export const translations = {
     nav: {
       servicios: 'Services',
       nosotros: 'About',
-      casos: 'Use Cases',
+      casos: 'Real Cases',
       proceso: 'Process',
       contacto: 'Contact',
       skip: 'Skip to content'
     },
     hero: {
-      badge: '// custom solutions',
-      words: ['We Automate', 'We Speed Up', 'We Integrate', 'We Organize'],
-      subtitle: 'your business',
-      and: 'and',
-      description: 'Software robots and AI that handle your company\'s repetitive tasks: reconciliations, reports, data entry, and WhatsApp support. Code you own, no license fees.',
-      cta: 'Book a free diagnosis',
-      secondary: 'See use cases',
+      badge: 'Automation, AI and custom software',
+      title: 'We automate your company\'s repetitive processes.',
+      highlight: 'Code you own, no licenses.',
+      description: 'We build software robots (RPA), AI agents, and custom systems so your team stops losing hours on manual tasks or paying for expensive licenses.',
+      cta: 'Book a free diagnosis (30 min)',
+      whatsapp: 'Message us on WhatsApp',
       cells: {
         nw: 'DATA',
         ne: 'MESSAGES',
@@ -239,10 +250,17 @@ export const translations = {
     },
     metrics: {
       items: [
-        { value: '$0', label: 'RPA licenses per year' },
-        { value: '12', label: 'RPA bots migrated' },
-        { value: '+15K', label: 'Hours saved / year' },
+        { value: '+15K', label: 'Hours of manual work saved per year' },
+        { value: '12', label: 'Robots migrated to code you own' },
+        { value: '$0', label: 'In yearly licenses' },
         { value: '<24h', label: 'Support response' }
+      ]
+    },
+    paths: {
+      aria: 'Two paths',
+      items: [
+        { tag: 'If you work by hand today', title: 'Is your team losing hours on Excel, reports, and WhatsApp?', desc: 'We automate reconciliations, data entry, and customer support, or build the software your operation needs.', link: 'See services' },
+        { tag: 'If you already pay for RPA', title: 'Already paying for UiPath, Blue Prism, or Automation Anywhere?', desc: 'We migrate your robots to Python code you own. They do exactly the same work and your yearly license cost drops to $0.', link: 'See migration case' }
       ]
     },
     featured: {
@@ -269,21 +287,21 @@ export const translations = {
       back: 'Back',
       main: {
         tag: 'Core service',
-        title: 'Automation with RPA + AI',
+        title: 'Automation with software robots (RPA) + AI',
         desc: 'Software robots that handle your company\'s repetitive tasks, and artificial intelligence for the ones that need reading or deciding.',
         benefits: [
           { title: 'Repetitive tasks', desc: 'Reconciliations, reports, data entry, and validations that someone does by hand today.' },
-          { title: 'Documents and support', desc: 'AI reads documents, answers questions on WhatsApp, and hands over to a person what it cannot solve.' },
-          { title: 'Robots without licenses', desc: 'If you already use UiPath, Blue Prism, or Automation Anywhere, we move your robots to code you own and you stop paying the license.' }
+          { title: 'Documents and support', desc: 'AI that reads documents, answers questions on WhatsApp, reads and updates your CRM, and hands over to a person only what it cannot solve.' },
+          { title: 'Robots without licenses', desc: 'Already paying for UiPath, Blue Prism, or Automation Anywhere? We move your robots to Python code you own and you stop paying the yearly license.' }
         ]
       },
-      alsoTitle: 'We also build',
+      alsoTitle: 'We also develop',
       pageLinks: { dev: 'See software and web projects' },
       items: [
-        { title: 'Custom SaaS', shortDesc: 'Complete SaaS platforms, multi-tenant and scalable for your business.', features: ['Industry-specific management systems', 'Multi-tenant architecture from day one', 'Web apps, admin panels, and APIs'] },
-        { title: 'Data Migration', shortDesc: 'We migrate your data and digitize documents. From paper to database.', features: ['Database design and migration', 'Document digitization to the cloud', 'Real-time system integrations'] },
-        { title: 'Ongoing Consulting', shortDesc: 'We diagnose, implement, and optimize with real data.', features: ['Process and KPI diagnostics', 'Quarterly optimization roadmap', 'Dashboards, reports, and proactive alerts'] },
-        { title: 'Web Development', shortDesc: 'Professional sites, fast and optimized for search engines.', features: ['Landing pages and corporate sites', 'Basic SEO and optimized performance', 'Adapted to any device'] }
+        { title: 'Custom SaaS', shortDesc: 'Management systems on a single platform for several companies or branches, with admin panels and APIs.', features: ['Industry-specific management systems', 'Multi-tenant architecture from day one', 'Web apps, admin panels, and APIs'] },
+        { title: 'Data Migration', shortDesc: 'Document digitization from paper to the cloud and real-time integrations between systems.', features: ['Database design and migration', 'Document digitization to the cloud', 'Real-time system integrations'] },
+        { title: 'Process Consulting', shortDesc: 'Bottleneck diagnosis, KPIs, dashboards, and an optimization plan.', features: ['Process and KPI diagnostics', 'Step-by-step optimization plan', 'Dashboards, reports, and proactive alerts'] },
+        { title: 'Web Development', shortDesc: 'Fast corporate sites and landing pages, mobile-ready and search-engine friendly.', features: ['Landing pages and corporate sites', 'Basic SEO and optimized performance', 'Adapted to any device'] }
       ]
     },
     product: {
@@ -296,7 +314,7 @@ export const translations = {
         { name: 'Administrator', desc: 'The whole clinic: schedule, sales, inventory, and reports.' },
         { name: 'Veterinarian', desc: 'Daily schedule, medical records, vaccines, and prescriptions.' },
         { name: 'Front desk', desc: 'Appointments, waiting room, quotes, and payments.' },
-        { name: 'Warehouse', desc: 'Stock, batches, stock ledger, and purchase orders.' }
+        { name: 'Warehouse', desc: 'Stock, batches, inventory movements (stock ledger), and purchase orders.' }
       ]
     },
     pages: {
@@ -309,7 +327,7 @@ export const translations = {
           { title: 'Schedule and appointments', description: 'Appointments, waiting room, and each vet\'s schedule for the day.' },
           { title: 'Medical records', description: 'Visits, vaccines, prescriptions, and surgeries in each patient\'s history.' },
           { title: 'Sales and payments', description: 'Quotes, sales, and payments from the front desk.' },
-          { title: 'Inventory', description: 'Stock by warehouse, batches, stock ledger, and purchase orders.' },
+          { title: 'Inventory', description: 'Stock by warehouse, batches, inventory movements (stock ledger), and purchase orders.' },
           { title: 'Reports', description: 'Reports and settings for the whole clinic, for the administrator.' }
         ],
         cta: 'Try the demo'
@@ -344,17 +362,21 @@ export const translations = {
       ]
     },
     cases: {
-      title: 'Real Use Cases',
-      subtitle: 'Processes we automated for our clients: what they did by hand and what the system does now.',
+      title: 'Real Cases',
+      subtitle: 'Delivered projects: what they did by hand and what the system does now.',
+      before: 'Before',
+      after: 'After',
+      showAll: 'See all 8 projects',
+      showLess: 'Show less',
       items: [
-        { company: 'RecruitAI Systems', tag: 'Recruitment', title: 'AI-powered automated candidate screening', description: 'Video interview system with AI avatars. Automatic analysis of verbal responses, body language, and soft skills.', features: ['Interview time reduced from 30 to 5 minutes', 'Objective evaluation with uniform criteria', 'More candidates evaluated with the same team'] },
-        { company: 'SocialSense Analytics', tag: 'Smart marketing', title: 'Sentiment analysis and AI-driven ideation', description: 'Automated social media monitoring and analysis system. Interprets emotional tone, identifies trends, and generates content proposals.', features: ['Real-time sentiment and trend identification', 'Automatic generation of personalized ideas and copy', 'Content ideas based on what the audience says', 'Automated performance and perception dashboards'] },
-        { company: 'DataHub Integrator', tag: 'Data integration', title: 'Centralized enterprise data portal', description: 'Collection and consolidation platform from multiple sources: ERP, REST APIs, web services, Google Sheets, and local files.', features: ['Real-time reports with automatic updates', 'Smart queries segmented by user and area', 'Unified access to critical business information', 'Fewer errors from copying data by hand'] },
-        { company: 'SalesFlow AI', tag: 'Sales automation', title: 'Intelligent sales and support chatbot', description: 'AI conversational assistant for handling queries, qualifying leads, guiding purchases, and resolving objections. CRM and WhatsApp integration.', features: ['24/7 instant support across multiple channels', 'Automatic lead qualification via predictive scoring', 'Bidirectional CRM and WhatsApp Business integration', 'Hands over to a person what it cannot solve'] },
-        { company: 'HR SmartWriter', tag: 'Writing automation', title: 'Automated job posting creation', description: 'Automated process that receives a brief, generates job offers with AI, and publishes them automatically across multiple job portals.', features: ['Drastic reduction in writing time', 'Consistent tone and style across all postings', 'Greater reach and attractiveness of offers', 'Automatic publication on multiple platforms'] },
-        { company: 'CustomerCare AI', tag: 'Smart follow-up', title: 'Customer satisfaction tracking agent', description: 'Conversational agent that activates automatically after a ticket or purchase. Collects feedback, analyzes sentiment, and escalates cases.', features: ['Increased customer retention', 'Structured and actionable feedback', 'Reduced workload for support team', 'Continuous improvement of customer experience'] },
-        { company: 'DocuManage Solutions', tag: 'Document management', title: 'From paper to cloud in 4 steps', description: 'Digitization, classification, and migration of physical documentation to a cloud document management system with indexed search.', features: ['Access any document in under 30 seconds', 'Automatic daily backup', 'Compliance with document retention regulations'] },
-        { company: 'OpenStack Solutions', tag: 'RPA Migration', title: 'Same automation. No license.', description: 'Migration of proprietary RPA bots (UiPath, Automation Anywhere) to open source Python solutions. Zero annual license cost.', features: ['$15K-$80K/year savings in licenses', 'Scheduled execution without human intervention', 'Own code, no vendor dependency'] }
+        { who: 'Industry: Finance', title: 'Automated bank reconciliation', before: 'The team reconciled banks by hand for 8 hours every day and paid for RPA licenses.', after: 'The process runs on its own in 30 minutes, with 99.7% accuracy and $0 in licenses.' },
+        { who: 'Industry: Finance', title: 'UiPath robots migrated to Python', before: 'They paid $15K to $80K a year in proprietary licenses and relied on third parties for every change.', after: 'The same processes run on Python code they own, with no human intervention and no yearly license cost.' },
+        { who: 'Client: SFA Inversiones', title: 'WhatsApp sales chatbot', before: 'Prospects waited hours for a reply and the sales team filtered inquiries by hand.', after: '24/7 WhatsApp support that prioritizes the most likely buyers, reads and updates the CRM, and hands the seller the cases ready to close.' },
+        { who: 'Client: RecruitAI Systems', title: 'AI-powered screening interviews', before: 'Each first interview took 30 minutes of the recruiting team and criteria varied by interviewer.', after: 'Automated 5-minute video interviews with uniform evaluation, so the same team can assess more candidates.' },
+        { who: 'Client: HRS Consulting', title: 'Automated job posting writing and publishing', before: 'Each posting was written by hand and published portal by portal, with a different tone each time.', after: 'From a brief, AI writes the posting and publishes it on several job portals, with the same tone in all of them.' },
+        { who: 'Industry: Data integration / ERP', title: 'Centralized business data and reporting portal', before: 'Information was spread across the ERP, APIs, spreadsheets, and files, and reports were built by copying data by hand.', after: 'A single portal brings all sources together and produces self-updating reports, with access by user and area.' },
+        { who: 'Industry: Marketing', title: 'Social media analysis and AI content generation', before: 'The team reviewed social media by hand to understand what the audience thought and come up with new posts.', after: 'AI measures tone and trends in real time and suggests ideas and copy based on what the audience says.' },
+        { who: 'Industry: Document management', title: 'Document digitization and cloud management', before: 'Documents were on paper and finding one could take hours.', after: 'Everything is classified in the cloud with indexed search: any document shows up in under 30 seconds, with daily backup.' }
       ]
     },
     process: {
@@ -382,7 +404,8 @@ export const translations = {
       title: 'Schedule with Us',
       subtitle: 'We analyze your processes to identify opportunities. 30 minutes, no commitment.',
       features: ['30 min', 'Google Meet', 'No commitment'],
-      bookBtn: 'Book a time'
+      bookBtn: 'Book a time',
+      whatsapp: 'Or message us directly on WhatsApp'
     },
     footer: {
       brandDesc: 'Personalized technology solutions for your industry. Intelligent automation and custom integrations.',
@@ -396,8 +419,9 @@ export const translations = {
         migracion: 'Data Migration',
         saas: 'SaaS Solutions',
         web: 'Web Development',
+        vetsuite: 'Product: VetSuite',
         nosotros: 'About Us',
-        casos: 'Use Cases',
+        casos: 'Real Cases',
         proceso: 'Process',
         contacto: 'Contact'
       }

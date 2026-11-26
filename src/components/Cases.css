@@ -4,31 +4,19 @@
     overflow: hidden;
 }
 
-.cases-carousel-wrapper {
-    position: relative;
-    margin-top: var(--space-6);
-    padding: 0 5.5rem;
-}
-
-.cases-carousel {
-    display: flex;
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-6);
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    padding-bottom: var(--space-6);
-    scroll-snap-type: x mandatory;
 }
 
-.cases-carousel::-webkit-scrollbar {
-    display: none;
+/* RevealOnScroll envuelve cada tarjeta: que ocupe toda la celda. */
+.cases-grid > * {
+    display: flex;
 }
 
 .case-card {
-    min-width: calc(50% - 1rem);
-    max-width: calc(50% - 1rem);
-    width: calc(50% - 1rem);
+    width: 100%;
     padding: var(--space-6);
     border-radius: var(--radius-card);
     transition: all 0.3s;
@@ -36,8 +24,6 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
-    scroll-snap-align: start;
 }
 
 .case-card-warm {
@@ -55,7 +41,7 @@
     box-shadow: var(--shadow-xl);
 }
 
-/* Dark mode: case cards y chips internos */
+/* Dark mode: tarjetas y logo */
 [data-theme="dark"] .case-card-warm {
     background: var(--surface);
     border-color: var(--border);
@@ -66,15 +52,9 @@
     border-color: var(--border);
 }
 
-[data-theme="dark"] .case-company-logo,
-[data-theme="dark"] .case-badge {
+[data-theme="dark"] .case-company-logo {
     background: var(--surface-3);
     border-color: var(--border);
-    color: var(--text-secondary);
-}
-
-[data-theme="dark"] .carousel-btn {
-    background: var(--surface);
 }
 
 .case-company {
@@ -92,43 +72,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-pixel);
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
+    color: var(--yellow-hover);
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.case-company-logo svg {
+    width: 20px;
+    height: 20px;
 }
 
 .case-company-name {
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: var(--text-base);
-    color: var(--ink);
-}
-
-.case-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--surface);
-    padding: 6px var(--space-3);
-    border-radius: var(--radius-pill);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-secondary);
-    margin-bottom: var(--space-4);
-    box-shadow: var(--shadow);
-    width: fit-content;
-}
-
-.case-badge svg {
-    width: 14px;
-    height: 14px;
 }
 
 .case-title {
@@ -140,122 +101,66 @@
     line-height: 1.3;
 }
 
-.case-text {
-    font-family: var(--font-sans);
-    color: var(--text-secondary);
-    font-size: var(--text-sm);
-    line-height: 1.7;
-    margin-bottom: var(--space-5);
-}
-
-.case-results {
-    list-style: none;
+/* Antes / Después: la línea amarilla marca el resultado. */
+.case-compare {
+    display: grid;
+    gap: var(--space-4);
     margin-top: auto;
 }
 
-.case-results li {
+.case-step {
+    padding-left: var(--space-4);
+    border-left: 3px solid var(--border);
+}
+
+.case-step-after {
+    border-left-color: var(--yellow);
+}
+
+.case-step dt {
+    font-family: var(--font-pixel);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: var(--space-1);
+}
+
+.case-step-after dt {
+    color: var(--yellow-hover);
+}
+
+.case-step dd {
     font-family: var(--font-sans);
     font-size: var(--text-sm);
-    color: var(--ink);
-    padding: 5px 0;
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-2);
+    line-height: 1.6;
+    color: var(--text-secondary);
 }
 
-.case-check {
-    color: #22C55E;
-    flex-shrink: 0;
-    margin-top: 1px;
-}
-
-/* Carousel Controls */
-.carousel-controls {
-    position: absolute;
-    top: 50%;
-    left: 0.5rem;
-    right: 0.5rem;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    pointer-events: none;
-    z-index: 10;
-}
-
-.carousel-btn {
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 2px solid var(--yellow);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    pointer-events: auto;
-}
-
-.carousel-btn:hover:not(:disabled) {
-    background: var(--yellow);
-    border-color: var(--yellow-hover);
-    transform: scale(1.1);
-    box-shadow: 0 6px 16px rgba(224, 172, 54, 0.4);
-}
-
-.carousel-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    border-color: var(--border);
-}
-
-.carousel-btn svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: var(--yellow);
-    transition: color 0.3s;
-}
-
-.carousel-btn:hover:not(:disabled) svg {
+.case-step-after dd {
     color: var(--ink);
 }
 
-.carousel-dots {
+.cases-more {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
-    margin-top: var(--space-5);
+    margin-top: var(--space-6);
 }
 
-.carousel-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--border);
-    cursor: pointer;
-    transition: all 0.3s;
-    border: none;
-    padding: 0;
+.cases-more svg {
+    transition: transform 0.25s;
 }
 
-.carousel-dot:focus-visible {
-    outline: 2px solid var(--yellow);
-    outline-offset: 3px;
+.cases-more .cases-more-up {
+    transform: rotate(180deg);
 }
 
-.carousel-dot.active {
-    width: 28px;
-    border-radius: 4px;
-    background: var(--yellow);
+.cases-more .btn-link-arrow:hover svg {
+    transform: translateY(2px);
 }
 
-@media (max-width: 1024px) {
-    .case-card {
-        min-width: calc(100% - 1rem);
-        max-width: calc(100% - 1rem);
-        width: calc(100% - 1rem);
-    }
+.cases-more .btn-link-arrow:hover .cases-more-up {
+    transform: rotate(180deg) translateY(2px);
 }
 
 @media (max-width: 768px) {
@@ -263,36 +168,16 @@
         padding: var(--space-8) 0;
     }
 
-    .cases-carousel-wrapper {
-        padding: 0;
-        margin-left: -24px;
-        margin-right: -24px;
-    }
-
-    .cases-carousel {
-        padding-left: calc(7.5vw + 24px);
-        padding-right: calc(7.5vw + 24px);
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
+    .cases-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
     }
 
     .case-card {
-        min-width: 85vw;
-        max-width: 85vw;
-        width: 85vw;
         padding: var(--space-5);
-        scroll-snap-align: center;
     }
 
     .case-card:hover {
         transform: none;
-    }
-
-    .carousel-controls {
-        display: none;
-    }
-
-    .carousel-dots {
-        margin-top: var(--space-5);
     }
 }
