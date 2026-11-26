@@ -39,7 +39,12 @@ export const translations = {
       desc: 'Un equipo de finanzas conciliaba sus bancos a mano todos los días. Automatizamos el proceso completo y dejaron de pagar licencias de RPA.',
       before: { label: 'Antes', value: '8 horas' },
       after: { label: 'Ahora', value: '30 min' },
-      note: '99.7% de precisión en la detección de errores'
+      // −94%: 30 minutos de 8 horas es el 6% del tiempo.
+      stats: [
+        { value: '−94%', label: 'de tiempo por día' },
+        { value: '99.7%', label: 'de precisión en errores' },
+        { value: '$0', label: 'en licencias de RPA' }
+      ]
     },
     proof: {
       aria: 'Resultados y clientes',
@@ -47,10 +52,9 @@ export const translations = {
     },
     services: {
       title: 'Servicios',
-      subtitle: 'La automatización es nuestro foco. También desarrollamos software y sitios web.',
       main: {
         title: 'Automatización con robots de software (RPA) + IA',
-        desc: 'Robots de software que hacen las tareas repetitivas de tu empresa, e inteligencia artificial para las que necesitan leer o decidir.',
+        desc: 'Robots de software para el trabajo de rutina, e inteligencia artificial para lo que necesita leer o decidir.',
         benefits: [
           { title: 'Tareas repetitivas', desc: 'Conciliaciones, reportes, cargas de datos y validaciones que hoy hace una persona a mano.' },
           { title: 'Documentos y atención', desc: 'IA que lee documentos, responde consultas por WhatsApp, lee y actualiza tu CRM y deriva a una persona solo lo que no puede resolver.' },
@@ -138,7 +142,6 @@ export const translations = {
       title: 'Preguntas frecuentes',
       items: [
         { q: '¿Tengo que cambiar los sistemas que ya uso?', a: 'No. Los robots trabajan sobre tus sistemas actuales (ERP, Excel, portales bancarios, correo) igual que lo haría una persona.' },
-        { q: 'Ya tengo bots en UiPath o Automation Anywhere, ¿qué pasa con ellos?', a: 'Los pasamos a código propio en Python. Hacen lo mismo y dejas de pagar la licencia anual.' },
         { q: '¿Cuánto tarda un piloto?', a: 'Un proceso suele estar listo en menos de 2 semanas. El plazo y el precio quedan por escrito antes de empezar.' },
         { q: '¿El código es mío?', a: 'Sí. Te entregamos el código y la documentación. No dependes de nosotros ni de un proveedor de licencias.' },
         { q: '¿Qué pasa si cambia un portal o un sistema?', a: 'Con el soporte mensual monitoreamos los robots y los ajustamos cuando algo cambia. Respondemos en menos de 24 horas.' },
@@ -146,23 +149,21 @@ export const translations = {
       ]
     },
     contact: {
-      title: 'Agenda con nosotros',
-      subtitle: 'Analizamos tus procesos para identificar oportunidades. 30 minutos, sin compromiso.',
+      title: 'Empieza con un diagnóstico gratuito',
+      subtitle: 'Analizamos tus procesos para identificar oportunidades.',
       features: ['30 min', 'Google Meet', 'Sin compromiso'],
-      bookBtn: 'Reservar horario',
+      bookBtn: 'Agendar diagnóstico gratuito',
       whatsapp: 'O escríbenos directo por WhatsApp'
     },
     footer: {
-      brandDesc: 'Soluciones tecnológicas personalizadas para tu industria. Automatización inteligente e integraciones a medida.',
+      brandDesc: 'Robots de software, agentes de IA y sistemas a medida para empresas que quieren dejar el trabajo manual.',
       servicios: 'Servicios',
       empresa: 'Empresa',
       contacto: 'Contacto',
-      copyright: '2026 AbeeFlow. Todos los derechos reservados.',
+      copyright: '2026 abeeFlow. Todos los derechos reservados.',
       tagline: 'Hecho con miel y código en Lima, Perú',
       links: {
         automatizacion: 'Automatización',
-        migracion: 'Migración de datos',
-        saas: 'Soluciones SaaS',
         web: 'Desarrollo web',
         vetsuite: 'Producto: VetSuite',
         nosotros: 'Nosotros',
@@ -172,11 +173,11 @@ export const translations = {
       }
     },
     chatWidget: {
-      aria: 'Conversación con Abeeflow',
-      ariaButton: 'Abrir chat de Abeeflow',
+      aria: 'Conversación con abeeFlow',
+      ariaButton: 'Abrir chat de abeeFlow',
       dismiss: 'Cerrar chat',
       status: 'En línea',
-      welcome: '¡Hola! Soy el asistente de Abeeflow. ¿Te ayudo a explorar qué automatizar en tu negocio?',
+      welcome: '¡Hola! Soy el asistente de abeeFlow. ¿Te ayudo a explorar qué automatizar en tu negocio?',
       placeholder: 'Escribe tu mensaje...',
       send: 'Enviar mensaje',
       cta: 'Continúa por WhatsApp',
@@ -228,7 +229,11 @@ export const translations = {
       desc: 'A finance team reconciled its banks by hand every day. We automated the whole process and they stopped paying for RPA licenses.',
       before: { label: 'Before', value: '8 hours' },
       after: { label: 'Now', value: '30 min' },
-      note: '99.7% accuracy in error detection'
+      stats: [
+        { value: '−94%', label: 'less time per day' },
+        { value: '99.7%', label: 'accuracy in error detection' },
+        { value: '$0', label: 'in RPA licenses' }
+      ]
     },
     proof: {
       aria: 'Results and clients',
@@ -236,10 +241,9 @@ export const translations = {
     },
     services: {
       title: 'Services',
-      subtitle: 'Automation is our focus. We also build software and websites.',
       main: {
         title: 'Automation with software robots (RPA) + AI',
-        desc: 'Software robots that handle your company\'s repetitive tasks, and artificial intelligence for the ones that need reading or deciding.',
+        desc: 'Software robots for routine work, and artificial intelligence for what needs reading or deciding.',
         benefits: [
           { title: 'Repetitive tasks', desc: 'Reconciliations, reports, data entry, and validations that someone does by hand today.' },
           { title: 'Documents and support', desc: 'AI that reads documents, answers questions on WhatsApp, reads and updates your CRM, and hands over to a person only what it cannot solve.' },
@@ -327,7 +331,6 @@ export const translations = {
       title: 'Frequently asked questions',
       items: [
         { q: 'Do I have to change the systems I already use?', a: 'No. The robots work on top of your current systems (ERP, Excel, bank portals, email) just like a person would.' },
-        { q: 'I already have bots in UiPath or Automation Anywhere. What happens to them?', a: 'We move them to Python code you own. They do the same work and you stop paying the yearly license.' },
         { q: 'How long does a pilot take?', a: 'One process is usually ready in under 2 weeks. Timeline and price are agreed in writing before we start.' },
         { q: 'Do I own the code?', a: 'Yes. We hand over the code and documentation. You do not depend on us or on a license vendor.' },
         { q: 'What if a portal or system changes?', a: 'With monthly support we monitor the robots and adjust them when something changes. We reply in under 24 hours.' },
@@ -335,23 +338,21 @@ export const translations = {
       ]
     },
     contact: {
-      title: 'Schedule with Us',
-      subtitle: 'We analyze your processes to identify opportunities. 30 minutes, no commitment.',
+      title: 'Start with a free diagnosis',
+      subtitle: 'We analyze your processes to identify opportunities.',
       features: ['30 min', 'Google Meet', 'No commitment'],
-      bookBtn: 'Book a time',
+      bookBtn: 'Book a free diagnosis',
       whatsapp: 'Or message us directly on WhatsApp'
     },
     footer: {
-      brandDesc: 'Personalized technology solutions for your industry. Intelligent automation and custom integrations.',
+      brandDesc: 'Software robots, AI agents, and custom systems for companies ready to leave manual work behind.',
       servicios: 'Services',
       empresa: 'Company',
       contacto: 'Contact',
-      copyright: '2026 AbeeFlow. All rights reserved.',
+      copyright: '2026 abeeFlow. All rights reserved.',
       tagline: 'Made with honey and code in Lima, Peru',
       links: {
         automatizacion: 'Automation',
-        migracion: 'Data Migration',
-        saas: 'SaaS Solutions',
         web: 'Web Development',
         vetsuite: 'Product: VetSuite',
         nosotros: 'About Us',
@@ -361,11 +362,11 @@ export const translations = {
       }
     },
     chatWidget: {
-      aria: 'Conversation with Abeeflow',
-      ariaButton: 'Open Abeeflow chat',
+      aria: 'Conversation with abeeFlow',
+      ariaButton: 'Open abeeFlow chat',
       dismiss: 'Close chat',
       status: 'Online',
-      welcome: 'Hi! I\'m the Abeeflow assistant. Can I help you explore what to automate in your business?',
+      welcome: 'Hi! I\'m the abeeFlow assistant. Can I help you explore what to automate in your business?',
       placeholder: 'Type your message...',
       send: 'Send message',
       cta: 'Continue on WhatsApp',

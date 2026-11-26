@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { ReactElement } from 'react';
+import type { CSSProperties, ReactElement } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import FeaturedCase from './FeaturedCase';
 import './Cases.css';
@@ -38,7 +38,11 @@ const Cases = () => {
 
         <div className="cases-grid">
           {cases.map((caseItem, index) => (
-            <div key={caseItem.title}>
+            <div
+              key={caseItem.title}
+              className={index >= VISIBLE_COUNT ? 'case-new' : undefined}
+              style={index >= VISIBLE_COUNT ? ({ '--i': index - VISIBLE_COUNT } as CSSProperties) : undefined}
+            >
               <article
                 className={`case-card ${index % 2 === 0 ? 'case-card-warm' : 'case-card-blue'}`}
               >

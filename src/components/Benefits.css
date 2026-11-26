@@ -26,6 +26,11 @@
     margin: 0 auto;
 }
 
+/* Aquí el h2 va seguido del título del servicio: menos aire entre ambos. */
+.services-section .section-header {
+    margin-bottom: var(--space-6);
+}
+
 /* Servicio principal: título y tres tarjetas, sin caja alrededor. */
 .service-main-title {
     font-family: var(--font-display);

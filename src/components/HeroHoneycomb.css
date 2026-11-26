@@ -64,30 +64,6 @@
     font-weight: 700;
 }
 
-/* Pulse overlay for ambient animation */
-.hex-pulse-overlay {
-    fill: var(--yellow);
-    opacity: 0;
-    pointer-events: none;
-}
-
-@keyframes pulse-fade {
-    0%, 70%, 100% { opacity: 0; }
-    35%           { opacity: 0.18; }
-}
-
-.hex-pulse-overlay.cell-nw { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 0s; }
-.hex-pulse-overlay.cell-ne { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 0.5s; }
-.hex-pulse-overlay.cell-e  { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 1.0s; }
-.hex-pulse-overlay.cell-se { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 1.5s; }
-.hex-pulse-overlay.cell-sw { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 2.0s; }
-.hex-pulse-overlay.cell-w  { animation: pulse-fade 7s ease-in-out infinite; animation-delay: 2.5s; }
-
-.hex-cell.interactive:hover .hex-pulse-overlay {
-    opacity: 0;
-    animation: none;
-}
-
 /* Icons */
 .hex-icon {
     fill: none;
@@ -129,11 +105,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .bee-fly,
-    .hex-pulse-overlay {
+    .bee-fly {
         animation: none !important;
     }
-    .hex-pulse-overlay { opacity: 0; }
 }
 
 @media (max-width: 768px) {

@@ -148,19 +148,21 @@
 }
 
 .cases-more svg {
-    transition: transform 0.25s;
+    transition: transform 200ms var(--ease-out);
 }
 
 .cases-more .cases-more-up {
     transform: rotate(180deg);
 }
 
-.cases-more .btn-link-arrow:hover svg {
-    transform: translateY(2px);
-}
+@media (hover: hover) and (pointer: fine) {
+    .cases-more .btn-link-arrow:hover svg {
+        transform: translateY(2px);
+    }
 
-.cases-more .btn-link-arrow:hover .cases-more-up {
-    transform: rotate(180deg) translateY(2px);
+    .cases-more .btn-link-arrow:hover .cases-more-up {
+        transform: rotate(180deg) translateY(2px);
+    }
 }
 
 @media (max-width: 768px) {
@@ -175,5 +177,21 @@
 
     .case-card {
         padding: var(--space-5);
+    }
+}
+
+/* Al pulsar "Ver los 8 proyectos", las tarjetas nuevas entran una tras
+   otra (40ms). Transition + @starting-style: se puede interrumpir. */
+.case-new {
+    transition:
+        opacity 300ms var(--ease-out),
+        transform 300ms var(--ease-out);
+    transition-delay: calc(var(--i) * 40ms);
+}
+
+@starting-style {
+    .case-new {
+        opacity: 0;
+        transform: translateY(8px);
     }
 }

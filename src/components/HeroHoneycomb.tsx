@@ -102,7 +102,6 @@ const HeroHoneycomb = () => {
         {outerCells.map((cell) => (
           <g key={cell.id} className="hex-cell interactive" transform={cell.translate}>
             <polygon className="hex-shape" points={HEX_POINTS} />
-            <polygon className={`hex-pulse-overlay cell-${cell.id}`} points={HEX_POINTS} />
             <g className="hex-icon" transform="translate(44 36) scale(1.33)">
               {cell.icon}
             </g>

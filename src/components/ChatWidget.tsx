@@ -102,7 +102,7 @@ const ChatWidget = () => {
               </svg>
             </div>
             <div className="chat-meta">
-              <p className="chat-name">Abeeflow</p>
+              <p className="chat-name">abeeFlow</p>
               <p className="chat-status">
                 <span className="chat-dot" aria-hidden="true"></span>
                 {t.chatWidget.status}

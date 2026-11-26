@@ -26,7 +26,6 @@ const Benefits = () => {
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">{t.services.title}</h2>
-          <p className="section-subtitle">{t.services.subtitle}</p>
         </div>
 
         <RevealOnScroll>

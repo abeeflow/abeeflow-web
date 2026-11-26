@@ -198,9 +198,9 @@ summary:focus-visible {
     font-weight: 700;
     font-size: 14px;
     text-decoration: none;
-    transition: top 0.2s ease;
 }
 
+/* Sin transición: se activa con el teclado y debe aparecer al instante. */
 .skip-link:focus {
     top: 0;
     outline: 3px solid var(--yellow);

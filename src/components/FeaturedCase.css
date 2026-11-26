@@ -2,113 +2,170 @@
     margin-bottom: var(--space-8);
 }
 
-/* Bloque amarillo: el texto va en tinta fija en ambos temas. */
+/* Misma superficie que el resto de la página: el amarillo va solo en el
+   dato que importa ("30 min"), no en todo el bloque. */
 .featured-case-box {
-    position: relative;
     display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: var(--space-10);
-    align-items: center;
-    color: #0A0A0A;
-    background: linear-gradient(135deg, #F6CB5C 0%, #E0AC36 55%, #C9952A 100%);
-    border-radius: var(--radius-lg);
-    padding: var(--space-10) var(--space-8);
-    box-shadow: 0 30px 80px rgba(224, 172, 54, 0.3);
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8) var(--space-10);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: var(--space-8);
 }
 
 .featured-case-title {
     font-family: var(--font-display);
     font-size: clamp(var(--text-2xl), 2.8vw, var(--text-4xl)); /* h3: debajo del h2 de la sección */
     font-weight: 400;
-    line-height: 1.02;
+    line-height: 1.05;
     letter-spacing: -0.02em;
-    color: #0A0A0A;
-    margin-bottom: var(--space-5);
+    color: var(--ink);
+    text-wrap: balance;
+    margin-bottom: var(--space-4);
 }
 
 .featured-case-desc {
     font-family: var(--font-sans);
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
     line-height: 1.6;
-    color: rgba(10, 10, 10, 0.78);
-    max-width: 460px;
+    color: var(--text-secondary);
+    max-width: 440px;
 }
 
+/* Antes / Ahora: las dos barras comparten riel, así se lee la proporción. */
 .featured-case-compare {
-    background: rgba(255, 255, 255, 0.35);
-    border: 1px solid rgba(10, 10, 10, 0.12);
-    border-radius: var(--radius-lg);
-    padding: var(--space-6);
+    display: grid;
+    /* Una sola grilla para las dos filas: los rieles miden lo mismo
+       aunque "8 horas" sea más largo que "30 min". */
+    grid-template-columns: auto 1fr auto;
+    align-content: center;
+    align-items: center;
+    gap: var(--space-6) var(--space-4);
 }
 
 .featured-case-row {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: baseline;
-    column-gap: var(--space-4);
-    row-gap: var(--space-2);
+    display: contents;
 }
 
 .featured-case-label {
-    font-family: var(--font-pixel);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.featured-case-track {
+    position: relative;
+    height: 10px;
+    border-radius: var(--radius-pill);
+    background: var(--surface-3);
+    overflow: hidden;
+}
+
+.featured-case-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-pill);
 }
 
 .featured-case-value {
     font-family: var(--font-display);
+    font-size: var(--text-4xl);
     line-height: 1;
     letter-spacing: -0.02em;
     text-align: right;
     white-space: nowrap;
 }
 
-.featured-case-bar {
-    grid-column: 1 / -1;
-    height: 12px;
-    border-radius: var(--radius-pill);
-}
-
-.featured-case-before {
-    color: rgba(10, 10, 10, 0.7); /* 0.55 no llegaba a 4.5:1 sobre el amarillo */
-    margin-bottom: var(--space-5);
+.featured-case-before .featured-case-fill {
+    background: var(--text-muted);
+    opacity: 0.6;
 }
 
 .featured-case-before .featured-case-value {
-    font-size: var(--text-4xl);
-    text-decoration: line-through;
-    text-decoration-thickness: 2px;
-}
-
-.featured-case-before .featured-case-bar {
-    width: 100%;
-    background: rgba(10, 10, 10, 0.22);
+    color: var(--text-muted);
 }
 
 .featured-case-after .featured-case-value {
-    font-size: clamp(var(--text-5xl), 7vw, 88px);
+    color: var(--yellow-hover);
 }
 
-/* 30 minutos de 8 horas es el 6% de la barra de arriba. */
-.featured-case-after .featured-case-bar {
-    width: 6%;
-    min-width: 32px; /* tan corta que sin mínimo se leía como un punto */
-    background: #0A0A0A;
+/* 30 minutos de 8 horas es el 6% del riel. La barra mide todo el riel y
+   el recorte deja ver solo esa parte; con clip-path el extremo redondeado
+   no se deforma, como pasaría con scaleX. */
+.featured-case-after .featured-case-fill {
+    background: var(--yellow);
+    clip-path: inset(0 94% 0 0 round 999px);
+    /* Explica un cambio, por eso dura más que un botón (900ms). */
+    transition: clip-path 900ms var(--ease-in-out) 150ms;
 }
 
-.featured-case-note {
+/* Antes de verse, la barra de "Ahora" está llena, igual que la de "Antes". */
+.featured-case-compare.is-pending .featured-case-after .featured-case-fill {
+    clip-path: inset(0 0 0 0 round 999px);
+}
+
+/* Cifras del caso en una fila al pie. */
+.featured-case-stats {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-10);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border);
+}
+
+/* La cifra va arriba a la vista; en el código, la etiqueta primero. */
+.featured-case-stat {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--space-1);
+}
+
+.featured-case-stat dd {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: 1.1;
+    color: var(--yellow-hover);
+}
+
+.featured-case-stat dt {
     font-family: var(--font-sans);
     font-size: var(--text-sm);
-    font-weight: 600;
-    color: rgba(10, 10, 10, 0.75);
-    margin-top: var(--space-5);
+    color: var(--text-muted);
 }
 
 @media (max-width: 900px) {
     .featured-case-box {
         grid-template-columns: 1fr;
         gap: var(--space-6);
-        padding: var(--space-8) var(--space-5);
+        padding: var(--space-6) var(--space-5);
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-case-compare {
+        column-gap: var(--space-3);
+    }
+
+    .featured-case-value {
+        font-size: var(--text-3xl);
+    }
+
+    /* Las tres cifras en una fila, más chicas, en vez de una columna alta. */
+    .featured-case-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-3);
+    }
+
+    .featured-case-stat dd {
+        font-size: var(--text-2xl);
+    }
+
+    .featured-case-stat dt {
+        font-size: var(--text-sm);
+        line-height: 1.4;
     }
 }

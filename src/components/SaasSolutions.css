@@ -99,12 +99,22 @@
     font-weight: 600;
     color: var(--yellow-hover);
     text-decoration: none;
-    transition: gap 0.2s, color 0.2s;
+    transition: color 200ms ease;
+}
+
+.project-card-link svg {
+    transition: transform 200ms var(--ease-out);
 }
 
 .project-card-link:hover {
-    gap: 10px;
     color: var(--ink);
+}
+
+/* La flecha se mueve con transform: animar gap recalculaba el layout. */
+@media (hover: hover) and (pointer: fine) {
+    .project-card-link:hover svg {
+        transform: translate(2px, -2px);
+    }
 }
 
 @media (max-width: 900px) {

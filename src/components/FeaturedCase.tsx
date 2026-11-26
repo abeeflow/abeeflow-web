@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { useInView } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
 import RevealOnScroll from './RevealOnScroll';
 import './FeaturedCase.css';
@@ -5,6 +7,10 @@ import './FeaturedCase.css';
 // El caso con más impacto, arriba de la lista de casos.
 const FeaturedCase = () => {
   const { t } = useLanguage();
+  // La barra de "Ahora" empieza llena, igual que la de "Antes", y se
+  // encoge una sola vez al verse: muestra el paso de 8 horas a 30 min.
+  const compareRef = useRef<HTMLDivElement>(null);
+  const seen = useInView(compareRef, { once: true, amount: 0.6 });
 
   return (
     <RevealOnScroll className="featured-case">
@@ -14,19 +20,31 @@ const FeaturedCase = () => {
           <p className="featured-case-desc">{t.featured.desc}</p>
         </div>
 
-        <div className="featured-case-compare">
+        <div ref={compareRef} className={`featured-case-compare ${seen ? '' : 'is-pending'}`}>
           <div className="featured-case-row featured-case-before">
             <span className="featured-case-label">{t.featured.before.label}</span>
+            <span className="featured-case-track" aria-hidden="true">
+              <span className="featured-case-fill"></span>
+            </span>
             <span className="featured-case-value">{t.featured.before.value}</span>
-            <span className="featured-case-bar"></span>
           </div>
           <div className="featured-case-row featured-case-after">
             <span className="featured-case-label">{t.featured.after.label}</span>
+            <span className="featured-case-track" aria-hidden="true">
+              <span className="featured-case-fill"></span>
+            </span>
             <span className="featured-case-value">{t.featured.after.value}</span>
-            <span className="featured-case-bar"></span>
           </div>
-          <p className="featured-case-note">{t.featured.note}</p>
         </div>
+
+        <dl className="featured-case-stats">
+          {t.featured.stats.map((stat) => (
+            <div key={stat.value} className="featured-case-stat">
+              <dt>{stat.label}</dt>
+              <dd>{stat.value}</dd>
+            </div>
+          ))}
+        </dl>
       </article>
     </RevealOnScroll>
   );

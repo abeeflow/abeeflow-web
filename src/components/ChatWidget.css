@@ -109,12 +109,6 @@
     height: 6px;
     border-radius: 50%;
     background: #6BAA5A;
-    animation: status-pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes status-pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: 0.6; transform: scale(1.2); }
 }
 
 .chat-wa-link,
@@ -250,18 +244,17 @@
     padding: 7px 12px;
     border-radius: 999px;
     cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    transition: background-color 150ms ease, border-color 150ms ease, transform 160ms var(--ease-out);
     line-height: 1.1;
 }
 
 .chat-quick-option:hover {
     background: rgba(255, 200, 87, 0.12);
     border-color: rgba(255, 200, 87, 0.4);
-    transform: translateY(-1px);
 }
 
 .chat-quick-option:active {
-    transform: translateY(0);
+    transform: scale(0.97);
 }
 
 .chat-cta {
@@ -278,12 +271,22 @@
     font-weight: 700;
     text-decoration: none;
     align-self: flex-start;
-    transition: background 0.25s, transform 0.25s;
+    transition: background-color 200ms ease, transform 160ms var(--ease-out);
 }
 
 .chat-cta:hover {
     background: var(--yellow-hover);
-    transform: translateY(-1px);
+}
+
+/* Solo con mouse: en pantallas táctiles el hover se queda pegado. */
+@media (hover: hover) and (pointer: fine) {
+    .chat-cta:hover {
+        transform: translateY(-1px);
+    }
+}
+
+.chat-cta:active {
+    transform: scale(0.97);
 }
 
 /* Input */
@@ -398,5 +401,4 @@
         animation: none;
     }
     .chat-typing { display: none; }
-    .chat-dot { animation: none; }
 }
