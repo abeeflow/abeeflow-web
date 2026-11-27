@@ -170,6 +170,19 @@ export const translations = {
         casos: 'Casos reales',
         faq: 'Preguntas frecuentes',
         contacto: 'Contacto'
+      },
+      // Footer de la versión para mypes (/vdraft).
+      mype: {
+        brandDesc: 'Automatizamos lo que hoy haces a mano en Excel y WhatsApp, para que tengas más tiempo para tu negocio.',
+        pagina: 'En esta página',
+        hablemos: 'Hablemos',
+        links: {
+          problemas: '¿Te suena familiar?',
+          resultados: 'Resultados',
+          faq: 'Preguntas frecuentes',
+          equipo: 'Nuestro equipo',
+          diagnostico: 'Diagnóstico gratuito'
+        }
       }
     },
     chatWidget: {
@@ -380,6 +393,18 @@ export const translations = {
         casos: 'Real Cases',
         faq: 'FAQ',
         contacto: 'Contact'
+      },
+      mype: {
+        brandDesc: 'We automate what you do by hand today in Excel and WhatsApp, so you have more time for your business.',
+        pagina: 'On this page',
+        hablemos: 'Talk to us',
+        links: {
+          problemas: 'Sound familiar?',
+          resultados: 'Results',
+          faq: 'FAQ',
+          equipo: 'Our team',
+          diagnostico: 'Free diagnostic'
+        }
       }
     },
     chatWidget: {

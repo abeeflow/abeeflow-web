@@ -116,6 +116,16 @@
     }
 }
 
+/* Versión mypes: dos columnas de links, y espacio abajo para que la
+   etiqueta fija "vDraft" no tape el copyright. */
+.footer--mype .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr;
+}
+
+.footer.footer--mype {
+    padding-bottom: calc(var(--space-6) + 64px);
+}
+
 .footer-bottom {
     border-top: 1px solid var(--border);
     padding-top: var(--space-5);
@@ -153,6 +163,20 @@
     .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: var(--space-6);
+    }
+
+    .footer--mype .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer--mype .footer-grid > :first-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer--mype .footer-grid {
+        grid-template-columns: 1fr;
     }
 }
 

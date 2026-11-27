@@ -30,7 +30,8 @@ const SkipLink = () => {
 function App() {
   useLenis();
   // En minúsculas: /vDraft y /vdraft llevan a la misma página.
-  const Page = pages[window.location.pathname.replace(/\/+$/, '').toLowerCase()] ?? Home;
+  const path = window.location.pathname.replace(/\/+$/, '').toLowerCase();
+  const Page = pages[path] ?? Home;
 
   return (
     <LanguageProvider>
@@ -40,7 +41,7 @@ function App() {
       <main id="main" tabIndex={-1}>
         <Page />
       </main>
-      <Footer />
+      <Footer mype={path === '/vdraft'} />
       <ChatWidget />
     </LanguageProvider>
   );
