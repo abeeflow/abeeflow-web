@@ -68,28 +68,26 @@
         translate 200ms var(--ease-out);
 }
 
-/* Hover solo con mouse: la tarjeta sube 2px, el problema se tacha y la
-   solución se ilumina. En el celular no hay hover que simular. */
-@media (hover: hover) and (pointer: fine) {
-    .draft-pain:hover {
-        border-color: var(--yellow);
-        box-shadow: var(--shadow-lg);
-        translate: 0 -2px;
-    }
+/* Tarjeta activa (la elige DraftPage: sola, o la que tiene el mouse
+   encima): sube 2px, el problema se tacha y la solución se ilumina. */
+.draft-pain.is-active {
+    border-color: var(--yellow);
+    box-shadow: var(--shadow-lg);
+    translate: 0 -2px;
+}
 
-    .draft-pain:hover .draft-pain-text {
-        background-size: 100% 1.5px;
-        color: var(--text-secondary);
-    }
+.draft-pain.is-active .draft-pain-text {
+    background-size: 100% 1.5px;
+    color: var(--text-secondary);
+}
 
-    .draft-pain:hover .draft-pain-icon {
-        background: var(--yellow);
-        color: #15110D;
-    }
+.draft-pain.is-active .draft-pain-icon {
+    background: var(--yellow);
+    color: #15110D;
+}
 
-    .draft-pain:hover .draft-pain-fix {
-        background: color-mix(in srgb, var(--yellow) 18%, var(--surface));
-    }
+.draft-pain.is-active .draft-pain-fix {
+    background: color-mix(in srgb, var(--yellow) 18%, var(--surface));
 }
 
 /* La raya del tachado: una línea de fondo que crece de izquierda a

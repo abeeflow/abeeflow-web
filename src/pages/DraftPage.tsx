@@ -1,12 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
-import type { Variants } from 'framer-motion';
+import { useInView, useReducedMotion } from 'framer-motion';
 import { WHATSAPP_URL } from '../lib/links';
-import { useHeroTick } from '../hooks/useHeroTick';
+import { HERO_TICK_MS, useHeroTick } from '../hooks/useHeroTick';
 import SectionLink from '../components/SectionLink';
 import HeroHoneycomb from '../components/HeroHoneycomb';
-import RevealOnScroll from '../components/RevealOnScroll';
 import Contact from '../components/Contact';
 import '../components/Hero.css';
 import '../components/Faq.css';
@@ -106,25 +104,56 @@ const faq = [
   { q: '¿El sistema es mío?', a: 'Sí. Te entregamos el código y la documentación. No dependes de nosotros.' },
 ];
 
-// Listas que entran una pieza tras otra la primera vez que se ven:
-// 60ms entre piezas, cada una sube 12px en 400ms con ease-out.
-// El hover de las tarjetas usa `translate`, no `transform`, para no
-// chocar con el transform que deja framer-motion.
-const list: Variants = { shown: { transition: { staggerChildren: 0.06 } } };
-const item: Variants = {
-  hidden: { opacity: 0, transform: 'translateY(12px)' },
-  shown: { opacity: 1, transform: 'translateY(0px)', transition: { duration: 0.4, ease: [0.23, 1, 0.32, 1] } },
-};
-const inView = { once: true, amount: 0.15 };
+// Debajo de este ancho las tarjetas van en una sola columna.
+const STACKED_QUERY = '(max-width: 640px)';
 
 const DraftPage = () => {
   const heroRef = useRef<HTMLElement>(null);
   const { tick, animate } = useHeroTick(heroRef);
-  // Con "reducir movimiento" todo aparece ya en su lugar.
   const reduceMotion = useReducedMotion() ?? false;
-  const reveal = reduceMotion
-    ? {}
-    : { initial: 'hidden', whileInView: 'shown', viewport: inView, variants: list };
+
+  // Tarjeta activa de "¿Te suena familiar?": el problema se tacha y la
+  // solución se ilumina, solo, como el panal del hero. En pantallas con
+  // columnas pasa a la siguiente cada 2,8 s (se pausa con el mouse
+  // encima); en el celular se activa la que cruza el centro de la
+  // pantalla. Con "reducir movimiento" solo responde al mouse.
+  const painsRef = useRef<HTMLUListElement>(null);
+  const painsInView = useInView(painsRef, { amount: 0.3 });
+  const [autoPain, setAutoPain] = useState(0);
+  const [hoveredPain, setHoveredPain] = useState<number | null>(null);
+  const [stacked, setStacked] = useState(() => window.matchMedia(STACKED_QUERY).matches);
+
+  useEffect(() => {
+    const query = window.matchMedia(STACKED_QUERY);
+    const update = () => setStacked(query.matches);
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    if (stacked || reduceMotion || !painsInView || hoveredPain !== null) return;
+    const id = setInterval(() => setAutoPain((n) => (n + 1) % pains.length), HERO_TICK_MS);
+    return () => clearInterval(id);
+  }, [stacked, reduceMotion, painsInView, hoveredPain]);
+
+  useEffect(() => {
+    const listEl = painsRef.current;
+    if (!stacked || reduceMotion || !listEl) return;
+    const cards = [...listEl.children];
+    // Una franja fina en el medio de la pantalla: la tarjeta que la cruza.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setAutoPain(cards.indexOf(entry.target));
+        }
+      },
+      { rootMargin: '-45% 0px -45% 0px' },
+    );
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, [stacked, reduceMotion]);
+
+  const activePain = hoveredPain ?? (reduceMotion ? null : autoPain);
 
   // Un borrador no debe aparecer en Google. index.html ya trae un meta
   // robots en "index": se cambia ese (dos metas que se contradicen
@@ -188,9 +217,20 @@ const DraftPage = () => {
             <h2 className="section-title">¿Te suena familiar?</h2>
             <p className="section-subtitle">Lo que más tiempo le quita a una mype, y cómo lo resolvemos.</p>
           </div>
-          <motion.ul className="draft-pains" {...reveal}>
+          <ul ref={painsRef} className="draft-pains">
               {pains.map((pain, index) => (
-                <motion.li key={pain.pain} className="draft-pain" variants={item}>
+                <li
+                  key={pain.pain}
+                  className={activePain === index ? 'draft-pain is-active' : 'draft-pain'}
+                  onPointerEnter={(event) => {
+                    if (event.pointerType === 'mouse') setHoveredPain(index);
+                  }}
+                  onPointerLeave={() => {
+                    // El ciclo sigue desde la tarjeta que se dejó.
+                    if (hoveredPain !== null) setAutoPain(hoveredPain);
+                    setHoveredPain(null);
+                  }}
+                >
                   <span className="draft-pain-icon" aria-hidden="true">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       {painIcons[index]}
@@ -200,7 +240,7 @@ const DraftPage = () => {
                   <dl className="draft-pain-compare">
                     <div className="draft-pain-now">
                       <dt>Hoy</dt>
-                      {/* Al pasar el cursor, el problema se tacha. */}
+                      {/* En la tarjeta activa, el problema se tacha. */}
                       <dd><span className="draft-pain-text">{pain.pain}</span></dd>
                     </div>
                     <div className="draft-pain-fix">
@@ -208,9 +248,9 @@ const DraftPage = () => {
                       <dd>{pain.fix}</dd>
                     </div>
                   </dl>
-                </motion.li>
+                </li>
               ))}
-          </motion.ul>
+          </ul>
           <div className="draft-note">
             <p>¿Tu caso no está aquí? Cuéntanoslo en el diagnóstico y te decimos si se puede automatizar.</p>
             <SectionLink href="#contacto" className="btn-link-arrow">
@@ -226,14 +266,14 @@ const DraftPage = () => {
           <div className="section-header">
             <h2 className="section-title">Negocios que ya trabajan así</h2>
           </div>
-          <motion.dl className="draft-results" {...reveal}>
+          <dl className="draft-results">
             {results.map((result) => (
-              <motion.div key={result.value} className="draft-result" variants={item}>
+              <div key={result.value} className="draft-result">
                 <dt>{result.label}</dt>
                 <dd>{result.value}</dd>
-              </motion.div>
+              </div>
             ))}
-          </motion.dl>
+          </dl>
           <p className="draft-clients">
             <span>Confían en nosotros:</span> {clients.join(' · ')}
           </p>
@@ -245,14 +285,14 @@ const DraftPage = () => {
           <div className="section-header">
             <h2 className="section-title">Preguntas frecuentes</h2>
           </div>
-          <RevealOnScroll className="faq-list">
+          <div className="faq-list">
             {faq.map((item) => (
               <details key={item.q} className="faq-item">
                 <summary className="faq-question">{item.q}</summary>
                 <p className="faq-answer">{item.a}</p>
               </details>
             ))}
-          </RevealOnScroll>
+          </div>
         </div>
       </section>
 

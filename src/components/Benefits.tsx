@@ -1,6 +1,5 @@
 import { useLanguage } from '../i18n/LanguageContext';
 import { VETSUITE_DEMO_URL } from '../lib/links';
-import RevealOnScroll from './RevealOnScroll';
 import './Benefits.css';
 
 // Un icono por cada punto del servicio principal, en el mismo orden.
@@ -28,23 +27,21 @@ const Benefits = () => {
           <h2 className="section-title">{t.services.title}</h2>
         </div>
 
-        <RevealOnScroll>
-          <h3 className="service-main-title">{t.services.main.title}</h3>
-          <p className="service-main-desc">{t.services.main.desc}</p>
-          <ul className="service-main-benefits">
-            {t.services.main.benefits.map((benefit, index) => (
-              <li key={benefit.title} className="service-main-benefit">
-                <div className="service-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d={benefitIcons[index]}/>
-                  </svg>
-                </div>
-                <span className="service-main-benefit-title">{benefit.title}</span>
-                <span className="service-main-benefit-desc">{benefit.desc}</span>
-              </li>
-            ))}
-          </ul>
-        </RevealOnScroll>
+        <h3 className="service-main-title">{t.services.main.title}</h3>
+        <p className="service-main-desc">{t.services.main.desc}</p>
+        <ul className="service-main-benefits">
+          {t.services.main.benefits.map((benefit, index) => (
+            <li key={benefit.title} className="service-main-benefit">
+              <div className="service-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d={benefitIcons[index]}/>
+                </svg>
+              </div>
+              <span className="service-main-benefit-title">{benefit.title}</span>
+              <span className="service-main-benefit-desc">{benefit.desc}</span>
+            </li>
+          ))}
+        </ul>
 
         <div className="services-also">
           <h3 className="services-also-title">{t.services.alsoTitle}</h3>

@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react';
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import { useLenis } from './hooks/useLenis';
+import { useScrollReveal } from './hooks/useScrollReveal';
 import Header from './components/Header';
 import HoneycombBackground from './components/HoneycombBackground';
 import Footer from './components/Footer';
@@ -29,6 +30,8 @@ const SkipLink = () => {
 
 function App() {
   useLenis();
+  // Todas las páginas: el contenido aparece al hacer scroll.
+  useScrollReveal();
   // En minúsculas: /vDraft y /vdraft llevan a la misma página.
   const path = window.location.pathname.replace(/\/+$/, '').toLowerCase();
   const Page = pages[path] ?? Home;

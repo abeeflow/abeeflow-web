@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
-import RevealOnScroll from './RevealOnScroll';
 import './FeaturedCase.css';
 
 // El caso con más impacto, arriba de la lista de casos.
@@ -13,7 +12,7 @@ const FeaturedCase = () => {
   const seen = useInView(compareRef, { once: true, amount: 0.6 });
 
   return (
-    <RevealOnScroll className="featured-case">
+    <div className="featured-case">
       <article className="featured-case-box">
         <div>
           <h3 className="featured-case-title">{t.featured.title}</h3>
@@ -46,7 +45,7 @@ const FeaturedCase = () => {
           ))}
         </dl>
       </article>
-    </RevealOnScroll>
+    </div>
   );
 };
 

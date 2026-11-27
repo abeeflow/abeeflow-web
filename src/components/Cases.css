@@ -10,7 +10,7 @@
     gap: var(--space-6);
 }
 
-/* RevealOnScroll envuelve cada tarjeta: que ocupe toda la celda. */
+/* Cada tarjeta va dentro de un div: que ocupe toda la celda. */
 .cases-grid > * {
     display: flex;
 }
