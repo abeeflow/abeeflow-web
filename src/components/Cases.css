@@ -84,11 +84,11 @@
 }
 
 .case-company-name {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: var(--text-xs);
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     color: var(--text-secondary);
 }
 
@@ -118,9 +118,10 @@
 }
 
 .case-step dt {
-    font-family: var(--font-pixel);
-    font-size: 10px;
-    letter-spacing: 0.08em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--text-secondary);
     margin-bottom: var(--space-1);

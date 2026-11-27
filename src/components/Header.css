@@ -115,10 +115,10 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-pill);
     padding: 6px 14px;
-    font-family: var(--font-pixel);
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
     cursor: pointer;
     color: var(--text-muted);
     transition: border-color 0.2s;
@@ -135,7 +135,7 @@
 
 .lang-active {
     color: var(--ink);
-    font-weight: 400;
+    font-weight: 700;
 }
 
 .lang-toggle-mobile {
@@ -147,10 +147,10 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-pill);
     padding: 10px 24px;
-    font-family: var(--font-pixel);
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
     cursor: pointer;
     color: var(--text-muted);
     width: 100%;

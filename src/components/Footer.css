@@ -80,12 +80,12 @@
 }
 
 .footer-col-title {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-weight: 700;
     font-size: 12px;
     margin-bottom: var(--space-4);
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.08em;
     color: var(--ink);
 }
 
@@ -97,12 +97,6 @@
     text-decoration: none;
     padding: 5px 0;
     transition: color 0.2s;
-}
-
-.footer-col a[href^="mailto:"],
-.footer-col a[href^="https://wa.me/"] {
-    font-family: var(--font-mono);
-    letter-spacing: 0.02em;
 }
 
 .footer-col a:hover {
@@ -140,19 +134,13 @@
 }
 
 .footer-tagline {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
     margin: 0;
 }
 
 .footer-location {
-    font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: var(--text-sm);
     color: var(--text-muted);
     margin-top: var(--space-2);
-    letter-spacing: 0.02em;
 }
 
 @media (max-width: 768px) {

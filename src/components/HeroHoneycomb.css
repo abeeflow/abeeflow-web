@@ -76,10 +76,10 @@
 
 /* Labels */
 .hex-label {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 9px;
     fill: var(--text-muted);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-anchor: middle;
     font-weight: 700;
     text-transform: uppercase;

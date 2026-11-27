@@ -52,10 +52,10 @@
     --text-6xl: 72px;
 
     /* Font families */
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Dos fuentes: Instrument Serif para títulos y cifras, Figtree para todo
+       lo demás (texto, botones, etiquetas, menú y footer). */
+    --font-sans: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
-    --font-mono: 'Geist Mono', 'JetBrains Mono', 'Fira Code', 'SF Mono', Menlo, monospace;
-    --font-pixel: 'Silkscreen', 'Press Start 2P', 'VT323', monospace;
 
     /* Legacy aliases (kept for backwards-compat with existing styles) */
     --text: var(--ink-soft);
