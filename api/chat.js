@@ -1,14 +1,10 @@
 // Chat del sitio. Vercel publica este archivo en /api/chat.
 // Recibe la conversación y devuelve la respuesta de un modelo de NVIDIA.
 
-const NVIDIA_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
+import { MODELS, askNvidia } from './_nvidia.js';
+
 const WHATSAPP_URL = 'https://wa.me/51999950133';
 
-// Se prueban en orden: si el primero falla, responde el siguiente.
-const MODELS = [
-  'nvidia/nemotron-3.5-bolt-e4b',
-  'nvidia/nemotron-3.5-lightning-30b-a3b',
-];
 const MODEL_TIMEOUT_MS = 12000;
 
 // 13 mensajes son 7 preguntas del visitante. Después se pasa a WhatsApp.
@@ -79,24 +75,9 @@ REGLAS:
 
 // Pide una respuesta a un modelo. Lanza un error si no hay texto útil.
 async function askModel(model, messages) {
-  const res = await fetch(NVIDIA_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${process.env.NVIDIA_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ model, messages, temperature: 0.4, max_tokens: 1024 }),
-    signal: AbortSignal.timeout(MODEL_TIMEOUT_MS),
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
-
-  const data = await res.json();
-  const reply = (data.choices?.[0]?.message?.content ?? '')
-    // Algunos modelos anteponen su razonamiento entre <think> y </think>.
-    .replace(/<think>[\s\S]*?<\/think>/g, '')
+  const reply = (await askNvidia(model, messages, { timeoutMs: MODEL_TIMEOUT_MS }))
     // Si el modelo cambia un dígito del número, se restaura el enlace oficial.
-    .replace(/https?:\/\/wa\.me\/\d+/g, WHATSAPP_URL)
-    .trim();
+    .replace(/https?:\/\/wa\.me\/\d+/g, WHATSAPP_URL);
   const askContact = reply.includes(CONTACT_MARK);
   const text = reply.split(CONTACT_MARK).join('').trim();
   if (!text) throw new Error('respuesta vacía');
