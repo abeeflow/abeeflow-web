@@ -95,6 +95,15 @@ async function summarize({ transcript, need, isEmail }) {
   return null;
 }
 
+// Remitente con el nombre del visitante, para verlo en la bandeja de entrada:
+// "Rosa Quispe vía abeeFlow Web <web@abeeflow.com>". El correo sigue
+// saliendo de la dirección verificada.
+const fromWithName = (from, name) => {
+  const address = from.match(/<([^>]+)>/)?.[1] ?? from.trim();
+  const safeName = name.replace(/["<>\\\r\n]/g, '').trim();
+  return safeName ? `"${safeName} vía abeeFlow Web" <${address}>` : from;
+};
+
 const escapeHtml = (text) =>
   String(text).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 
@@ -158,17 +167,23 @@ export default async function handler(req, res) {
       </table>`
     : '';
 
+  // Primero, quién escribió y cómo contactarlo; después, el resumen.
+  const contactHref = isEmail ? `mailto:${escapeHtml(contact)}` : waLink;
+  const row = (label, value) =>
+    `<tr><td style="padding:4px 12px 4px 16px;font-weight:600;color:#15110D;vertical-align:top;white-space:nowrap">${label}</td><td style="padding:4px 16px 4px 0;color:#15110D">${value}</td></tr>`;
+  const contactHtml = `<table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;max-width:640px;margin:0 0 16px;border:1px solid #D9D4CC;border-radius:8px;background:#FAF8F5;border-collapse:separate">
+      <tr><td colspan="2" style="padding:14px 16px 6px;font-weight:700;color:#15110D">Datos de contacto</td></tr>
+      ${row('Nombre', escapeHtml(name))}
+      ${row(isEmail ? 'Correo' : 'WhatsApp', `<a href="${contactHref}" style="color:#1A5FB4">${escapeHtml(contact)}</a>`)}
+      ${row('Qué necesita', need ? escapeHtml(need) : '<em>No lo escribió</em>')}
+      ${page ? row('Página', escapeHtml(page)) : ''}
+      <tr><td colspan="2" style="padding:10px 16px 14px"><a href="${contactHref}" style="display:inline-block;padding:10px 16px;border-radius:999px;background:#E0A82E;color:#15110D;font-weight:700;text-decoration:none">${isEmail ? `Responder a ${escapeHtml(name)}` : `Escribir a ${escapeHtml(name)} por WhatsApp`}</a></td></tr>
+    </table>`;
+
   const html = `
     <h2 style="margin:0 0 12px">Nuevo contacto desde la web</h2>
+    ${contactHtml}
     ${summaryHtml}
-    <p><strong>Nombre:</strong> ${escapeHtml(name)}</p>
-    <p><strong>${isEmail ? 'Correo' : 'WhatsApp'}:</strong> ${
-      isEmail
-        ? `<a href="mailto:${escapeHtml(contact)}">${escapeHtml(contact)}</a>`
-        : `<a href="${waLink}">${escapeHtml(contact)}</a>`
-    }</p>
-    <p><strong>Qué necesita:</strong> ${need ? escapeHtml(need) : '<em>No lo escribió</em>'}</p>
-    ${page ? `<p><strong>Página:</strong> ${escapeHtml(page)}</p>` : ''}
     ${
       transcript.length
         ? `<h3 style="margin:24px 0 8px">Conversación completa</h3>${transcript
@@ -180,11 +195,12 @@ export default async function handler(req, res) {
 
   const text = [
     'Nuevo contacto desde la web',
-    summary && ['', 'Resumen de la conversación', ...SUMMARY_FIELDS.map(([key, label]) => `${label}: ${summary[key]}`), ''].join('\n'),
+    '',
     `Nombre: ${name}`,
     `${isEmail ? 'Correo' : 'WhatsApp'}: ${contact}${waLink ? ` (${waLink})` : ''}`,
     `Qué necesita: ${need || 'No lo escribió'}`,
     page && `Página: ${page}`,
+    summary && ['', 'Resumen de la conversación', ...SUMMARY_FIELDS.map(([key, label]) => `${label}: ${summary[key]}`)].join('\n'),
     transcript.length && '\nConversación completa:',
     ...transcript.map((m) => `${m.who}: ${m.text}`),
   ]
@@ -199,7 +215,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: process.env.LEAD_FROM || DEFAULT_FROM,
+        from: fromWithName(process.env.LEAD_FROM || DEFAULT_FROM, name),
         to,
         // Al responder el correo, la respuesta le llega al visitante.
         ...(isEmail ? { reply_to: contact } : {}),
